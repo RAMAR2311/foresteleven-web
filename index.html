@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ForestEleven - Private Digital Settlements</title>
+    <!-- V5 Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ac20a",
+                        "background-light": "#FDFBF7",
+                        "background-dark": "#102210",
+                        "charcoal": "#1f2937",
+                        "forest-dark": "#0d1c0d",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a331a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2832&auto=format&fit=crop')",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        html:not(.dark) body {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dark .glass-card {
+            background: rgba(26, 51, 26, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Oculta la flecha nativa de todos los select y la del plugin de Tailwind Forms */
+        select {
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+            background-image: none !important;
+        }
+
+        /* Para ocultar la flecha en IE/Edge Legacy */
+        select::-ms-expand {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-charcoal dark:text-white overflow-x-hidden">
+
+    <!-- 1. HEADER (V5 Aesthetic) -->
+    <header
+        class="sticky top-0 z-50 w-full backdrop-blur-md bg-background-light/90 dark:bg-background-dark/90 border-b border-[#e7f4e7] dark:border-[#2a442a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-3xl">forest</span>
+                    <h1 class="text-forest-dark dark:text-white text-xl font-bold tracking-tight">ForestEleven</h1>
+                </div>
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                        href="#what-we-do" data-i18n="nav.whatWeDo">What We Do</a>
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                        href="#desks" data-i18n="nav.desks">Desks</a>
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                        href="#why-foresteleven" data-i18n="nav.whyUs">Why ForestEleven</a>
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                        href="#workflow" data-i18n="nav.howItWorks">How it Works</a>
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                        href="#contact" data-i18n="nav.contact">Contact</a>
+                </nav>
+                <!-- Actions -->
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-1 p-1">
+                        <button id="lang-en" onclick="setLanguage('en')"
+                            class="px-2 py-1 text-xs font-bold transition-colors hover:text-primary">EN</button>
+                        <span class="text-gray-300">|</span>
+                        <button id="lang-es" onclick="setLanguage('es')"
+                            class="px-2 py-1 text-xs font-bold transition-colors hover:text-primary">ES</button>
+                    </div>
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" onclick="toggleTheme()"
+                        class="p-2 text-gray-400 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="py-24 px-6 max-w-[1400px] mx-auto">
+        <div
+            class="relative min-h-[85vh] flex items-center p-8 lg:p-12 bg-white dark:bg-surface-dark rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl overflow-hidden transition-all duration-300">
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent dark:from-surface-dark dark:via-surface-dark/95 dark:to-transparent z-10 w-full h-full pointer-events-none">
+                </div>
+                <div class="absolute right-0 top-0 w-full lg:w-3/4 h-full bg-cover bg-center opacity-30 dark:opacity-20"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSoyUHsxEBW3Cr7ZXwNoCKeHurfMF92KCB1edBI9jrlE3u4HPOuhhuoI21MraInrseYONEVXlYjiZMti2Y8ak1hUtFuXjrx650f4q-YOnlIeArBokyFno9yBbLrBz4fUTQfbeRNbielwoi_S5JRH4YGTaMnnleX-NkWG5NiF_nz1uVOg47FJRhAsB2wIS08gPojK25OGDvZqrbT8YkD3LbCrTfHBIbrpfcNVv4TNenFIHwtWfvB5kWWGnTC0JDaoGyxbsGTOa0org');">
+                </div>
+            </div>
+            <div class="relative z-20 w-full">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+                    <div class="max-w-2xl">
+                        <h1
+                            class="text-6xl md:text-7xl font-black tracking-tight text-forest-dark dark:text-white mb-6 leading-[0.9]">
+                            <span data-i18n="hero.clear">Clear.</span><br />
+                            <span data-i18n="hero.fast">Fast.</span><br />
+                            <span class="text-primary" data-i18n="hero.done">Done.</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 font-normal mb-10 max-w-lg leading-relaxed"
+                            data-i18n="hero.subtitle">
+                            Private digital dollar settlements via US banking rails. The executive solution for
+                            high-value
+                            USDT
+                            movements.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a class="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-primary text-white font-bold text-base transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-primary/10 shadow-lg shadow-green-500/20"
+                                href="#contact" data-i18n="cta.main">
+                                Get Started
+                            </a>
+                            <a class="inline-flex items-center justify-center h-12 px-8 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-forest-dark dark:text-white font-bold text-base transition-colors hover:bg-gray-50 dark:hover:bg-[#254525]"
+                                href="https://wa.me/573212838756?text=ForestEleven%20“Clear. Fast. Done”"
+                                target="_blank">
+                                <span class="material-symbols-outlined mr-2 text-primary">chat</span>
+                                <span data-i18n="cta.whatsapp">Contact via WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Token Logos -->
+                    <div class="flex flex-row items-center gap-12 mt-10 lg:mt-0 opacity-80 hover:opacity-100 transition-opacity duration-300">
+    <a href="#contact" class="flex flex-col items-center gap-3 group cursor-pointer no-underline">
+        <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/usdt.svg" alt="USDT Logo"
+            class="h-32 md:h-40 drop-shadow-lg transition-transform group-hover:scale-110"
+            title="USDT" />
+        <span data-i18n="crypto.usdt"
+            class="text-sm md:text-base font-bold text-forest-dark dark:text-gray-300 tracking-wide">USDT</span>
+    </a>
+
+    <a href="#contact" class="flex flex-col items-center gap-3 group cursor-pointer no-underline">
+        <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/usdc.svg" alt="USDC Logo"
+            class="h-32 md:h-40 drop-shadow-lg transition-transform group-hover:scale-110"
+            title="USDC" />
+        <span data-i18n="crypto.usdc"
+            class="text-sm md:text-base font-bold text-forest-dark dark:text-gray-300 tracking-wide">USDC</span>
+    </a>
+</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- 3. WHAT WE DO (New Section) -->
+    <section id="what-we-do"
+        class="py-24 bg-white dark:bg-surface-dark border-t border-[#e7f4e7] dark:border-[#2a442a]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-[#e7f4e7] dark:bg-[#1f3a1f] text-primary text-sm font-bold mb-4 uppercase tracking-wider"
+                data-i18n="whatWeDo.label">Our Service</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-forest-dark dark:text-white mb-6" data-i18n="whatWeDo.title">
+                What We Do</h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed" data-i18n="whatWeDo.description">
+                We connect the world of digital assets with traditional financial infrastructure. We offer strategic
+                conversion between stablecoins,
+                Bitcoin, and fiat currency<span class="text-primary font-bold">(USD/COP)</span>, guaranteeing efficient
+                liquidity and clear, agile, and reliable processes.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. DESKS -->
+    <section id="desks" class="py-24 px-6 max-w-[1400px] mx-auto">
+        <div
+            class="bg-white dark:bg-surface-dark rounded-3xl p-8 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl overflow-hidden transition-all duration-300">
+            <!-- HEADER -->
+            <div class="text-center mb-16">
+
+                <h2 class="text-3xl md:text-4xl font-bold text-forest-dark dark:text-white tracking-tight"
+                    data-i18n="desks.title">
+                    Select Your Desk
+                </h2>
+
+                <p class="mt-4 text-gray-500 dark:text-gray-400" data-i18n="desks.subtitle">
+                    Tailored solutions for every transaction volume.
+                </p>
+
+            </div>
+
+            <!-- GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Zelle Desk -->
+                <div
+                    class="group relative flex flex-col p-8 lg:p-10 bg-white/70 dark:bg-surface-dark/60 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-primary/20 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 h-full">
+
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-6xl text-primary">
+                            bolt
+                        </span>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-forest-dark dark:text-white mb-2" data-i18n="zelle.title">
+                        Zelle Desk
+                    </h3>
+
+                    <div class="flex items-baseline gap-2 mb-6">
+
+                        <span class="text-4xl font-black text-forest-dark dark:text-white tracking-tight"
+                            data-i18n="zelle.price">
+                            $500 - $5k
+                        </span>
+
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400" data-i18n="desks.perTx">
+                            / transaction
+                        </span>
+
+                    </div>
+
+                    <ul class="space-y-4 mb-8 flex-1">
+
+                        <li class="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
+
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+
+                            <span data-i18n="zelle.feature1">
+                                Agile movements for quick liquidity
+                            </span>
+
+                        </li>
+
+                        <li class="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
+
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+
+                            <span data-i18n="zelle.feature2">
+                                Instant settlement confirmation
+                            </span>
+
+                        </li>
+
+                    </ul>
+
+                    <a href="#contact"
+                        class="flex items-center justify-center w-full h-12 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10"
+                        data-i18n="zelle.cta">
+                        Select Zelle Desk
+                    </a>
+
+                </div>
+
+
+                <!-- Wire Desk -->
+                <div
+                    class="group relative flex flex-col p-8 lg:p-10 bg-forest-dark/80 dark:bg-forest-dark/80 backdrop-blur-md text-white rounded-2xl border border-primary/50 dark:border-primary/20 shadow-[0_0_30px_rgba(10,194,10,0.2)] hover:shadow-[0_0_40px_rgba(10,194,10,0.4)] transition-all duration-300 hover:-translate-y-2 hover:shadow-primary/10 h-full">
+
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-6xl text-white">
+                            account_balance
+                        </span>
+                    </div>
+
+                    <div class="absolute top-4 right-6">
+
+                        <span
+                            class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded uppercase tracking-wider shadow-[0_0_10px_rgba(10,194,10,0.5)]"
+                            data-i18n="wire.tag">
+                            Recommended
+                        </span>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-2 text-white" data-i18n="wire.title">
+                        Wire Desk
+                    </h3>
+
+                    <div class="flex items-baseline gap-2 mb-6">
+
+                        <span class="text-4xl font-black tracking-tight text-white" data-i18n="wire.price">
+                            $5,000+
+                        </span>
+
+                        <span class="text-sm text-gray-400" data-i18n="desks.perTx">
+                            / transaction
+                        </span>
+
+                    </div>
+
+                    <ul class="space-y-4 mb-8 flex-1">
+
+                        <li class="flex items-start gap-3 text-sm text-gray-300">
+
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+
+                            <span data-i18n="wire.feature1">
+                                Institutional volume handling
+                            </span>
+
+                        </li>
+
+                        <li class="flex items-start gap-3 text-sm text-gray-300">
+
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+
+                            <span data-i18n="wire.feature2">
+                                High-value bespoke transfers
+                            </span>
+
+                        </li>
+
+                    </ul>
+
+                    <a href="#contact"
+                        class="flex items-center justify-center w-full h-12 rounded-lg bg-primary text-white font-bold hover:bg-green-600 transition-all duration-300 shadow-lg shadow-green-900/50 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10"
+                        data-i18n="wire.cta">
+                        Select Wire Desk
+                    </a>
+
+                </div>
+
+
+                <!-- Enterprise Desk -->
+                <div
+                    class="group relative flex flex-col p-8 lg:p-10 bg-[#1a331a]/80 dark:bg-[#1a331a]/80 backdrop-blur-md text-white rounded-2xl border border-transparent dark:border-primary/20 border-t-4 border-t-[#0ac20a]/70 shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 h-full">
+
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+
+                        <span class="material-symbols-outlined text-7xl text-white">
+                            business_center
+                        </span>
+
+                    </div>
+
+                    <div class="absolute top-6 right-6">
+
+                        <span
+                            class="bg-gradient-to-r from-[#0ac20a] to-[#046104] text-white text-[10px] font-bold px-3 py-1 rounded uppercase tracking-wider shadow-sm"
+                            data-i18n="enterprise.tag">
+                            National
+                        </span>
+
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-2 text-white" data-i18n="enterprise.title">
+                        COP Desk
+                    </h3>
+
+                    <div class="flex items-baseline gap-2 mb-6">
+
+                        <span class="text-4xl font-black tracking-tight text-white" data-i18n="enterprise.price">
+                            $1.000.000 +
+                        </span>
+                        <span class="text-sm text-[#8cb38c]" data-i18n="desks.perTx">
+                            / transaction
+                        </span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-start gap-3 text-sm text-[#c6dfc6]">
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+                            <span data-i18n="enterprise.feature1">
+                                Dedicated account manager
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-[#c6dfc6]">
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+                            <span data-i18n="enterprise.feature2">
+                                Priority execution & settlement
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-[#c6dfc6]">
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+                            <span data-i18n="enterprise.feature3">
+                                Custom liquidity solutions
+                            </span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="flex items-center justify-center w-full h-12 rounded-lg bg-transparent border-2 border-[#8cb38c] text-[#c6dfc6] font-bold hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10"
+                        data-i18n="enterprise.cta">
+                        Select Cop Desk
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 5. WHY FORESTELEVEN -->
+    <section id="why-foresteleven"
+        class="py-24 bg-white dark:bg-surface-dark border-t border-[#e7f4e7] dark:border-[#2a442a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-16 items-start">
+                <div class="md:w-1/3 md:mt-24">
+                    <h2 class="text-4xl font-black text-forest-dark dark:text-white mb-4 leading-tight"
+                        data-i18n="why.title">
+                        Our Core<br>Principles.
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400" data-i18n="why.subtitle">
+                        Built on the foundation of trust and efficiency. We strip away the complexity of traditional
+                        finance.
+                    </p>
+                </div>
+                <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div
+                        class="bg-white dark:bg-white/5 p-10 rounded-3xl border border-gray-200 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary">
+                            <span class="material-symbols-outlined text-3xl">speed</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-forest-dark dark:text-white mb-2" data-i18n="why.speed.title">
+                            Speed</h3>
+                        <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="why.speed.desc">Instant
+                            execution
+                            speeds. No waiting days for settlements.</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-white/5 p-10 rounded-3xl border border-gray-200 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary">
+                            <span class="material-symbols-outlined text-3xl">shield</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-forest-dark dark:text-white mb-2"
+                            data-i18n="why.security.title">Security</h3>
+                        <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="why.security.desc">
+                            Bank-grade
+                            security protocols for every transfer.</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-white/5 p-10 rounded-3xl border border-gray-200 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary">
+                            <span class="material-symbols-outlined text-3xl">visibility_lock</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-forest-dark dark:text-white mb-2"
+                            data-i18n="why.Transparency.title">Transparency</h3>
+                        <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="why.Transparency.desc">
+                            Direct
+                            communication and clear rates.</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-white/5 p-10 rounded-3xl border border-gray-200 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                        <div
+                            class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary">
+                            <span class="material-symbols-outlined text-3xl">fact_check</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-forest-dark dark:text-white mb-2"
+                            data-i18n="why.Compliance.title">Compliance</h3>
+                        <p class="text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="why.Compliance.desc">
+                            Verification
+                            and control in each process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 6. WORKFLOW -->
+    <section id="workflow"
+        class="py-24 bg-background-light dark:bg-background-dark border-t border-[#e7f4e7] dark:border-[#2a442a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-forest-dark dark:text-white" data-i18n="workflow.title">Workflow</h2>
+            </div>
+            <div class="relative">
+                <div
+                    class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2 z-0">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <div
+                        class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="flex items-center gap-4 md:flex-col md:gap-4">
+                            <div
+                                class="w-16 h-16 rounded-full bg-forest-dark text-white flex items-center justify-center text-2xl font-bold border-4 border-background-light dark:border-background-dark shadow-lg">
+                                1</div>
+                            <div class="md:text-center">
+                                <h3 class="text-lg font-bold text-forest-dark dark:text-white"
+                                    data-i18n="workflow.step1.title">Request</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
+                                    data-i18n="workflow.step1.desc">Submit your transaction details.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="flex items-center gap-4 md:flex-col md:gap-4">
+                            <div
+                                class="w-16 h-16 rounded-full bg-white dark:bg-surface-dark text-forest-dark dark:text-white border-2 border-forest-dark dark:border-gray-500 flex items-center justify-center text-2xl font-bold shadow-lg">
+                                2</div>
+                            <div class="md:text-center">
+                                <h3 class="text-lg font-bold text-forest-dark dark:text-white"
+                                    data-i18n="workflow.step2.title">Quote</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
+                                    data-i18n="workflow.step2.desc">Receive a real-time fixed rate.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="flex items-center gap-4 md:flex-col md:gap-4">
+                            <div
+                                class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center shadow-lg border-4 border-background-light dark:border-background-dark">
+                                <span class="material-symbols-outlined text-3xl">check</span>
+                            </div>
+                            <div class="md:text-center">
+                                <h3 class="text-lg font-bold text-forest-dark dark:text-white"
+                                    data-i18n="workflow.step3.title">Settlement</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
+                                    data-i18n="workflow.step3.desc">Funds settled instantly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. COMPLIANCE BANNER (New) -->
+    <div class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">verified_user</span>
+                <span data-i18n="compliance.text">May apply KYC/AML. Service available for eligible clients.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- 8. FORM SECTION -->
+    <section id="contact" class="py-24 px-6 max-w-[1400px] mx-auto">
+        <div
+            class="bg-white dark:bg-surface-dark p-8 lg:p-12 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl overflow-hidden max-w-4xl mx-auto transition-all duration-300">
+            <form id="transactionForm" class="space-y-6">
+                <div class="mb-10">
+                    <h2 class="text-3xl font-bold text-forest-dark dark:text-white mb-2" data-i18n="form.title">
+                        Start Your Transaction</h2>
+                    <p class="text-gray-500 dark:text-gray-400" data-i18n="form.subtitle">Fill in the details
+                        below and an executive will contact you shortly.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="name" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
+                            data-i18n="form.label.name">Full Name</label>
+                        <input id="name" type="text" placeholder="John Doe" required
+                            class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
+                    </div>
+                    <div class="space-y-2">
+                        <label for="email" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
+                            data-i18n="form.label.email">Email Address</label>
+                        <input id="email" type="email" placeholder="john@company.com" required
+                            class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label for="whatsapp" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
+                        data-i18n="form.label.whatsapp">WhatsApp Number</label>
+                    <input id="whatsapp" type="tel" placeholder="+1 (555) 000-0000" required
+                        class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- CURRENCY -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-forest-dark dark:text-gray-300" 
+                        data-i18n="form.label.currency">
+                            Currency
+                        </label>
+                        <div class="flex gap-4">
+                            <!-- COP -->
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="currency" value="COP" checked class="peer sr-only">
+                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-surface-dark
+                    peer-checked:border-primary
+                    peer-checked:bg-[#e7f4e7]
+                    dark:peer-checked:bg-[#1f3a1f]
+                    peer-checked:text-forest-dark
+                    dark:peer-checked:text-white
+                    transition-all text-sm font-medium text-gray-500">
+                                    COP
+                                </div>
+                            </label>
+                            <!-- USD -->
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="currency" value="USD" class="peer sr-only">
+                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-surface-dark
+                    peer-checked:border-primary
+                    peer-checked:bg-[#e7f4e7]
+                    dark:peer-checked:bg-[#1f3a1f]
+                    peer-checked:text-forest-dark
+                    dark:peer-checked:text-white
+                    transition-all text-sm font-medium text-gray-500">
+                                    USD
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- PREFERRED METHOD -->
+                    <div class="space-y-2">
+                        <label for="preferredMethod" class="text-sm font-semibold text-forest-dark dark:text-gray-300" 
+                        data-i18n="form.label.method">
+                            Preferred Method
+                        </label>
+                        <div class="relative">
+                            <select id="preferredMethod" class="w-full h-12 px-4 pr-12 rounded-lg
+               bg-white dark:bg-surface-dark
+               border border-gray-200 dark:border-gray-600
+               focus:border-primary focus:ring-1 focus:ring-primary
+               outline-none transition-all
+               appearance-none
+               dark:text-white cursor-pointer">
+                            </select>
+                            <!-- SOLO UN SPAN -->
+                            <span
+                                class="material-symbols-outlined pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">
+                                expand_more
+                            </span>
+                        </div>
+                    </div>
+                    <!-- AMOUNT RANGE -->
+                    <div class="space-y-2">
+                        <label for="amount" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
+                            data-i18n="form.label.amount">
+                            Amount Range
+                        </label>
+                        <input type="number" id="amount" placeholder="Ej: 5000" required
+                            class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
+                        <p id="amountError" class="text-xs text-red-500 mt-1 hidden"></p>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="w-full h-12 rounded-lg bg-primary text-white font-bold text-lg hover:bg-green-600 transition-all duration-300 shadow-lg shadow-green-500/30 mt-4 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10"
+                    data-i18n="form.button">Submit Request</button>
+            </form>
+            <!-- Success Message -->
+            <div id="successMessage"
+                class="hidden mt-6 p-4 rounded-xl bg-green-50 dark:bg-[#1f3a1f] border border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 text-center transition-all">
+                <h3 class="font-bold text-lg mb-1" data-i18n="success.title">Request Sent Successfully</h3>
+                <p class="text-sm" data-i18n="success.desc">One of our executives will contact you shortly via
+                    email or WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FAQ SECTION -->
+    <section id="faq" class="py-24 px-6 max-w-[1400px] mx-auto">
+        <div
+            class="bg-white dark:bg-surface-dark rounded-3xl p-8 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl max-w-4xl mx-auto transition-all duration-300">
+            <h2 class="text-3xl font-bold text-center text-forest-dark dark:text-white mb-12" data-i18n="faq.title">
+                Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q1">Processing Times</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                        <p data-i18n="faq.a1">Zelle: 5-30 min. Wire: Depends on the bank, released 5-30 min after
+                            clearing.</p>
+                    </div>
+                </details>
+                <!-- FAQ 2 -->
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q2">Required Documentation</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                        <p data-i18n="faq.a2">Valid ID, selfie, proof of address, basic details, proof of funds if
+                            applicable.</p>
+                    </div>
+                </details>
+                <!-- FAQ 3 -->
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q3">Transaction Limits</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                        <p data-i18n="faq.a3">Zelle: $500-$5,000. Wire: $5,000+ with no limit.</p>
+                    </div>
+                </details>
+                <!-- FAQ 4 -->
+                <details
+                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q4">Supported Accounts</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                        <p data-i18n="faq.a4">Any bank in the US and Colombia.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="bg-forest-dark text-white py-12 border-t border-gray-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center gap-8">
+                <!-- Footer Links (Top) -->
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 w-full max-w-4xl">
+                    <div class="flex flex-wrap justify-center gap-6 text-sm font-medium text-gray-400">
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.privacy" href="#">Privacy Policy</a>
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.terms" href="#">Terms of Service</a>
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.dataTreatment" href="#">Data Treatment</a>
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.cookies" href="#">Cookies Policy</a>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="w-full max-w-4xl h-px bg-gray-800 my-1"></div>
+
+                <!-- Branding (Bottom) -->
+                <div class="flex flex-col items-center gap-4 text-center">
+                    <div class="flex items-center justify-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-4xl">forest</span>
+                        <h2
+                            class="font-extrabold text-3xl md:text-4xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 dark:from-white dark:to-gray-500">
+                            ForestEleven
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-6 mt-2">
+                        <a href="#"
+                            class="text-gray-400 hover:text-white transition-all hover:-translate-y-1 transform duration-300"
+                            aria-label="Instagram">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="text-gray-400 hover:text-white transition-all hover:-translate-y-1 transform duration-300"
+                            aria-label="X">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="text-gray-400 hover:text-white transition-all hover:-translate-y-1 transform duration-300"
+                            aria-label="LinkedIn">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-sm text-gray-500 font-medium tracking-wide mt-2">© 2024 ForestEleven. All rights
+                    reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 10. FLOATING WHATSAPP -->
+    <a href="https://wa.me/573212838756?text=ForestEleven%20“Clear. Fast. Done”" target="_blank"
+        class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:scale-110 transition-transform duration-300 group">
+        <span class="sr-only">Contact on WhatsApp</span>
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z">
+            </path>
+        </svg>
+    </a>
+
+    <!-- EmailJS & Main Script -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+            (function () {
+                emailjs.init("43XxNQwXJJvI0-ttS");
+            })();
+    </script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
