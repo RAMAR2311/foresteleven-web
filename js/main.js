@@ -31,11 +31,15 @@ const translations = {
         "desks.subtitle": "Tailored solutions for every transaction volume.",
         "desks.perTx": "/ transaction",
 
+        "zelle.title": "Zelle Desk",
+        "zelle.price": "$500 - $5k",
         "zelle.feature1": "Agile movements for quick liquidity",
         "zelle.feature2": "Instant settlement confirmation",
         "zelle.cta": "Select Zelle Desk",
 
         "wire.tag": "Recommended",
+        "wire.title": "Wire Desk",
+        "wire.price": "$5,000+",
         "wire.feature1": "Institutional volume handling",
         "wire.feature2": "High-value bespoke transfers",
         "wire.cta": "Select Wire Desk",
@@ -128,11 +132,15 @@ const translations = {
         "desks.subtitle": "Soluciones a medida para cada volumen.",
         "desks.perTx": "/ transacción",
 
+        "zelle.title": "Mesa Zelle",
+        "zelle.price": "$500 - $5k",
         "zelle.feature1": "Movimientos ágiles para liquidez rápida",
         "zelle.feature2": "Confirmación de liquidación instantánea",
         "zelle.cta": "Seleccionar Mesa Zelle",
 
         "wire.tag": "Recomendado",
+        "wire.title": "Mesa Wire",
+        "wire.price": "$5,000+",
         "wire.feature1": "Manejo de volumen institucional",
         "wire.feature2": "Transferencias a medida de alto valor",
         "wire.cta": "Seleccionar Mesa Wire",
