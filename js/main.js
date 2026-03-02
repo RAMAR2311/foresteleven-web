@@ -40,6 +40,14 @@ const translations = {
         "wire.feature2": "High-value bespoke transfers",
         "wire.cta": "Select Wire Desk",
 
+        "enterprise.tag": "National",
+        "enterprise.title": "COP Desk",
+        "enterprise.price": "$1.000.000 +",
+        "enterprise.feature1": "Dedicated account manager",
+        "enterprise.feature2": "Priority execution & settlement",
+        "enterprise.feature3": "Custom liquidity solutions",
+        "enterprise.cta": "Select COP Desk",
+
         "why.title": "Our Core Principles.",
         "why.subtitle": "Built on the foundation of trust and efficiency. We strip away the complexity of traditional finance.",
         "why.speed.title": "Speed",
@@ -128,6 +136,14 @@ const translations = {
         "wire.feature1": "Manejo de volumen institucional",
         "wire.feature2": "Transferencias a medida de alto valor",
         "wire.cta": "Seleccionar Mesa Wire",
+
+        "enterprise.tag": "Nacional",
+        "enterprise.title": "Mesa COP",
+        "enterprise.price": "$1.000.000 +",
+        "enterprise.feature1": "Gerente de cuenta dedicado",
+        "enterprise.feature2": "Ejecución y liquidación prioritaria",
+        "enterprise.feature3": "Soluciones de liquidez a medida",
+        "enterprise.cta": "Seleccionar Mesa COP",
 
         "why.title": "Nuestros Principios.",
         "why.subtitle": "Construidos sobre confianza y eficiencia. Eliminamos la complejidad financiera.",
