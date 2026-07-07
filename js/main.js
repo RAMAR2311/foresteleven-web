@@ -18,39 +18,50 @@ const translations = {
         "hero.clear": "Clear.",
         "hero.fast": "Fast.",
         "hero.done": "Done.",
-        "hero.subtitle": "Private digital dollar settlements via US banking rails. The executive solution for high-value USDT movements.",
+        "hero.subtitle": "OTC desk for buying and selling stablecoins<br><br>Buy and sell USDT and USDC against COP, MXN and USD through personalized OTC operations, with direct quotes, counterparty validation and operational support from start to finish.",
 
         "cta.main": "Get Started",
         "cta.whatsapp": "Contact via WhatsApp",
 
         "whatWeDo.label": "Our Service",
         "whatWeDo.title": "What We Do",
-        "whatWeDo.description": "We connect the world of digital assets with traditional financial infrastructure. We offer strategic conversion between stablecoins, Bitcoin, and fiat currency (USD/COP), guaranteeing efficient liquidity and clear, agile, and reliable processes.",
+        "whatWeDo.description": "ForestEleven facilitates OTC operations for buying and selling stablecoins for clients who need to convert between fiat currency and digital assets.<br><br>We work with selected pairs in COP, MXN and USD against USDT and USDC, offering personalized quotes, direct support and operational guidance during each stage of the transaction.<br><br>All operations are subject to liquidity availability, market conditions, fund confirmation and internal compliance review.",
 
         "desks.title": "Select Your Desk",
         "desks.subtitle": "Tailored solutions for every transaction volume.",
-        "desks.perTx": "/ transaction",
+        "desks.perTx": "",
 
-        "zelle.title": "Zelle Desk",
-        "zelle.price": "$500 - $5k",
-        "zelle.feature1": "Agile movements for quick liquidity",
-        "zelle.feature2": "Instant settlement confirmation",
-        "zelle.cta": "Select Zelle Desk",
+        "zelle.title": "MESA COP",
+        "zelle.subtitle": "COP ⇄ USDT / USDC",
+        "zelle.price": "$1,000,000 cop - $500,000,000 cop",
+        "zelle.feature1": "Dedicated account manager.",
+        "zelle.feature2": "Priority execution and settlement.",
+        "zelle.feature3": "Custom liquidity solutions.",
+        "zelle.cta": "Select COP Desk",
 
         "wire.tag": "Recommended",
-        "wire.title": "Wire Desk",
-        "wire.price": "$5,000+",
-        "wire.feature1": "Institutional volume handling",
-        "wire.feature2": "High-value bespoke transfers",
-        "wire.cta": "Select Wire Desk",
+        "wire.title": "MESA MXN",
+        "wire.subtitle": "MXN ⇄ USDT / USDC",
+        "wire.price": "10,000 mxn – 1,000,000 mxn",
+        "wire.feature1": "Dedicated account manager.",
+        "wire.feature2": "Priority execution and settlement.",
+        "wire.feature3": "Custom liquidity solutions.",
+        "wire.cta": "Select MXN Desk",
 
         "enterprise.tag": "National",
-        "enterprise.title": "COP Desk",
-        "enterprise.price": "$1.000.000 +",
-        "enterprise.feature1": "Dedicated account manager",
-        "enterprise.feature2": "Priority execution & settlement",
-        "enterprise.feature3": "Custom liquidity solutions",
-        "enterprise.cta": "Select COP Desk",
+        "enterprise.title": "MESA USD",
+        "enterprise.subtitle": "USD ⇄ USDT / USDC",
+        "enterprise.price": "10,000 usd – 10,000,000 usd",
+        "enterprise.feature1": "Dedicated account manager.",
+        "enterprise.feature2": "Priority execution and settlement.",
+        "enterprise.feature3": "Custom liquidity solutions.",
+        "enterprise.cta": "Select USD Desk",
+
+        "markets.title": "Available Markets",
+        "markets.subtitle": "Selected pairs for your OTC operations",
+        "markets.fiat": "Fiat Currency",
+        "markets.available": "Available",
+        "markets.note": "<strong>Note:</strong> Rates vary based on market, amount, liquidity availability, payment method and compliance review.",
 
         "why.title": "Our Core Principles.",
         "why.subtitle": "Built on the foundation of trust and efficiency. We strip away the complexity of traditional finance.",
@@ -63,36 +74,57 @@ const translations = {
         "why.Compliance.title": "Compliance",
         "why.Compliance.desc": "Verification and control in each process.",
 
-        "workflow.title": "Workflow",
-        "workflow.step1.title": "Request",
-        "workflow.step1.desc": "Submit your transaction details.",
-        "workflow.step2.title": "Quote",
-        "workflow.step2.desc": "Receive a real-time fixed rate.",
-        "workflow.step3.title": "Settlement",
-        "workflow.step3.desc": "Funds settled instantly.",
+        "workflow.how": "HOW WE OPERATE",
+        "workflow.title": "OTC Process",
+        "workflow.tab.persona": "Individual",
+        "workflow.tab.empresa": "Corporate",
+        
+        "workflow.persona.s1.title": "Request + KYC",
+        "workflow.persona.s1.desc": "Submit your details and complete the KYC verification.",
+        "workflow.persona.s2.title": "Quote & Validation",
+        "workflow.persona.s2.desc": "We review your information and confirm rate, conditions and availability.",
+        "workflow.persona.s3.title": "Execution & Settlement",
+        "workflow.persona.s3.desc": "You send payment or assets; we verify receipt and complete the operation.",
+
+        "workflow.empresa.s1.title": "Request",
+        "workflow.empresa.s1.desc": "Submit initial details of your operation.",
+        "workflow.empresa.s2.title": "KYB",
+        "workflow.empresa.s2.desc": "We validate your corporate information and documentation.",
+        "workflow.empresa.s3.title": "Quote & Validation",
+        "workflow.empresa.s3.desc": "We confirm rate, conditions and availability.",
+        "workflow.empresa.s4.title": "Execution & Settlement",
+        "workflow.empresa.s4.desc": "You send payment or assets; we verify receipt and complete the operation.",
+        "workflow.note": "All operations are subject to liquidity availability, fund confirmation and internal compliance review.",
 
         "compliance.text": "May apply KYC/AML. Service available for eligible clients.",
 
         "form.title": "Start Your Transaction",
         "form.subtitle": "Fill in the details below and an executive will contact you shortly.",
         "form.label.name": "Full Name",
+        "form.label.type": "Client Type",
+        "form.label.country": "Country",
+        "form.label.operation": "Operation Type",
         "form.label.email": "Email Address",
         "form.label.whatsapp": "WhatsApp Number",
-        "form.label.currency": "Currency",
-        "form.label.method": "Preferred Method",
-        "form.label.amount": "Amount Range",
-        "form.option.select": "Select amount",
+        "form.label.fiat": "Fiat Currency",
+        "form.label.digital": "Digital Asset",
+        "form.label.amount": "Approximate Amount",
+        "form.label.message": "Additional Message",
         "form.button": "Submit Request",
-        "form.placeholder.zelle": "500 - 5000",
-        "form.placeholder.wire": "min. 5000",
-        "form.placeholder.cop": "min. 1,000,000",
+
+        "form.opt.select": "Select an option",
+        "form.opt.persona": "Individual",
+        "form.opt.empresa": "Corporate",
+        "form.opt.col": "Colombia",
+        "form.opt.mx": "Mexico",
+        "form.opt.us": "United States",
+        "form.opt.other": "Other",
+        "form.opt.buy": "Buy stablecoins",
+        "form.opt.sell": "Sell stablecoins",
+        "form.opt.amount": "Select approximate amount",
 
         "success.title": "Request Sent Successfully",
         "success.desc": "One of our executives will contact you shortly via email or WhatsApp.",
-
-        "error.zelleAmount": "Due to the amount, the transaction must be processed via Zelle",
-        "error.wireAmount": "Due to the amount, the transaction must be processed via Wire Transfer",
-        "error.copAmount": "Minimum volume for COP transactions is 1,000,000",
 
         "footer.privacy": "Privacy Policy",
         "footer.terms": "Terms of Service",
@@ -100,14 +132,22 @@ const translations = {
         "footer.cookies": "Cookies Policy",
 
         "faq.title": "Frequently Asked Questions",
-        "faq.q1": "Processing Times",
-        "faq.a1": "Zelle: 5-30 min. Wire: Depends on the bank, released 5-30 min after clearing.",
-        "faq.q2": "Required Documentation",
-        "faq.a2": "Valid ID, selfie, proof of address, basic details, proof of funds if applicable.",
-        "faq.q3": "Transaction Limits",
-        "faq.a3": "Zelle: $500-$5,000. Wire: $5,000+ with no limit.",
-        "faq.q4": "Supported Accounts",
-        "faq.a4": "Any bank in the US and Colombia."
+        "faq.q1": "What digital assets do you handle?",
+        "faq.a1": "We currently work with USDT and USDC, subject to liquidity availability and compliance review.",
+        "faq.q2": "What fiat currencies do you handle?",
+        "faq.a2": "We operate selected pairs against COP, MXN and USD.",
+        "faq.q3": "Can I buy USDT or USDC?",
+        "faq.a3": "Yes. You can request a quote to buy USDT or USDC paying in COP, MXN or USD, subject to availability and validation.",
+        "faq.q4": "Can I sell USDT or USDC?",
+        "faq.a4": "Yes. You can sell USDT or USDC and receive payment in COP, MXN or USD, subject to blockchain confirmation, account validation and internal approval.",
+        "faq.q5": "Is the rate fixed?",
+        "faq.a5": "The rate is confirmed before executing the operation and may have a limited validity period.",
+        "faq.q6": "What documents can you request?",
+        "faq.a6": "Depending on the amount, country and risk profile, we may request identity documents, contact info, bank account validation, proof of funds source or corporate documents.",
+        "faq.q7": "Do you accept third-party operations?",
+        "faq.a7": "For security and compliance reasons, operations must be made from and to accounts or wallets associated with the validated client.",
+        "faq.q8": "How long does an operation take?",
+        "faq.a8": "The time depends on the currency, payment method, bank confirmation, blockchain network, liquidity availability and internal review."
     },
     es: {
         "nav.whatWeDo": "Qué Hacemos",
@@ -119,39 +159,50 @@ const translations = {
         "hero.clear": "Claro.",
         "hero.fast": "Rápido.",
         "hero.done": "Hecho.",
-        "hero.subtitle": "Liquidaciones privadas de dólares digitales vía banca de EE.UU. La solución ejecutiva para movimientos de alto valor en USDT.",
+        "hero.subtitle": "Mesa OTC para compra y venta de stablecoins<br><br>Compra y vende USDT y USDC contra COP, MXN y USD mediante operaciones OTC personalizadas, con cotización directa, validación de contraparte y soporte operativo de principio a fin.",
 
         "cta.main": "Empezar",
         "cta.whatsapp": "Contactar por WhatsApp",
 
         "whatWeDo.label": "Nuestro Servicio",
         "whatWeDo.title": "Qué Hacemos",
-        "whatWeDo.description": "Unimos el mundo de los activos digitales con la infraestructura financiera tradicional. Ofrecemos conversión estratégica entre stablecoins, Bitcoin y moneda FIAT (USD/COP), asegurando liquidez eficiente, procesos claros, ágiles y confiable.",
+        "whatWeDo.description": "ForestEleven facilita operaciones OTC de compra y venta de stablecoins para clientes que necesitan convertir entre moneda fiat y activos digitales.<br><br>Trabajamos con pares seleccionados en COP, MXN y USD frente a USDT y USDC, ofreciendo cotización personalizada, soporte directo y acompañamiento operativo durante cada etapa de la transacción.<br><br>Todas las operaciones están sujetas a disponibilidad de liquidez, condiciones de mercado, confirmación de fondos y revisión interna de cumplimiento.",
 
         "desks.title": "Selecciona tu Mesa",
         "desks.subtitle": "Soluciones a medida para cada volumen.",
-        "desks.perTx": "/ transacción",
+        "desks.perTx": "",
 
-        "zelle.title": "Mesa Zelle",
-        "zelle.price": "$500 - $5k",
-        "zelle.feature1": "Movimientos ágiles para liquidez rápida",
-        "zelle.feature2": "Confirmación de liquidación instantánea",
-        "zelle.cta": "Seleccionar Mesa Zelle",
+        "zelle.title": "MESA COP",
+        "zelle.subtitle": "COP ⇄ USDT / USDC",
+        "zelle.price": "$1.000.000 cop - $500.000.000 cop",
+        "zelle.feature1": "Gerente de cuenta personalizado.",
+        "zelle.feature2": "Ejecución y liquidación prioritaria.",
+        "zelle.feature3": "Soluciones de liquidez a medida.",
+        "zelle.cta": "Seleccionar Mesa COP",
 
         "wire.tag": "Recomendado",
-        "wire.title": "Mesa Wire",
-        "wire.price": "$5,000+",
-        "wire.feature1": "Manejo de volumen institucional",
-        "wire.feature2": "Transferencias a medida de alto valor",
-        "wire.cta": "Seleccionar Mesa Wire",
+        "wire.title": "MESA MXN",
+        "wire.subtitle": "MXN ⇄ USDT / USDC",
+        "wire.price": "10.000 mxn – 1.000.000 mxn",
+        "wire.feature1": "Gerente de cuenta personalizado.",
+        "wire.feature2": "Ejecución y liquidación prioritaria.",
+        "wire.feature3": "Soluciones de liquidez a medida.",
+        "wire.cta": "Seleccionar Mesa MXN",
 
         "enterprise.tag": "Nacional",
-        "enterprise.title": "Mesa COP",
-        "enterprise.price": "$1.000.000 +",
-        "enterprise.feature1": "Gerente de cuenta dedicado",
-        "enterprise.feature2": "Ejecución y liquidación prioritaria",
-        "enterprise.feature3": "Soluciones de liquidez a medida",
-        "enterprise.cta": "Seleccionar Mesa COP",
+        "enterprise.title": "MESA USD",
+        "enterprise.subtitle": "USD ⇄ USDT / USDC",
+        "enterprise.price": "10.000 usd – 10.000.000 usd",
+        "enterprise.feature1": "Gerente de cuenta personalizado.",
+        "enterprise.feature2": "Ejecución y liquidación prioritaria.",
+        "enterprise.feature3": "Soluciones de liquidez a medida.",
+        "enterprise.cta": "Seleccionar Mesa USD",
+
+        "markets.title": "Mercados Disponibles",
+        "markets.subtitle": "Pares seleccionados para tus operaciones OTC",
+        "markets.fiat": "Moneda fiat",
+        "markets.available": "Disponible",
+        "markets.note": "<strong class='font-bold text-gray-700 dark:text-gray-300'>Nota:</strong> Las tasas varían según mercado, monto, disponibilidad de liquidez, método de pago y revisión de cumplimiento.",
 
         "why.title": "Nuestros Principios.",
         "why.subtitle": "Construidos sobre confianza y eficiencia. Eliminamos la complejidad financiera.",
@@ -164,36 +215,57 @@ const translations = {
         "why.Compliance.title": "Cumplimiento",
         "why.Compliance.desc": "Verificación y control en cada proceso.",
 
-        "workflow.title": "Flujo de Trabajo",
-        "workflow.step1.title": "Solicitud",
-        "workflow.step1.desc": "Envía tus detalles de forma segura.",
-        "workflow.step2.title": "Cotización",
-        "workflow.step2.desc": "Recibe una tasa fija en tiempo real.",
-        "workflow.step3.title": "Liquidación",
-        "workflow.step3.desc": "Fondos liquidados al instante.",
+        "workflow.how": "CÓMO OPERAMOS",
+        "workflow.title": "Proceso OTC",
+        "workflow.tab.persona": "Persona",
+        "workflow.tab.empresa": "Empresa",
+        
+        "workflow.persona.s1.title": "Solicitud + KYC",
+        "workflow.persona.s1.desc": "Envías tus datos y completamos la verificación KYC.",
+        "workflow.persona.s2.title": "Cotización y validación",
+        "workflow.persona.s2.desc": "Revisamos la información y confirmamos tasa, condiciones y disponibilidad.",
+        "workflow.persona.s3.title": "Ejecución y liquidación",
+        "workflow.persona.s3.desc": "Realizas el pago o envío de activos; verificamos la recepción y completamos la operación.",
+
+        "workflow.empresa.s1.title": "Solicitud",
+        "workflow.empresa.s1.desc": "Envías los detalles iniciales de tu operación.",
+        "workflow.empresa.s2.title": "KYB",
+        "workflow.empresa.s2.desc": "Validamos la información y documentación de la empresa.",
+        "workflow.empresa.s3.title": "Cotización y validación",
+        "workflow.empresa.s3.desc": "Confirmamos tasa, condiciones y disponibilidad.",
+        "workflow.empresa.s4.title": "Ejecución y liquidación",
+        "workflow.empresa.s4.desc": "Realizas el pago o envío de activos; verificamos la recepción y completamos la operación.",
+        "workflow.note": "Todas las operaciones están sujetas a disponibilidad de liquidez, confirmación de fondos y revisión interna de cumplimiento.",
 
         "compliance.text": "Puede aplicar KYC/AML. Servicio disponible para clientes elegibles.",
 
         "form.title": "Inicia tu Transacción",
         "form.subtitle": "Completa los datos y te contactaremos pronto.",
-        "form.label.name": "Nombre Completo",
-        "form.label.email": "Correo Electrónico",
-        "form.label.whatsapp": "Número de WhatsApp",
-        "form.label.currency": "Moneda",
-        "form.label.method": "Método Preferido",
-        "form.label.amount": "Rango de Monto",
-        "form.option.select": "Selecciona monto",
+        "form.label.name": "Nombre completo",
+        "form.label.type": "Tipo de cliente",
+        "form.label.country": "País",
+        "form.label.operation": "Tipo de operación",
+        "form.label.email": "Correo electrónico",
+        "form.label.whatsapp": "WhatsApp",
+        "form.label.fiat": "Moneda fiat",
+        "form.label.digital": "Activo digital",
+        "form.label.amount": "Monto aproximado",
+        "form.label.message": "Mensaje adicional",
         "form.button": "Enviar Solicitud",
-        "form.placeholder.zelle": "500 - 5000",
-        "form.placeholder.wire": "mín. 5000",
-        "form.placeholder.cop": "mín. 1.000.000",
+
+        "form.opt.select": "Selecciona una opción",
+        "form.opt.persona": "Persona natural",
+        "form.opt.empresa": "Empresa",
+        "form.opt.col": "Colombia",
+        "form.opt.mx": "México",
+        "form.opt.us": "Estados Unidos",
+        "form.opt.other": "Otro",
+        "form.opt.buy": "Comprar stablecoins",
+        "form.opt.sell": "Vender stablecoins",
+        "form.opt.amount": "Selecciona un monto aproximado",
 
         "success.title": "Solicitud Enviada",
         "success.desc": "Un ejecutivo te contactará pronto vía email o WhatsApp.",
-
-        "error.zelleAmount": "Debido al monto, la transacción debe realizarse con Zelle",
-        "error.wireAmount": "Debido al monto, la transacción debe realizarse con Wire Transfer",
-        "error.copAmount": "El volumen mínimo para transacciones COP es 1.000.000",
 
         "footer.privacy": "Política de Privacidad",
         "footer.terms": "Términos de Servicio",
@@ -201,14 +273,22 @@ const translations = {
         "footer.cookies": "Política de Cookies",
 
         "faq.title": "Preguntas Frecuentes",
-        "faq.q1": "Tiempos de envío",
-        "faq.a1": "Zelle: 5-30 min. Wire: Depende del banco, liberación en 5-30 min tras acreditarse.",
-        "faq.q2": "Documentación necesaria",
-        "faq.a2": "ID vigente, selfie, comprobante, datos básicos, justificación de origen si aplica.",
-        "faq.q3": "Límites",
-        "faq.a3": "Zelle: $500-$5,000. Wire: $5,000+ sin límite.",
-        "faq.q4": "Cuentas permitidas",
-        "faq.a4": "Cualquier banco de EE.UU. y Colombia."
+        "faq.q1": "¿Qué activos digitales manejan?",
+        "faq.a1": "Actualmente trabajamos con USDT y USDC, sujetos a disponibilidad de liquidez y revisión de cumplimiento.",
+        "faq.q2": "¿Qué monedas fiat manejan?",
+        "faq.a2": "Operamos pares seleccionados contra COP, MXN y USD.",
+        "faq.q3": "¿Puedo comprar USDT o USDC?",
+        "faq.a3": "Sí. Puedes solicitar una cotización para comprar USDT o USDC pagando en COP, MXN o USD, según disponibilidad y validación.",
+        "faq.q4": "¿Puedo vender USDT o USDC?",
+        "faq.a4": "Sí. Puedes vender USDT o USDC y recibir pago en COP, MXN o USD, sujeto a confirmación en blockchain, validación de cuenta y aprobación interna.",
+        "faq.q5": "¿La tasa queda fija?",
+        "faq.a5": "La tasa se confirma antes de ejecutar la operación y puede tener un tiempo limitado de vigencia.",
+        "faq.q6": "¿Qué documentos pueden solicitar?",
+        "faq.a6": "Dependiendo del monto, país y perfil de riesgo, podremos solicitar documento de identidad, información de contacto, validación de cuenta bancaria, soporte de origen de fondos o documentos empresariales.",
+        "faq.q7": "¿Aceptan operaciones de terceros?",
+        "faq.a7": "Por seguridad y cumplimiento solo se aceptan las operaciones deben realizarse desde y hacia cuentas o wallets asociadas al cliente validado.",
+        "faq.q8": "¿Cuánto tarda una operación?",
+        "faq.a8": "El tiempo depende de la moneda, método de pago, confirmación bancaria, red blockchain, disponibilidad de liquidez y revisión interna."
     }
 };
 
@@ -285,36 +365,31 @@ document.getElementById("transactionForm").addEventListener("submit", function (
     e.preventDefault();
 
     const name = document.getElementById("name").value;
+    const tipo_cliente = document.getElementById("tipo_cliente").value;
+    const pais = document.getElementById("pais").value;
+    const tipo_operacion = document.getElementById("tipo_operacion").value;
     const email = document.getElementById("email").value;
     const whatsapp = document.getElementById("whatsapp").value;
     const amount = document.getElementById("amount").value;
-    const amountVal = parseFloat(amount);
+    const mensaje = document.getElementById("mensaje").value;
 
     const currencyElement = document.querySelector('input[name="currency"]:checked');
     const currency = currencyElement ? currencyElement.value : "COP";
 
-    const methodElement = document.getElementById("preferredMethod");
-    const method = methodElement ? methodElement.value : "Not Selected";
+    const activoElement = document.querySelector('input[name="activo"]:checked');
+    const activo = activoElement ? activoElement.value : "USDT";
 
-    if (currency === "USD" && method === "Zelle" && amountVal > 5000) {
-        const lang = localStorage.getItem("lang") || "en";
-        alert(translations[lang]["error.wireAmount"]);
-        return;
-    }
-    if (currency === "USD" && method === "Wire Transfer" && (amountVal < 5000 || isNaN(amountVal))) {
-        const lang = localStorage.getItem("lang") || "en";
-        alert(translations[lang]["error.zelleAmount"]);
-        return;
-    }
-
-    const message = `
-    New Transaction Request
-    Name: ${name}
+    const text_message = `
+    *Nueva Solicitud OTC*
+    Nombre: ${name}
+    Cliente: ${tipo_cliente}
+    País: ${pais}
+    Operación: ${tipo_operacion} ${activo}
     Email: ${email}
     WhatsApp: ${whatsapp}
-    Currency: ${currency}
-    Amount: ${amount}
-    Method: ${method}
+    Moneda: ${currency}
+    Monto: ${amount}
+    Mensaje: ${mensaje}
     `;
 
     const templateParams = {
@@ -323,7 +398,11 @@ document.getElementById("transactionForm").addEventListener("submit", function (
         whatsapp,
         currency,
         amount,
-        method
+        tipo_cliente,
+        pais,
+        tipo_operacion,
+        activo,
+        mensaje
     };
 
     // 🔹 1️⃣ Enviar a la EMPRESA
@@ -332,114 +411,63 @@ document.getElementById("transactionForm").addEventListener("submit", function (
         "template_5qny8eo",
         templateParams
     )
-
         .then(() => {
-
             // 🔹 2️⃣ Enviar al CLIENTE 
             return emailjs.send(
                 "service_4x80xd8",
                 "template_s3sshga",
                 templateParams
             );
-
         })
-
         .then(() => {
-
             showSuccessMessage();
             document.getElementById("transactionForm").reset();
+            updateForm("COP"); // Reset amount options
 
             // Redirect to WhatsApp after delay
             setTimeout(() => {
                 const phoneNumber = "17867221582";
-                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text_message.trim())}`;
                 window.open(whatsappURL, "_blank");
             }, 1500);
-
         })
-
         .catch((error) => {
             console.error("Error sending email:", error);
             alert("Server error. Please try again later.");
         });
-
 });
-const methodSelect = document.getElementById("preferredMethod");
 
-const options = {
+const amountSelect = document.getElementById("amount");
 
-    COP: {
-
-        methods: [
-            "Transferencia Bancaria"
-        ]
-
-    },
-
-    USD: {
-
-        methods: [
-            "Zelle",
-            "Wire Transfer"
-        ]
-
-    }
-
+const amountOptions = {
+    COP: [
+        "1.000.000 - 10.000.000",
+        "10.000.001 - 100.000.000",
+        "100.001.001 - Infinite"
+    ],
+    MXN: [
+        "10.000 - 100.000",
+        "100.001 - 1.000.000",
+        "1.000.001 - Infinite"
+    ],
+    USD: [
+        "10.000 - 50.000",
+        "50.001 - 200.000",
+        "200.001 - Infinite"
+    ]
 };
 
-
-function updateAmountConstraints() {
-    const amountInput = document.getElementById("amount");
-    const errorEl = document.getElementById("amountError");
-    const currencyElement = document.querySelector('input[name="currency"]:checked');
-    const currency = currencyElement ? currencyElement.value : "COP";
-    const method = methodSelect.value;
-    const lang = localStorage.getItem("lang") || "en";
-    const amountVal = parseFloat(amountInput.value);
-
-    // Default: Reset error
-    errorEl.classList.add("hidden");
-    errorEl.textContent = "";
-
-    if (currency === "USD") {
-        if (method === "Zelle") {
-            amountInput.setAttribute("max", "5000");
-            amountInput.setAttribute("min", "500");
-            amountInput.placeholder = translations[lang]["form.placeholder.zelle"];
-            if (amountVal > 5000) {
-                errorEl.textContent = translations[lang]["error.wireAmount"];
-                errorEl.classList.remove("hidden");
-            }
-        } else if (method === "Wire Transfer") {
-            amountInput.removeAttribute("max");
-            amountInput.setAttribute("min", "5000");
-            amountInput.placeholder = translations[lang]["form.placeholder.wire"];
-            if (amountVal < 5000 && !isNaN(amountVal)) {
-                errorEl.textContent = translations[lang]["error.zelleAmount"];
-                errorEl.classList.remove("hidden");
-            }
-        }
-    } else {
-        // COP Desk
-        amountInput.removeAttribute("max");
-        amountInput.setAttribute("min", "1000000");
-        amountInput.placeholder = translations[lang]["form.placeholder.cop"];
-        if (amountVal < 1000000 && !isNaN(amountVal)) {
-            errorEl.textContent = translations[lang]["error.copAmount"];
-            errorEl.classList.remove("hidden");
-        }
-    }
-}
-
 function updateForm(currency) {
-    methodSelect.innerHTML = "";
-    options[currency].methods.forEach(method => {
-        const option = document.createElement("option");
-        option.value = method;
-        option.textContent = method;
-        methodSelect.appendChild(option);
-    });
-    updateAmountConstraints();
+    if(!amountSelect) return;
+    amountSelect.innerHTML = '';
+    if(amountOptions[currency]) {
+        amountOptions[currency].forEach(range => {
+            const option = document.createElement("option");
+            option.value = range;
+            option.textContent = range;
+            amountSelect.appendChild(option);
+        });
+    }
 }
 
 document.querySelectorAll('input[name="currency"]').forEach(radio => {
@@ -448,10 +476,9 @@ document.querySelectorAll('input[name="currency"]').forEach(radio => {
     });
 });
 
-methodSelect.addEventListener("change", updateAmountConstraints);
-document.getElementById("amount").addEventListener("input", updateAmountConstraints);
-
+// Init
 updateForm("COP");
+
 
 
 

@@ -237,8 +237,9 @@
                     </div>
 
                     <h3 class="text-xl font-bold text-forest-dark dark:text-white mb-2" data-i18n="zelle.title">
-                        Zelle Desk
+                        MESA COP
                     </h3>
+                    <p class="text-sm font-semibold text-gray-500 mb-4" data-i18n="zelle.subtitle"></p>
 
                     <div class="flex items-baseline gap-2 mb-6">
 
@@ -279,6 +280,15 @@
 
                         </li>
 
+                        <li class="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+                            <span data-i18n="zelle.feature3">
+                                Soluciones de liquidez a medida.
+                            </span>
+                        </li>
+
                     </ul>
 
                     <a href="#contact"
@@ -311,8 +321,9 @@
                     </div>
 
                     <h3 class="text-xl font-bold mb-2 text-white" data-i18n="wire.title">
-                        Wire Desk
+                        MESA MXN
                     </h3>
+                    <p class="text-sm font-semibold text-gray-300 mb-4" data-i18n="wire.subtitle"></p>
 
                     <div class="flex items-baseline gap-2 mb-6">
 
@@ -352,6 +363,15 @@
 
                         </li>
 
+                        <li class="flex items-start gap-3 text-sm text-gray-300">
+                            <span class="material-symbols-outlined text-primary text-[20px]">
+                                check_circle
+                            </span>
+                            <span data-i18n="wire.feature3">
+                                Soluciones de liquidez a medida.
+                            </span>
+                        </li>
+
                     </ul>
 
                     <a href="#contact"
@@ -386,8 +406,9 @@
                     </div>
 
                     <h3 class="text-xl font-bold mb-2 text-white" data-i18n="enterprise.title">
-                        COP Desk
+                        MESA USD
                     </h3>
+                    <p class="text-sm font-semibold text-[#8cb38c] mb-4" data-i18n="enterprise.subtitle"></p>
 
                     <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-6">
 
@@ -434,6 +455,60 @@
             </div>
         </div>
     </section>
+    
+    <!-- 4.5 MERCADOS DISPONIBLES -->
+    <section class="py-16 px-6 max-w-[1200px] mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-black text-forest-dark dark:text-white" data-i18n="markets.title">Mercados Disponibles</h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-3 text-lg" data-i18n="markets.subtitle">Pares seleccionados para tus operaciones OTC</p>
+        </div>
+        
+        <div class="overflow-hidden bg-white dark:bg-surface-dark rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 transition-all hover:shadow-xl">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-50 dark:bg-gray-800/80 border-b border-gray-200 dark:border-gray-700">
+                        <th class="py-6 px-8 font-bold text-gray-700 dark:text-gray-200 text-lg" data-i18n="markets.fiat">Moneda fiat</th>
+                        <th class="py-6 px-8 font-bold text-gray-700 dark:text-gray-200 text-lg" data-i18n="markets.usdt">USDT</th>
+                        <th class="py-6 px-8 font-bold text-gray-700 dark:text-gray-200 text-lg" data-i18n="markets.usdc">USDC</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 dark:text-gray-300">
+                    <tr class="border-b border-gray-100 dark:border-gray-800 hover:bg-[#e7f4e7]/30 dark:hover:bg-[#1f3a1f]/30 transition-colors duration-200 group">
+                        <td class="py-6 px-8 font-bold text-lg flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-sm shadow-inner group-hover:bg-white dark:group-hover:bg-gray-700 transition-colors">🇨🇴</span>
+                            <span data-i18n="markets.cop">COP</span>
+                        </td>
+                        <td class="py-6 px-8 font-semibold text-primary" data-i18n="markets.available">Disponible</td>
+                        <td class="py-6 px-8 font-semibold text-primary" data-i18n="markets.available">Disponible</td>
+                    </tr>
+                    <tr class="border-b border-gray-100 dark:border-gray-800 hover:bg-[#e7f4e7]/30 dark:hover:bg-[#1f3a1f]/30 transition-colors duration-200 group">
+                        <td class="py-6 px-8 font-bold text-lg flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-sm shadow-inner group-hover:bg-white dark:group-hover:bg-gray-700 transition-colors">🇲🇽</span>
+                            <span data-i18n="markets.mxn">MXN</span>
+                        </td>
+                        <td class="py-6 px-8 font-semibold text-primary" data-i18n="markets.available">Disponible</td>
+                        <td class="py-6 px-8 font-semibold text-primary" data-i18n="markets.available">Disponible</td>
+                    </tr>
+                    <tr class="hover:bg-[#e7f4e7]/30 dark:hover:bg-[#1f3a1f]/30 transition-colors duration-200 group">
+                        <td class="py-6 px-8 font-bold text-lg flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-sm shadow-inner group-hover:bg-white dark:group-hover:bg-gray-700 transition-colors">🇺🇸</span>
+                            <span data-i18n="markets.usd">USD</span>
+                        </td>
+                        <td class="py-6 px-8 font-semibold text-primary" data-i18n="markets.available">Disponible</td>
+                        <td class="py-6 px-8 font-semibold text-primary" data-i18n="markets.available">Disponible</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-6 flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-100 dark:border-gray-700">
+            <span class="material-symbols-outlined text-gray-400 mt-0.5">info</span>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="markets.note">
+                <strong class="font-bold text-gray-700 dark:text-gray-300" data-i18n="markets.note_label">Nota:</strong> Las tasas varían según mercado, monto, disponibilidad de liquidez, método de pago y revisión de cumplimiento.
+            </p>
+        </div>
+    </section>
+
     <!-- 5. WHY FORESTELEVEN -->
     <section id="why-foresteleven"
         class="py-24 bg-white dark:bg-surface-dark border-t border-[#e7f4e7] dark:border-[#2a442a]">
@@ -503,62 +578,109 @@
         </div>
     </section>
     <!-- 6. WORKFLOW -->
-    <section id="workflow"
-        class="py-24 bg-background-light dark:bg-background-dark border-t border-[#e7f4e7] dark:border-[#2a442a]">
+    <section id="workflow" class="py-24 bg-background-light dark:bg-background-dark border-t border-[#e7f4e7] dark:border-[#2a442a]">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-forest-dark dark:text-white" data-i18n="workflow.title">Workflow</h2>
+            <div class="text-center mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-[#e7f4e7] dark:bg-[#1f3a1f] text-primary text-sm font-bold mb-4 uppercase tracking-wider" data-i18n="workflow.how">CÓMO OPERAMOS</span>
+                <h2 class="text-4xl font-bold text-forest-dark dark:text-white" data-i18n="workflow.title">Proceso OTC</h2>
             </div>
-            <div class="relative">
-                <div
-                    class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2 z-0">
+            
+            <!-- Tabs -->
+            <div class="flex justify-center mb-16">
+                <div class="flex rounded-full bg-white dark:bg-surface-dark p-1 shadow-sm border border-gray-200 dark:border-gray-700">
+                    <button id="tab-persona" onclick="switchWorkflowTab('persona')" class="px-8 py-2 rounded-full text-sm font-bold transition-all bg-forest-dark text-white shadow-md" data-i18n="workflow.tab.persona">Persona</button>
+                    <button id="tab-empresa" onclick="switchWorkflowTab('empresa')" class="px-8 py-2 rounded-full text-sm font-bold transition-all text-gray-500 hover:text-forest-dark dark:hover:text-white" data-i18n="workflow.tab.empresa">Empresa</button>
                 </div>
+            </div>
+
+            <!-- Tab Content: Persona -->
+            <div id="content-persona" class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2 z-0"></div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                    <div
-                        class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
-                        <div class="flex items-center gap-4 md:flex-col md:gap-4">
-                            <div
-                                class="w-16 h-16 rounded-full bg-forest-dark text-white flex items-center justify-center text-2xl font-bold border-4 border-background-light dark:border-background-dark shadow-lg">
-                                1</div>
-                            <div class="md:text-center">
-                                <h3 class="text-lg font-bold text-forest-dark dark:text-white"
-                                    data-i18n="workflow.step1.title">Request</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
-                                    data-i18n="workflow.step1.desc">Submit your transaction details.</p>
-                            </div>
+                    <div class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="w-16 h-16 rounded-full bg-forest-dark text-white flex items-center justify-center text-2xl font-bold border-4 border-background-light dark:border-background-dark shadow-lg">1</div>
+                        <div class="md:text-center">
+                            <h3 class="text-lg font-bold text-forest-dark dark:text-white" data-i18n="workflow.persona.s1.title">Solicitud + KYC</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="workflow.persona.s1.desc">Envías tus datos y completamos la verificación KYC.</p>
                         </div>
                     </div>
-                    <div
-                        class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
-                        <div class="flex items-center gap-4 md:flex-col md:gap-4">
-                            <div
-                                class="w-16 h-16 rounded-full bg-white dark:bg-surface-dark text-forest-dark dark:text-white border-2 border-forest-dark dark:border-gray-500 flex items-center justify-center text-2xl font-bold shadow-lg">
-                                2</div>
-                            <div class="md:text-center">
-                                <h3 class="text-lg font-bold text-forest-dark dark:text-white"
-                                    data-i18n="workflow.step2.title">Quote</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
-                                    data-i18n="workflow.step2.desc">Receive a real-time fixed rate.</p>
-                            </div>
+                    <div class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="w-16 h-16 rounded-full bg-white dark:bg-surface-dark text-forest-dark dark:text-white border-2 border-gray-300 dark:border-gray-500 flex items-center justify-center text-2xl font-bold shadow-lg">2</div>
+                        <div class="md:text-center">
+                            <h3 class="text-lg font-bold text-forest-dark dark:text-white" data-i18n="workflow.persona.s2.title">Cotización y validación</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="workflow.persona.s2.desc">Revisamos la información y confirmamos tasa, condiciones y disponibilidad.</p>
                         </div>
                     </div>
-                    <div
-                        class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
-                        <div class="flex items-center gap-4 md:flex-col md:gap-4">
-                            <div
-                                class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center shadow-lg border-4 border-background-light dark:border-background-dark">
-                                <span class="material-symbols-outlined text-3xl">check</span>
-                            </div>
-                            <div class="md:text-center">
-                                <h3 class="text-lg font-bold text-forest-dark dark:text-white"
-                                    data-i18n="workflow.step3.title">Settlement</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"
-                                    data-i18n="workflow.step3.desc">Funds settled instantly.</p>
-                            </div>
+                    <div class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="w-16 h-16 rounded-full bg-forest-dark text-white flex items-center justify-center text-2xl font-bold border-4 border-background-light dark:border-background-dark shadow-lg">3</div>
+                        <div class="md:text-center">
+                            <h3 class="text-lg font-bold text-forest-dark dark:text-white" data-i18n="workflow.persona.s3.title">Ejecución y liquidación</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="workflow.persona.s3.desc">Realizas el pago o envío de activos; verificamos la recepción y completamos la operación.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Tab Content: Empresa -->
+            <div id="content-empresa" class="relative hidden">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2 z-0"></div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-10">
+                    <div class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-forest-dark text-white flex items-center justify-center text-xl md:text-2xl font-bold border-4 border-background-light dark:border-background-dark shadow-lg">1</div>
+                        <div class="md:text-center">
+                            <h3 class="text-md md:text-lg font-bold text-forest-dark dark:text-white" data-i18n="workflow.empresa.s1.title">Solicitud</h3>
+                            <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="workflow.empresa.s1.desc">Envías los detalles iniciales de tu operación.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white dark:bg-surface-dark text-forest-dark dark:text-white border-2 border-gray-300 dark:border-gray-500 flex items-center justify-center text-xl md:text-2xl font-bold shadow-lg">2</div>
+                        <div class="md:text-center">
+                            <h3 class="text-md md:text-lg font-bold text-forest-dark dark:text-white" data-i18n="workflow.empresa.s2.title">KYB</h3>
+                            <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="workflow.empresa.s2.desc">Validamos la información y documentación de la empresa.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white dark:bg-surface-dark text-forest-dark dark:text-white border-2 border-gray-300 dark:border-gray-500 flex items-center justify-center text-xl md:text-2xl font-bold shadow-lg">3</div>
+                        <div class="md:text-center">
+                            <h3 class="text-md md:text-lg font-bold text-forest-dark dark:text-white" data-i18n="workflow.empresa.s3.title"> data-i18n="workflow.persona.s2.title">Cotización y validación</h3>
+                            <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="workflow.empresa.s3.desc">Confirmamos tasa, condiciones y disponibilidad.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:items-center gap-4 bg-background-light dark:bg-background-dark p-4 md:p-0">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-forest-dark text-white flex items-center justify-center text-xl md:text-2xl font-bold border-4 border-background-light dark:border-background-dark shadow-lg">4</div>
+                        <div class="md:text-center">
+                            <h3 class="text-md md:text-lg font-bold text-forest-dark dark:text-white" data-i18n="workflow.empresa.s4.title"> data-i18n="workflow.persona.s3.title">Ejecución y liquidación</h3>
+                            <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1" data-i18n="workflow.empresa.s4.desc"> data-i18n="workflow.persona.s3.desc">Realizas el pago o envío de activos; verificamos la recepción y completamos la operación.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400 max-w-2xl mx-auto flex items-center gap-2 justify-center border border-gray-200 dark:border-gray-700 p-4 rounded-xl">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span data-i18n="workflow.note"><span data-i18n="workflow.note">Todas las operaciones están sujetas a disponibilidad de liquidez, confirmación de fondos y revisión interna de cumplimiento.</span></span>
+            </div>
+
+            <script>
+                function switchWorkflowTab(tab) {
+                    const personaBtn = document.getElementById('tab-persona');
+                    const empresaBtn = document.getElementById('tab-empresa');
+                    const personaContent = document.getElementById('content-persona');
+                    const empresaContent = document.getElementById('content-empresa');
+                    
+                    if(tab === 'persona') {
+                        personaBtn.className = "px-8 py-2 rounded-full text-sm font-bold transition-all bg-forest-dark text-white shadow-md";
+                        empresaBtn.className = "px-8 py-2 rounded-full text-sm font-bold transition-all text-gray-500 hover:text-forest-dark dark:hover:text-white";
+                        personaContent.classList.remove('hidden');
+                        empresaContent.classList.add('hidden');
+                    } else {
+                        empresaBtn.className = "px-8 py-2 rounded-full text-sm font-bold transition-all bg-forest-dark text-white shadow-md";
+                        personaBtn.className = "px-8 py-2 rounded-full text-sm font-bold transition-all text-gray-500 hover:text-forest-dark dark:hover:text-white";
+                        empresaContent.classList.remove('hidden');
+                        personaContent.classList.add('hidden');
+                    }
+                }
+            </script>
         </div>
     </section>
 
@@ -574,198 +696,200 @@
 
     <!-- 8. FORM SECTION -->
     <section id="contact" class="py-24 px-6 max-w-[1400px] mx-auto">
-        <div
-            class="bg-white dark:bg-surface-dark p-8 lg:p-12 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl overflow-hidden max-w-4xl mx-auto transition-all duration-300">
+        <div class="bg-white dark:bg-surface-dark p-8 lg:p-12 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl overflow-hidden max-w-4xl mx-auto transition-all duration-300">
             <form id="transactionForm" class="space-y-6">
                 <div class="mb-10">
-                    <h2 class="text-3xl font-bold text-forest-dark dark:text-white mb-2" data-i18n="form.title">
-                        Start Your Transaction</h2>
-                    <p class="text-gray-500 dark:text-gray-400" data-i18n="form.subtitle">Fill in the details
-                        below and an executive will contact you shortly.</p>
+                    <h2 class="text-3xl font-bold text-forest-dark dark:text-white mb-2" data-i18n="form.title">Start Your Transaction</h2>
+                    <p class="text-gray-500 dark:text-gray-400" data-i18n="form.subtitle">Fill in the details below and an executive will contact you shortly.</p>
                 </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- NOMBRE -->
                     <div class="space-y-2">
-                        <label for="name" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
-                            data-i18n="form.label.name">Full Name</label>
-                        <input id="name" type="text" placeholder="John Doe" required
-                            class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
+                        <label for="name" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.name">Nombre completo</label>
+                        <input id="name" type="text" required class="w-full h-12 px-4 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-gray-800 placeholder-gray-400" />
                     </div>
+                    <!-- TIPO DE CLIENTE -->
                     <div class="space-y-2">
-                        <label for="email" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
-                            data-i18n="form.label.email">Email Address</label>
-                        <input id="email" type="email" placeholder="john@company.com" required
-                            class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
+                        <label for="tipo_cliente" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.type">Tipo de cliente</label>
+                        <div class="relative">
+                            <select id="tipo_cliente" required class="w-full h-12 px-4 pr-12 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none text-gray-800 cursor-pointer">
+                                
+                                <option value="Persona natural" data-i18n="form.opt.persona">Persona natural</option>
+                                <option value="Empresa" data-i18n="form.opt.empresa">Empresa</option>
+                            </select>
+                            <span class="material-symbols-outlined pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">expand_more</span>
+                        </div>
+                    </div>
+                    <!-- PAIS -->
+                    <div class="space-y-2">
+                        <label for="pais" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.country">País</label>
+                        <div class="relative">
+                            <select id="pais" required class="w-full h-12 px-4 pr-12 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none text-gray-800 cursor-pointer">
+                                
+                                <option value="Colombia" data-i18n="form.opt.col">Colombia</option>
+                                <option value="México" data-i18n="form.opt.mx">México</option>
+                                <option value="Estados Unidos" data-i18n="form.opt.us">Estados Unidos</option>
+                                <option value="Otro" data-i18n="form.opt.other">Otro</option>
+                            </select>
+                            <span class="material-symbols-outlined pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">expand_more</span>
+                        </div>
+                    </div>
+                    <!-- TIPO DE OPERACION -->
+                    <div class="space-y-2">
+                        <label for="tipo_operacion" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.operation">Tipo de operación</label>
+                        <div class="relative">
+                            <select id="tipo_operacion" required class="w-full h-12 px-4 pr-12 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none text-gray-800 cursor-pointer">
+                                
+                                <option value="Comprar stablecoins" data-i18n="form.opt.buy">Comprar stablecoins</option>
+                                <option value="Vender stablecoins" data-i18n="form.opt.sell">Vender stablecoins</option>
+                            </select>
+                            <span class="material-symbols-outlined pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">expand_more</span>
+                        </div>
+                    </div>
+                    <!-- CORREO -->
+                    <div class="space-y-2">
+                        <label for="email" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.email">Correo electrónico</label>
+                        <input id="email" type="email" required class="w-full h-12 px-4 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-gray-800 placeholder-gray-400" />
+                    </div>
+                    <!-- WHATSAPP -->
+                    <div class="space-y-2">
+                        <label for="whatsapp" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.whatsapp">WhatsApp</label>
+                        <input id="whatsapp" type="tel" required class="w-full h-12 px-4 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-gray-800 placeholder-gray-400" />
                     </div>
                 </div>
-                <div class="space-y-2">
-                    <label for="whatsapp" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
-                        data-i18n="form.label.whatsapp">WhatsApp Number</label>
-                    <input id="whatsapp" type="tel" placeholder="+1 (555) 000-0000" required
-                        class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
-                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- CURRENCY -->
+                    <!-- MONEDA -->
                     <div class="space-y-2">
-                        <label class="text-sm font-semibold text-forest-dark dark:text-gray-300"
-                            data-i18n="form.label.currency">
-                            Currency
-                        </label>
-                        <div class="flex gap-4">
+                        <label class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.fiat">Moneda fiat</label>
+                        <div class="flex gap-2">
                             <!-- COP -->
                             <label class="flex-1 cursor-pointer">
                                 <input type="radio" name="currency" value="COP" checked class="peer sr-only">
-                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-surface-dark
-                    peer-checked:border-primary
-                    peer-checked:bg-[#e7f4e7]
-                    dark:peer-checked:bg-[#1f3a1f]
-                    peer-checked:text-forest-dark
-                    dark:peer-checked:text-white
-                    transition-all text-sm font-medium text-gray-500">
-                                    COP
-                                </div>
+                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">COP</div>
+                            </label>
+                            <!-- MXN -->
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="currency" value="MXN" class="peer sr-only">
+                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">MXN</div>
                             </label>
                             <!-- USD -->
                             <label class="flex-1 cursor-pointer">
                                 <input type="radio" name="currency" value="USD" class="peer sr-only">
-                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-surface-dark
-                    peer-checked:border-primary
-                    peer-checked:bg-[#e7f4e7]
-                    dark:peer-checked:bg-[#1f3a1f]
-                    peer-checked:text-forest-dark
-                    dark:peer-checked:text-white
-                    transition-all text-sm font-medium text-gray-500">
-                                    USD
-                                </div>
+                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">USD</div>
                             </label>
                         </div>
                     </div>
-                    <!-- PREFERRED METHOD -->
+                    <!-- ACTIVO DIGITAL -->
                     <div class="space-y-2">
-                        <label for="preferredMethod" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
-                            data-i18n="form.label.method">
-                            Preferred Method
-                        </label>
-                        <div class="relative">
-                            <select id="preferredMethod" class="w-full h-12 px-4 pr-12 rounded-lg
-               bg-white dark:bg-surface-dark
-               border border-gray-200 dark:border-gray-600
-               focus:border-primary focus:ring-1 focus:ring-primary
-               outline-none transition-all
-               appearance-none
-               dark:text-white cursor-pointer">
-                            </select>
-                            <!-- SOLO UN SPAN -->
-                            <span
-                                class="material-symbols-outlined pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">
-                                expand_more
-                            </span>
+                        <label class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.digital">Activo digital</label>
+                        <div class="flex gap-2">
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="activo" value="USDT" checked class="peer sr-only">
+                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">USDT</div>
+                            </label>
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="activo" value="USDC" class="peer sr-only">
+                                <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">USDC</div>
+                            </label>
                         </div>
                     </div>
                     <!-- AMOUNT RANGE -->
                     <div class="space-y-2">
-                        <label for="amount" class="text-sm font-semibold text-forest-dark dark:text-gray-300"
-                            data-i18n="form.label.amount">
-                            Amount Range
-                        </label>
-                        <input type="number" id="amount" placeholder="Ej: 5000" required
-                            class="w-full h-12 px-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all dark:text-white" />
-                        <p id="amountError" class="text-xs text-red-500 mt-1 hidden"></p>
+                        <label for="amount" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.amount">Monto aproximado</label>
+                        <div class="relative">
+                            <select id="amount" required class="w-full h-12 px-4 pr-12 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none text-gray-800 cursor-pointer">
+                            </select>
+                            <span class="material-symbols-outlined pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">expand_more</span>
+                        </div>
                     </div>
                 </div>
-                <button type="submit"
-                    class="w-full h-12 rounded-lg bg-primary text-white font-bold text-lg hover:bg-green-600 transition-all duration-300 shadow-lg shadow-green-500/30 mt-4 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10"
-                    data-i18n="form.button">Submit Request</button>
+                
+                <!-- MENSAJE ADICIONAL -->
+                <div class="space-y-2">
+                    <label for="mensaje" class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.message">Mensaje adicional</label>
+                    <textarea id="mensaje" rows="3" class="w-full p-4 rounded-lg bg-white border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-gray-800 placeholder-gray-400 resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full h-12 rounded-lg bg-primary text-white font-bold text-lg hover:bg-green-600 transition-all duration-300 shadow-lg shadow-green-500/30 mt-4 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10" data-i18n="form.button">Enviar Solicitud</button>
             </form>
-            <!-- Success Message -->
-            <div id="successMessage"
-                class="hidden mt-6 p-4 rounded-xl bg-green-50 dark:bg-[#1f3a1f] border border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 text-center transition-all">
-                <h3 class="font-bold text-lg mb-1" data-i18n="success.title">Request Sent Successfully</h3>
-                <p class="text-sm" data-i18n="success.desc">One of our executives will contact you shortly via
-                    email or WhatsApp.</p>
+            
+            <div id="successMessage" class="hidden mt-6 p-4 rounded-xl bg-green-50 dark:bg-[#1f3a1f] border border-green-200 dark:border-green-700 text-green-800 dark:text-green-200 text-center transition-all">
+                <h3 class="font-bold text-lg mb-1" data-i18n="success.title">Solicitud Enviada</h3>
+                <p class="text-sm" data-i18n="success.desc">Un ejecutivo te contactará pronto vía email o WhatsApp.</p>
             </div>
         </div>
     </section>
 
     <!-- 9. FAQ SECTION -->
     <section id="faq" class="py-24 px-6 max-w-[1400px] mx-auto">
-        <div
-            class="bg-white dark:bg-surface-dark rounded-3xl p-8 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl max-w-4xl mx-auto transition-all duration-300">
-            <h2 class="text-3xl font-bold text-center text-forest-dark dark:text-white mb-12" data-i18n="faq.title">
-                Frequently Asked Questions</h2>
+        <div class="bg-white dark:bg-surface-dark rounded-3xl p-8 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-2xl max-w-4xl mx-auto transition-all duration-300">
+            <h2 class="text-3xl font-bold text-center text-forest-dark dark:text-white mb-12" data-i18n="faq.title">Preguntas Frecuentes</h2>
             <div class="space-y-4">
                 <!-- FAQ 1 -->
-                <details
-                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
-                    <summary
-                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
-                        <span data-i18n="faq.q1">Processing Times</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
-                                width="24">
-                                <path d="M6 9l6 6 6-6"></path>
-                            </svg>
-                        </span>
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q1">¿Qué activos digitales manejan?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
-                        <p data-i18n="faq.a1">Zelle: 5-30 min. Wire: Depends on the bank, released 5-30 min after
-                            clearing.</p>
-                    </div>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a1">Actualmente trabajamos con USDT y USDC, sujetos a disponibilidad de liquidez y revisión de cumplimiento.</p></div>
                 </details>
                 <!-- FAQ 2 -->
-                <details
-                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
-                    <summary
-                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
-                        <span data-i18n="faq.q2">Required Documentation</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
-                                width="24">
-                                <path d="M6 9l6 6 6-6"></path>
-                            </svg>
-                        </span>
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q2">¿Qué monedas fiat manejan?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
-                        <p data-i18n="faq.a2">Valid ID, selfie, proof of address, basic details, proof of funds if
-                            applicable.</p>
-                    </div>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a2">Operamos pares seleccionados contra COP, MXN y USD.</p></div>
                 </details>
                 <!-- FAQ 3 -->
-                <details
-                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
-                    <summary
-                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
-                        <span data-i18n="faq.q3">Transaction Limits</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
-                                width="24">
-                                <path d="M6 9l6 6 6-6"></path>
-                            </svg>
-                        </span>
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q3">¿Puedo comprar USDT o USDC?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
-                        <p data-i18n="faq.a3">Zelle: $500-$5,000. Wire: $5,000+ with no limit.</p>
-                    </div>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a3">Sí. Puedes solicitar una cotización para comprar USDT o USDC pagando en COP, MXN o USD, según disponibilidad y validación.</p></div>
                 </details>
                 <!-- FAQ 4 -->
-                <details
-                    class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
-                    <summary
-                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
-                        <span data-i18n="faq.q4">Supported Accounts</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
-                                width="24">
-                                <path d="M6 9l6 6 6-6"></path>
-                            </svg>
-                        </span>
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q4">¿Puedo vender USDT o USDC?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
-                        <p data-i18n="faq.a4">Any bank in the US and Colombia.</p>
-                    </div>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a4">Sí. Puedes vender USDT o USDC y recibir pago en COP, MXN o USD, sujeto a confirmación en blockchain, validación de cuenta y aprobación interna.</p></div>
+                </details>
+                <!-- FAQ 5 -->
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q5">¿La tasa queda fija?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a5">La tasa se confirma antes de ejecutar la operación y puede tener un tiempo limitado de vigencia.</p></div>
+                </details>
+                <!-- FAQ 6 -->
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q6">¿Qué documentos pueden solicitar?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a6">Dependiendo del monto, país y perfil de riesgo, podremos solicitar documento de identidad, información de contacto, validación de cuenta bancaria, soporte de origen de fondos o documentos empresariales.</p></div>
+                </details>
+                <!-- FAQ 7 -->
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q7">¿Aceptan operaciones de terceros?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a7">Por seguridad y cumplimiento solo se aceptan las operaciones deben realizarse desde y hacia cuentas o wallets asociadas al cliente validado.</p></div>
+                </details>
+                <!-- FAQ 8 -->
+                <details class="group bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-forest-dark dark:text-white">
+                        <span data-i18n="faq.q8">¿Cuánto tarda una operación?</span>
+                        <span class="transition group-open:rotate-180"><svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg></span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 dark:text-gray-300"><p data-i18n="faq.a8">El tiempo depende de la moneda, método de pago, confirmación bancaria, red blockchain, disponibilidad de liquidez y revisión interna.</p></div>
                 </details>
             </div>
         </div>
