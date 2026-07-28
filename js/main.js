@@ -14,6 +14,7 @@ const translations = {
         "nav.whyUs": "Why ForestEleven",
         "nav.howItWorks": "How it Works",
         "nav.contact": "Contact",
+        "nav.vinculacion": "KYC Form",
 
         "hero.clear": "Clear.",
         "hero.fast": "Fast.",
@@ -147,7 +148,109 @@ const translations = {
         "faq.q7": "Do you accept third-party operations?",
         "faq.a7": "For security and compliance reasons, operations must be made from and to accounts or wallets associated with the validated client.",
         "faq.q8": "How long does an operation take?",
-        "faq.a8": "The time depends on the currency, payment method, bank confirmation, blockchain network, liquidity availability and internal review."
+        "faq.a8": "The time depends on the currency, payment method, bank confirmation, blockchain network, liquidity availability and internal review.",
+
+        "nav.vinculacion": "KYC Form",
+        "kyc.mainTitle": "Counterparty <span class=\"text-primary italic\">Onboarding</span>",
+        "kyc.mainSubtitle": "Single Onboarding Form. Please complete the requested information.",
+        "kyc.step1": "Information",
+        "kyc.step2": "Contacts",
+        "kyc.step3": "Financial",
+        "kyc.step4": "Beneficiaries",
+        "kyc.step5": "Declarations",
+        "kyc.step6": "Signature",
+        
+        "kyc.s1.title": "1. General Information",
+        "kyc.s1.typeProcess": "Type of Request *",
+        "kyc.s1.typeProcess.creation": "Creation",
+        "kyc.s1.typeProcess.reactivation": "Reactivation",
+        "kyc.s1.typeProcess.update": "Update",
+        "kyc.s1.typePerson": "Type of Person *",
+        "kyc.s1.typePerson.natural": "Natural (PN)",
+        "kyc.s1.typePerson.juridical": "Juridical (PJ)",
+        "kyc.s1.name": "Full Name / Company Name *",
+        "kyc.s1.id": "Tax ID / National ID *",
+        "kyc.s1.city": "City *",
+        "kyc.s1.country": "Country *",
+        "kyc.s1.phone": "Phone Number *",
+        "kyc.s1.address": "Main Address *",
+        "kyc.s1.email": "E-mail (Billing / Main) *",
+        "kyc.s1.typeCounterparty": "Type of Counterparty *",
+        "kyc.s1.tc.client": "Client",
+        "kyc.s1.tc.provider": "Provider",
+        "kyc.s1.tc.contractor": "Contractor",
+        "kyc.s1.tc.employee": "Employee",
+        "kyc.s1.tc.other": "Other",
+        "kyc.s1.pepTitle": "PEP Questions (Politically Exposed Persons)",
+        "kyc.s1.pep1": "Do you manage public funds?",
+        "kyc.s1.pep2": "Do you exercise any degree of public power?",
+        "kyc.s1.pep3": "Are you linked to a PEP?",
+        "kyc.yes": "YES",
+        "kyc.no": "NO",
+        
+        "kyc.s2.title": "2. Contacts (Only Juridical Persons)",
+        "kyc.s2.repLegal": "Legal Representative",
+        "kyc.s2.name": "Name *",
+        "kyc.s2.id": "ID *",
+        "kyc.s2.position": "Position *",
+        "kyc.s2.email": "Email *",
+        "kyc.s2.phone": "Phone *",
+        "kyc.s2.isPepRep": "Is PEP? (Legal Representative)",
+        "kyc.s2.contactMain": "Main Contact (Purchasing, Administrative, Financial)",
+        "kyc.s2.isPepContact": "Is PEP? (Main Contact)",
+        "kyc.s2.pep1": "Manages public funds",
+        "kyc.s2.pep2": "Exercises public power",
+        "kyc.s2.pep3": "Linked to PEP",
+        
+        "kyc.s3.title": "3. Financial Information",
+        "kyc.s3.activity": "Economic Activity Description *",
+        "kyc.s3.ciiu": "ISIC Code *",
+        "kyc.s3.bank": "Bank *",
+        "kyc.s3.account": "Account Number *",
+        "kyc.s3.swift": "SWIFT Code",
+        "kyc.s3.income": "Annual Income *",
+        "kyc.s3.source": "Source of Income *",
+        "kyc.s3.assets": "Total Assets *",
+        
+        "kyc.s4.title": "4. Ultimate Beneficial Owners",
+        "kyc.s4.desc": "Identification of shareholders who directly or indirectly own more than 5% of the capital stock.",
+        "kyc.s4.th1": "ID Type",
+        "kyc.s4.th2": "ID Number",
+        "kyc.s4.th3": "Name / Company Name",
+        "kyc.s4.th4": "%",
+        "kyc.s4.th5": "PEP?",
+        "kyc.s4.th6": "Action",
+        "kyc.s4.add": "Add Beneficiary",
+        
+        "kyc.s5.title": "5. Declarations and Authorizations",
+        "kyc.s5.originTitle": "Origin of Funds",
+        "kyc.s5.originText": "Acting in my own name and/or as legal representative, voluntarily and certifying that everything stated herein is true, I make the following Declaration of Origin of my Funds to FORESTELEVEN S.A.S. with the purpose of contributing to the prevention and control of Money Laundering and Terrorist Financing, I declare that:<br>1. The resources I manage come from lawful activities.<br>2. I declare that the resources do not come from any illicit activity contemplated in the Penal Code.<br>3. I exempt FORESTELEVEN S.A.S. from any liability arising from erroneous or false information.<br>4. I accept verification in binding lists.",
+        "kyc.s5.originAccept": "I accept and declare the lawful origin of my funds.*",
+        "kyc.s5.dataTitle": "Personal Data Processing",
+        "kyc.s5.dataText": "I previously, expressly and informatively authorize FORESTELEVEN S.A.S. so that the data provided may be used for the purposes of: Consulting and reporting to credit bureaus, carrying out collection management, carrying out administrative processes, informing me about commercial offers (Law 1581 of 2012), and conducting market studies.",
+        "kyc.s5.dataAccept": "I accept the personal data processing policy.*",
+        
+        "kyc.s6.title": "6. Documentation and Signature",
+        "kyc.s6.docTitle": "Document Upload",
+        "kyc.s6.docDesc": "Upload the required documents. Allowed formats: PDF, JPG, PNG (Max 5MB).",
+        "kyc.s6.docSelfie": "Selfie *",
+        "kyc.s6.docId": "Identity Document *",
+        "kyc.s6.docRut": "RUT (If applicable)",
+        "kyc.s6.docCamara": "Chamber of Commerce *",
+        "kyc.s6.selectFile": "Select file",
+        "kyc.s6.signTitle": "Acceptance and Signature",
+        "kyc.s6.signName": "Name of Signatory *",
+        "kyc.s6.signPosition": "Position",
+        "kyc.s6.signAccept": "I declare that the information is true and I electronically sign this document.*",
+        
+        "kyc.btn.prev": "Previous",
+        "kyc.btn.next": "Next",
+        "kyc.btn.submit": "Submit Request",
+        
+        "kyc.success.title": "Request Sent Successfully!",
+        "kyc.success.desc": "We have received your data and documents correctly. Our compliance team will contact you shortly.",
+        "kyc.success.btn": "Return to Home",
+
     },
     es: {
         "nav.whatWeDo": "Qué Hacemos",
@@ -269,7 +372,7 @@ const translations = {
 
         "footer.privacy": "Política de Privacidad",
         "footer.terms": "Términos de Servicio",
-        "footer.dataTreatment": "Tratamiento de Datos",
+        "footer.dataTreatment": "Aviso de privacidad",
         "footer.cookies": "Política de Cookies",
 
         "faq.title": "Preguntas Frecuentes",
@@ -288,7 +391,211 @@ const translations = {
         "faq.q7": "¿Aceptan operaciones de terceros?",
         "faq.a7": "Por seguridad y cumplimiento solo se aceptan las operaciones deben realizarse desde y hacia cuentas o wallets asociadas al cliente validado.",
         "faq.q8": "¿Cuánto tarda una operación?",
-        "faq.a8": "El tiempo depende de la moneda, método de pago, confirmación bancaria, red blockchain, disponibilidad de liquidez y revisión interna."
+        "faq.a8": "El tiempo depende de la moneda, método de pago, confirmación bancaria, red blockchain, disponibilidad de liquidez y revisión interna.",
+
+        "nav.vinculacion": "KYC Form",
+        "kyc.mainTitle": "Counterparty <span class=\"text-primary italic\">Onboarding</span>",
+        "kyc.mainSubtitle": "Single Onboarding Form. Please complete the requested information.",
+        "kyc.step1": "Information",
+        "kyc.step2": "Contacts",
+        "kyc.step3": "Financial",
+        "kyc.step4": "Beneficiaries",
+        "kyc.step5": "Declarations",
+        "kyc.step6": "Signature",
+        
+        "kyc.s1.title": "1. General Information",
+        "kyc.s1.typeProcess": "Type of Request *",
+        "kyc.s1.typeProcess.creation": "Creation",
+        "kyc.s1.typeProcess.reactivation": "Reactivation",
+        "kyc.s1.typeProcess.update": "Update",
+        "kyc.s1.typePerson": "Type of Person *",
+        "kyc.s1.typePerson.natural": "Natural (PN)",
+        "kyc.s1.typePerson.juridical": "Juridical (PJ)",
+        "kyc.s1.name": "Full Name / Company Name *",
+        "kyc.s1.id": "Tax ID / National ID *",
+        "kyc.s1.city": "City *",
+        "kyc.s1.country": "Country *",
+        "kyc.s1.phone": "Phone Number *",
+        "kyc.s1.address": "Main Address *",
+        "kyc.s1.email": "E-mail (Billing / Main) *",
+        "kyc.s1.typeCounterparty": "Type of Counterparty *",
+        "kyc.s1.tc.client": "Client",
+        "kyc.s1.tc.provider": "Provider",
+        "kyc.s1.tc.contractor": "Contractor",
+        "kyc.s1.tc.employee": "Employee",
+        "kyc.s1.tc.other": "Other",
+        "kyc.s1.pepTitle": "PEP Questions (Politically Exposed Persons)",
+        "kyc.s1.pep1": "Do you manage public funds?",
+        "kyc.s1.pep2": "Do you exercise any degree of public power?",
+        "kyc.s1.pep3": "Are you linked to a PEP?",
+        "kyc.yes": "YES",
+        "kyc.no": "NO",
+        
+        "kyc.s2.title": "2. Contacts (Only Juridical Persons)",
+        "kyc.s2.repLegal": "Legal Representative",
+        "kyc.s2.name": "Name *",
+        "kyc.s2.id": "ID *",
+        "kyc.s2.position": "Position *",
+        "kyc.s2.email": "Email *",
+        "kyc.s2.phone": "Phone *",
+        "kyc.s2.isPepRep": "Is PEP? (Legal Representative)",
+        "kyc.s2.contactMain": "Main Contact (Purchasing, Administrative, Financial)",
+        "kyc.s2.isPepContact": "Is PEP? (Main Contact)",
+        "kyc.s2.pep1": "Manages public funds",
+        "kyc.s2.pep2": "Exercises public power",
+        "kyc.s2.pep3": "Linked to PEP",
+        
+        "kyc.s3.title": "3. Financial Information",
+        "kyc.s3.activity": "Economic Activity Description *",
+        "kyc.s3.ciiu": "ISIC Code *",
+        "kyc.s3.bank": "Bank *",
+        "kyc.s3.account": "Account Number *",
+        "kyc.s3.swift": "SWIFT Code",
+        "kyc.s3.income": "Annual Income *",
+        "kyc.s3.source": "Source of Income *",
+        "kyc.s3.assets": "Total Assets *",
+        
+        "kyc.s4.title": "4. Ultimate Beneficial Owners",
+        "kyc.s4.desc": "Identification of shareholders who directly or indirectly own more than 5% of the capital stock.",
+        "kyc.s4.th1": "ID Type",
+        "kyc.s4.th2": "ID Number",
+        "kyc.s4.th3": "Name / Company Name",
+        "kyc.s4.th4": "%",
+        "kyc.s4.th5": "PEP?",
+        "kyc.s4.th6": "Action",
+        "kyc.s4.add": "Add Beneficiary",
+        
+        "kyc.s5.title": "5. Declarations and Authorizations",
+        "kyc.s5.originTitle": "Origin of Funds",
+        "kyc.s5.originText": "Acting in my own name and/or as legal representative, voluntarily and certifying that everything stated herein is true, I make the following Declaration of Origin of my Funds to FORESTELEVEN S.A.S. with the purpose of contributing to the prevention and control of Money Laundering and Terrorist Financing, I declare that:<br>1. The resources I manage come from lawful activities.<br>2. I declare that the resources do not come from any illicit activity contemplated in the Penal Code.<br>3. I exempt FORESTELEVEN S.A.S. from any liability arising from erroneous or false information.<br>4. I accept verification in binding lists.",
+        "kyc.s5.originAccept": "I accept and declare the lawful origin of my funds.*",
+        "kyc.s5.dataTitle": "Personal Data Processing",
+        "kyc.s5.dataText": "I previously, expressly and informatively authorize FORESTELEVEN S.A.S. so that the data provided may be used for the purposes of: Consulting and reporting to credit bureaus, carrying out collection management, carrying out administrative processes, informing me about commercial offers (Law 1581 of 2012), and conducting market studies.",
+        "kyc.s5.dataAccept": "I accept the personal data processing policy.*",
+        
+        "kyc.s6.title": "6. Documentation and Signature",
+        "kyc.s6.docTitle": "Document Upload",
+        "kyc.s6.docDesc": "Upload the required documents. Allowed formats: PDF, JPG, PNG (Max 5MB).",
+        "kyc.s6.docSelfie": "Selfie *",
+        "kyc.s6.docId": "Identity Document *",
+        "kyc.s6.docRut": "RUT (If applicable)",
+        "kyc.s6.docCamara": "Chamber of Commerce *",
+        "kyc.s6.selectFile": "Select file",
+        "kyc.s6.signTitle": "Acceptance and Signature",
+        "kyc.s6.signName": "Name of Signatory *",
+        "kyc.s6.signPosition": "Position",
+        "kyc.s6.signAccept": "I declare that the information is true and I electronically sign this document.*",
+        
+        "kyc.btn.prev": "Previous",
+        "kyc.btn.next": "Next",
+        "kyc.btn.submit": "Submit Request",
+        
+        "kyc.success.title": "Request Sent Successfully!",
+        "kyc.success.desc": "We have received your data and documents correctly. Our compliance team will contact you shortly.",
+        "kyc.success.btn": "Return to Home",
+,
+
+        "nav.vinculacion": "Formulario KYC",
+        "kyc.mainTitle": "Vinculación de <span class=\"text-primary italic\">Contrapartes</span>",
+        "kyc.mainSubtitle": "Formato Único de Vinculación. Por favor, complete la información solicitada.",
+        "kyc.step1": "Información",
+        "kyc.step2": "Contactos",
+        "kyc.step3": "Financiera",
+        "kyc.step4": "Beneficiarios",
+        "kyc.step5": "Declaraciones",
+        "kyc.step6": "Firma",
+        
+        "kyc.s1.title": "1. Información y Datos Generales",
+        "kyc.s1.typeProcess": "Tipo de Trámite *",
+        "kyc.s1.typeProcess.creation": "Creación",
+        "kyc.s1.typeProcess.reactivation": "Reactivación",
+        "kyc.s1.typeProcess.update": "Actualización",
+        "kyc.s1.typePerson": "Tipo de Persona *",
+        "kyc.s1.typePerson.natural": "Natural (PN)",
+        "kyc.s1.typePerson.juridical": "Jurídica (PJ)",
+        "kyc.s1.name": "Nombre Completo / Razón Social *",
+        "kyc.s1.id": "NIT / CC *",
+        "kyc.s1.city": "Ciudad *",
+        "kyc.s1.country": "País *",
+        "kyc.s1.phone": "Teléfono *",
+        "kyc.s1.address": "Dirección Principal *",
+        "kyc.s1.email": "E-mail (Facturación / Principal) *",
+        "kyc.s1.typeCounterparty": "Tipo de Contraparte *",
+        "kyc.s1.tc.client": "Cliente",
+        "kyc.s1.tc.provider": "Proveedor",
+        "kyc.s1.tc.contractor": "Contratista",
+        "kyc.s1.tc.employee": "Empleado",
+        "kyc.s1.tc.other": "Otro",
+        "kyc.s1.pepTitle": "Preguntas PEP (Personas Expuestas Políticamente)",
+        "kyc.s1.pep1": "¿Maneja recursos públicos?",
+        "kyc.s1.pep2": "¿Por su cargo ejerce algún grado de poder público?",
+        "kyc.s1.pep3": "¿Está vinculado con un PEP?",
+        "kyc.yes": "SI",
+        "kyc.no": "NO",
+        
+        "kyc.s2.title": "2. Contactos (Solo Personas Jurídicas)",
+        "kyc.s2.repLegal": "Representante Legal",
+        "kyc.s2.name": "Nombre *",
+        "kyc.s2.id": "Cédula *",
+        "kyc.s2.position": "Cargo *",
+        "kyc.s2.email": "Email *",
+        "kyc.s2.phone": "Teléfono *",
+        "kyc.s2.isPepRep": "¿Es PEP? (Representante Legal)",
+        "kyc.s2.contactMain": "Contacto Principal (Compras, Administrativo, Financiero)",
+        "kyc.s2.isPepContact": "¿Es PEP? (Contacto Principal)",
+        "kyc.s2.pep1": "Maneja rec. públicos",
+        "kyc.s2.pep2": "Ejerce poder público",
+        "kyc.s2.pep3": "Vinculado con PEP",
+        
+        "kyc.s3.title": "3. Información Financiera",
+        "kyc.s3.activity": "Descripción Actividad Económica *",
+        "kyc.s3.ciiu": "Código CIIU *",
+        "kyc.s3.bank": "Banco *",
+        "kyc.s3.account": "Número de Cuenta *",
+        "kyc.s3.swift": "Código SWIFT",
+        "kyc.s3.income": "Ingresos Anuales *",
+        "kyc.s3.source": "Fuente de Ingresos *",
+        "kyc.s3.assets": "Total Activos *",
+        
+        "kyc.s4.title": "4. Beneficiarios Finales",
+        "kyc.s4.desc": "Identificación de accionistas que tengan directa o indirectamente más del 5% del capital social.",
+        "kyc.s4.th1": "Tipo Ident.",
+        "kyc.s4.th2": "Número",
+        "kyc.s4.th3": "Nombre/Razón Social",
+        "kyc.s4.th4": "%",
+        "kyc.s4.th5": "¿PEP?",
+        "kyc.s4.th6": "Acción",
+        "kyc.s4.add": "Añadir Beneficiario",
+        
+        "kyc.s5.title": "5. Declaraciones y Autorizaciones",
+        "kyc.s5.originTitle": "Origen de Fondos",
+        "kyc.s5.originText": "Obrando en nombre propio y/o en representación legal, de manera voluntaria y dando certeza de que todo lo aquí consignado es cierto, realizo la siguiente Declaración de Origen de mis Fondos a FORESTELEVEN S.A.S. con el propósito de contribuir en la prevención y control del Lavado de Activos y Financiación del Terrorismo, declaro que:<br>1. Los recursos que manejo provienen de actividades lícitas.<br>2. Declaro que los recursos no provienen de ninguna actividad ilícita contemplada en el Código Penal.<br>3. Eximo a FORESTELEVEN S.A.S. de toda responsabilidad que se derive por información errónea o falsa.<br>4. Acepto la verificación en listas vinculantes.",
+        "kyc.s5.originAccept": "Acepto y declaro el origen lícito de mis fondos.*",
+        "kyc.s5.dataTitle": "Tratamiento de Datos Personales",
+        "kyc.s5.dataText": "Autorizo de manera previa, expresa e informada a FORESTELEVEN S.A.S. para que los datos suministrados sean utilizados con las finalidades de: Consultar y reportar a centrales de riesgo, adelantar gestiones de cobranza, llevar a cabo procesos administrativos, informarme acerca de ofertas comerciales (Ley 1581 de 2012), y realizar estudios de mercado.",
+        "kyc.s5.dataAccept": "Acepto la política de tratamiento de datos personales.*",
+        
+        "kyc.s6.title": "6. Documentación y Firma",
+        "kyc.s6.docTitle": "Carga de Documentos",
+        "kyc.s6.docDesc": "Sube los documentos requeridos. Formatos permitidos: PDF, JPG, PNG (Max 5MB).",
+        "kyc.s6.docSelfie": "Selfie *",
+        "kyc.s6.docId": "Documento de Identidad *",
+        "kyc.s6.docRut": "RUT (Si aplica)",
+        "kyc.s6.docCamara": "Cámara de Comercio *",
+        "kyc.s6.selectFile": "Seleccionar archivo",
+        "kyc.s6.signTitle": "Aceptación y Firma",
+        "kyc.s6.signName": "Nombre de quien firma *",
+        "kyc.s6.signPosition": "Cargo",
+        "kyc.s6.signAccept": "Declaro que la información es cierta y firmo electrónicamente este documento.*",
+        
+        "kyc.btn.prev": "Anterior",
+        "kyc.btn.next": "Siguiente",
+        "kyc.btn.submit": "Enviar Solicitud",
+        
+        "kyc.success.title": "¡Solicitud Enviada!",
+        "kyc.success.desc": "Hemos recibido tus datos y documentos correctamente. Nuestro equipo de compliance se pondrá en contacto pronto.",
+        "kyc.success.btn": "Volver al Inicio",
+
     }
 };
 
@@ -483,3 +790,33 @@ updateForm("COP");
 
 
 
+
+// --- COOKIE BANNER LOGIC ---
+const initCookieBanner = () => {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptCookies = document.getElementById('acceptCookies');
+    const rejectCookies = document.getElementById('rejectCookies');
+
+    if (cookieBanner && acceptCookies && rejectCookies) {
+        const cookieStatus = localStorage.getItem('cookieConsent');
+        if (!cookieStatus) {
+            cookieBanner.style.display = 'flex';
+        }
+
+        const hideBanner = () => {
+            cookieBanner.style.display = 'none';
+        };
+
+        acceptCookies.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            hideBanner();
+        });
+
+        rejectCookies.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'rejected');
+            hideBanner();
+        });
+    }
+};
+
+initCookieBanner();

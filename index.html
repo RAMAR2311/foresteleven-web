@@ -73,6 +73,22 @@
         select::-ms-expand {
             display: none !important;
         }
+
+        .giant-bg-text {
+            font-size: 11vw;
+            font-weight: 900;
+            color: #1a2a1a;
+            line-height: 0.75;
+            margin: 0;
+            text-align: center;
+            letter-spacing: -0.05em;
+            user-select: none;
+            opacity: 0.5;
+        }
+        
+        .dark .giant-bg-text {
+            color: #112411;
+        }
     </style>
 </head>
 
@@ -100,6 +116,8 @@
                         href="#workflow" data-i18n="nav.howItWorks">How it Works</a>
                     <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
                         href="#contact" data-i18n="nav.contact">Contact</a>
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                        href="vinculacion.html" data-i18n="nav.vinculacion">Vinculación</a>
                 </nav>
 
                 <!-- Actions -->
@@ -905,32 +923,13 @@
     </section>
 
     <!-- 10. FOOTER -->
-    <footer class="bg-forest-dark text-white py-12 border-t border-gray-800 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-forest-dark text-white pt-12 pb-0 border-t border-gray-800 overflow-hidden relative flex flex-col justify-between min-h-[400px]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
             <div class="flex flex-col items-center gap-8">
-                <!-- Footer Links (Top) -->
-                <div class="flex flex-col md:flex-row justify-center items-center gap-4 w-full max-w-4xl">
-                    <div class="flex flex-wrap justify-center gap-6 text-sm font-medium text-gray-400">
-                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
-                            data-i18n="footer.privacy" href="#">Privacy Policy</a>
-                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
-                            data-i18n="footer.terms" href="#">Terms of Service</a>
-                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
-                            data-i18n="footer.dataTreatment" href="#">Data Treatment</a>
-                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
-                            data-i18n="footer.cookies" href="#">Cookies Policy</a>
-                    </div>
-                </div>
-
-                <!-- Divider -->
-                <div class="w-full max-w-4xl h-px bg-gray-800 my-1"></div>
-
-                <!-- Branding (Bottom) -->
-                <div class="flex flex-col items-center gap-4 text-center">
-                    <div class="flex items-center justify-center gap-3">
-                        <img src="assets/images/logo-2.png" alt="ForestEleven" class="w-56 md:w-72 h-auto object-contain">
-                    </div>
-                    <div class="flex items-center gap-6 mt-2">
+                <!-- Top Row: Socials + Footer Links -->
+                <div class="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl gap-6">
+                    <!-- Social Icons (Left) -->
+                    <div class="flex items-center gap-6">
                         <a href="#"
                             class="text-gray-400 hover:text-white transition-all hover:-translate-y-1 transform duration-300"
                             aria-label="Instagram">
@@ -956,14 +955,56 @@
                             </svg>
                         </a>
                     </div>
+                    
+                    <!-- Footer Links (Right) -->
+                    <div class="flex flex-wrap justify-center md:justify-end gap-6 text-sm font-medium text-gray-400">
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.privacy" href="assets/pdf/politica-de-privacidad.pdf" target="_blank">Privacy Policy</a>
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.terms" href="assets/pdf/terminos-de-servicio.pdf" target="_blank">Terms of Service</a>
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.dataTreatment" href="assets/pdf/aviso-de-privacidad.pdf" target="_blank">Data Treatment</a>
+                        <a class="hover:text-white hover:underline underline-offset-4 transition-all cursor-pointer"
+                            data-i18n="footer.cookies" href="assets/pdf/politica-de-cookies.pdf" target="_blank">Cookies Policy</a>
+                    </div>
                 </div>
 
-                <!-- Copyright -->
-                <div class="text-sm text-gray-500 font-medium tracking-wide mt-2">© 2024 ForestEleven. All rights
-                    reserved.</div>
+                <!-- Divider -->
+                <div class="w-full max-w-4xl h-px bg-gray-800 my-1"></div>
+
+                <!-- Bottom Row: Copyright -->
+                <div class="flex justify-center w-full max-w-4xl mt-4 mb-4">
+                    <div class="text-sm text-gray-500 font-medium tracking-wide">
+                        © 2024 ForestEleven. All rights reserved.
+                    </div>
+                </div>
             </div>
         </div>
+        
+        <!-- El texto gigante -->
+        <h1 class="giant-bg-text w-full">FORESTELEVEN</h1>
     </footer>
+
+    <!-- 11. COOKIE BANNER -->
+    <div id="cookieBanner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-2xl border border-gray-200 dark:border-gray-700 z-[60] flex flex-col gap-4" style="display: none;">
+        <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-primary text-2xl">cookie</span>
+            <div>
+                <h4 class="font-bold text-forest-dark dark:text-white text-lg mb-1" data-i18n="cookie.title">Uso de Cookies</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed" data-i18n="cookie.desc">
+                    Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra <a href="assets/pdf/politica-de-cookies.pdf" target="_blank" class="text-primary hover:underline font-medium">política de cookies</a>.
+                </p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 w-full mt-2">
+            <button id="rejectCookies" class="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm" data-i18n="cookie.reject">
+                Rechazar
+            </button>
+            <button id="acceptCookies" class="flex-1 px-4 py-2 rounded-lg bg-primary text-white font-medium hover:bg-green-600 shadow-lg shadow-green-500/20 transition-colors text-sm" data-i18n="cookie.accept">
+                Aceptar
+            </button>
+        </div>
+    </div>
 
     <!-- 10. FLOATING WHATSAPP -->
     <a href="https://wa.me/17867221582?text=ForestEleven%20“Clear. Fast. Done”" target="_blank"
