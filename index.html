@@ -75,15 +75,22 @@
         }
 
         .giant-bg-text {
-            font-size: 11vw;
+            font-size: 20vw; /* Bigger on mobile */
             font-weight: 900;
             color: #081108; /* Darker effect */
-            line-height: 0.75;
+            line-height: 0.8; /* slightly more line height so it doesn't cut off at the bottom */
             margin: 0;
             text-align: center;
             letter-spacing: -0.05em;
             user-select: none;
             opacity: 0.8;
+        }
+        
+        @media (min-width: 768px) {
+            .giant-bg-text {
+                font-size: 11vw;
+                line-height: 0.75;
+            }
         }
         
         .dark .giant-bg-text {
