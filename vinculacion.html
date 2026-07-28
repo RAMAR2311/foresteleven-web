@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="en">
 
 <head>
@@ -134,8 +134,29 @@
                         class="p-2 text-gray-400 hover:text-primary transition-colors">
                         <span class="material-symbols-outlined dark:hidden">dark_mode</span>
                         <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="p-2 md:hidden text-gray-400 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
                     </button>
                 </div>
+            </div>
+
+            <!-- Mobile Nav Container (Hidden by default) -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-[#e7f4e7] dark:border-[#2a442a]">
+                <nav class="flex flex-col gap-4 px-2">
+                    <a class="text-base font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors mobile-link"
+                        href="index.html#what-we-do" data-i18n="nav.whatWeDo">What We Do</a>
+                    <a class="text-base font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors mobile-link"
+                        href="index.html#desks" data-i18n="nav.desks">Desks</a>
+                    <a class="text-base font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors mobile-link"
+                        href="index.html#why-foresteleven" data-i18n="nav.whyUs">Why ForestEleven</a>
+                    <a class="text-base font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors mobile-link"
+                        href="index.html#workflow" data-i18n="nav.howItWorks">How it Works</a>
+                    <a class="text-base font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors mobile-link"
+                        href="index.html#contact" data-i18n="nav.contact">Contact</a>
+                    <a class="text-base font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors mobile-link"
+                        href="vinculacion.html" data-i18n="nav.vinculacion">Vinculación</a>
+                </nav>
             </div>
         </div>
     </header>

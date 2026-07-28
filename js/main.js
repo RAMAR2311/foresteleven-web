@@ -14,7 +14,6 @@ const translations = {
         "nav.whyUs": "Why ForestEleven",
         "nav.howItWorks": "How it Works",
         "nav.contact": "Contact",
-        "nav.vinculacion": "KYC Form",
 
         "hero.clear": "Clear.",
         "hero.fast": "Fast.",
@@ -249,8 +248,7 @@ const translations = {
         
         "kyc.success.title": "Request Sent Successfully!",
         "kyc.success.desc": "We have received your data and documents correctly. Our compliance team will contact you shortly.",
-        "kyc.success.btn": "Return to Home",
-
+        "kyc.success.btn": "Return to Home"
     },
     es: {
         "nav.whatWeDo": "Qué Hacemos",
@@ -372,7 +370,7 @@ const translations = {
 
         "footer.privacy": "Política de Privacidad",
         "footer.terms": "Términos de Servicio",
-        "footer.dataTreatment": "Aviso de privacidad",
+        "footer.dataTreatment": "Tratamiento de Datos",
         "footer.cookies": "Política de Cookies",
 
         "faq.title": "Preguntas Frecuentes",
@@ -392,108 +390,6 @@ const translations = {
         "faq.a7": "Por seguridad y cumplimiento solo se aceptan las operaciones deben realizarse desde y hacia cuentas o wallets asociadas al cliente validado.",
         "faq.q8": "¿Cuánto tarda una operación?",
         "faq.a8": "El tiempo depende de la moneda, método de pago, confirmación bancaria, red blockchain, disponibilidad de liquidez y revisión interna.",
-
-        "nav.vinculacion": "KYC Form",
-        "kyc.mainTitle": "Counterparty <span class=\"text-primary italic\">Onboarding</span>",
-        "kyc.mainSubtitle": "Single Onboarding Form. Please complete the requested information.",
-        "kyc.step1": "Information",
-        "kyc.step2": "Contacts",
-        "kyc.step3": "Financial",
-        "kyc.step4": "Beneficiaries",
-        "kyc.step5": "Declarations",
-        "kyc.step6": "Signature",
-        
-        "kyc.s1.title": "1. General Information",
-        "kyc.s1.typeProcess": "Type of Request *",
-        "kyc.s1.typeProcess.creation": "Creation",
-        "kyc.s1.typeProcess.reactivation": "Reactivation",
-        "kyc.s1.typeProcess.update": "Update",
-        "kyc.s1.typePerson": "Type of Person *",
-        "kyc.s1.typePerson.natural": "Natural (PN)",
-        "kyc.s1.typePerson.juridical": "Juridical (PJ)",
-        "kyc.s1.name": "Full Name / Company Name *",
-        "kyc.s1.id": "Tax ID / National ID *",
-        "kyc.s1.city": "City *",
-        "kyc.s1.country": "Country *",
-        "kyc.s1.phone": "Phone Number *",
-        "kyc.s1.address": "Main Address *",
-        "kyc.s1.email": "E-mail (Billing / Main) *",
-        "kyc.s1.typeCounterparty": "Type of Counterparty *",
-        "kyc.s1.tc.client": "Client",
-        "kyc.s1.tc.provider": "Provider",
-        "kyc.s1.tc.contractor": "Contractor",
-        "kyc.s1.tc.employee": "Employee",
-        "kyc.s1.tc.other": "Other",
-        "kyc.s1.pepTitle": "PEP Questions (Politically Exposed Persons)",
-        "kyc.s1.pep1": "Do you manage public funds?",
-        "kyc.s1.pep2": "Do you exercise any degree of public power?",
-        "kyc.s1.pep3": "Are you linked to a PEP?",
-        "kyc.yes": "YES",
-        "kyc.no": "NO",
-        
-        "kyc.s2.title": "2. Contacts (Only Juridical Persons)",
-        "kyc.s2.repLegal": "Legal Representative",
-        "kyc.s2.name": "Name *",
-        "kyc.s2.id": "ID *",
-        "kyc.s2.position": "Position *",
-        "kyc.s2.email": "Email *",
-        "kyc.s2.phone": "Phone *",
-        "kyc.s2.isPepRep": "Is PEP? (Legal Representative)",
-        "kyc.s2.contactMain": "Main Contact (Purchasing, Administrative, Financial)",
-        "kyc.s2.isPepContact": "Is PEP? (Main Contact)",
-        "kyc.s2.pep1": "Manages public funds",
-        "kyc.s2.pep2": "Exercises public power",
-        "kyc.s2.pep3": "Linked to PEP",
-        
-        "kyc.s3.title": "3. Financial Information",
-        "kyc.s3.activity": "Economic Activity Description *",
-        "kyc.s3.ciiu": "ISIC Code *",
-        "kyc.s3.bank": "Bank *",
-        "kyc.s3.account": "Account Number *",
-        "kyc.s3.swift": "SWIFT Code",
-        "kyc.s3.income": "Annual Income *",
-        "kyc.s3.source": "Source of Income *",
-        "kyc.s3.assets": "Total Assets *",
-        
-        "kyc.s4.title": "4. Ultimate Beneficial Owners",
-        "kyc.s4.desc": "Identification of shareholders who directly or indirectly own more than 5% of the capital stock.",
-        "kyc.s4.th1": "ID Type",
-        "kyc.s4.th2": "ID Number",
-        "kyc.s4.th3": "Name / Company Name",
-        "kyc.s4.th4": "%",
-        "kyc.s4.th5": "PEP?",
-        "kyc.s4.th6": "Action",
-        "kyc.s4.add": "Add Beneficiary",
-        
-        "kyc.s5.title": "5. Declarations and Authorizations",
-        "kyc.s5.originTitle": "Origin of Funds",
-        "kyc.s5.originText": "Acting in my own name and/or as legal representative, voluntarily and certifying that everything stated herein is true, I make the following Declaration of Origin of my Funds to FORESTELEVEN S.A.S. with the purpose of contributing to the prevention and control of Money Laundering and Terrorist Financing, I declare that:<br>1. The resources I manage come from lawful activities.<br>2. I declare that the resources do not come from any illicit activity contemplated in the Penal Code.<br>3. I exempt FORESTELEVEN S.A.S. from any liability arising from erroneous or false information.<br>4. I accept verification in binding lists.",
-        "kyc.s5.originAccept": "I accept and declare the lawful origin of my funds.*",
-        "kyc.s5.dataTitle": "Personal Data Processing",
-        "kyc.s5.dataText": "I previously, expressly and informatively authorize FORESTELEVEN S.A.S. so that the data provided may be used for the purposes of: Consulting and reporting to credit bureaus, carrying out collection management, carrying out administrative processes, informing me about commercial offers (Law 1581 of 2012), and conducting market studies.",
-        "kyc.s5.dataAccept": "I accept the personal data processing policy.*",
-        
-        "kyc.s6.title": "6. Documentation and Signature",
-        "kyc.s6.docTitle": "Document Upload",
-        "kyc.s6.docDesc": "Upload the required documents. Allowed formats: PDF, JPG, PNG (Max 5MB).",
-        "kyc.s6.docSelfie": "Selfie *",
-        "kyc.s6.docId": "Identity Document *",
-        "kyc.s6.docRut": "RUT (If applicable)",
-        "kyc.s6.docCamara": "Chamber of Commerce *",
-        "kyc.s6.selectFile": "Select file",
-        "kyc.s6.signTitle": "Acceptance and Signature",
-        "kyc.s6.signName": "Name of Signatory *",
-        "kyc.s6.signPosition": "Position",
-        "kyc.s6.signAccept": "I declare that the information is true and I electronically sign this document.*",
-        
-        "kyc.btn.prev": "Previous",
-        "kyc.btn.next": "Next",
-        "kyc.btn.submit": "Submit Request",
-        
-        "kyc.success.title": "Request Sent Successfully!",
-        "kyc.success.desc": "We have received your data and documents correctly. Our compliance team will contact you shortly.",
-        "kyc.success.btn": "Return to Home",
-,
 
         "nav.vinculacion": "Formulario KYC",
         "kyc.mainTitle": "Vinculación de <span class=\"text-primary italic\">Contrapartes</span>",
@@ -594,8 +490,7 @@ const translations = {
         
         "kyc.success.title": "¡Solicitud Enviada!",
         "kyc.success.desc": "Hemos recibido tus datos y documentos correctamente. Nuestro equipo de compliance se pondrá en contacto pronto.",
-        "kyc.success.btn": "Volver al Inicio",
-
+        "kyc.success.btn": "Volver al Inicio"
     }
 };
 
@@ -791,22 +686,31 @@ updateForm("COP");
 
 
 
-// --- COOKIE BANNER LOGIC ---
+// --- COOKIE BANNER ---
 const initCookieBanner = () => {
-    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieBanner = document.getElementById('cookie-banner');
     const acceptCookies = document.getElementById('acceptCookies');
     const rejectCookies = document.getElementById('rejectCookies');
 
-    if (cookieBanner && acceptCookies && rejectCookies) {
-        const cookieStatus = localStorage.getItem('cookieConsent');
-        if (!cookieStatus) {
-            cookieBanner.style.display = 'flex';
-        }
+    if (!cookieBanner) return;
 
-        const hideBanner = () => {
-            cookieBanner.style.display = 'none';
-        };
+    const consent = localStorage.getItem('cookieConsent');
+    
+    if (consent === 'accepted' || consent === 'rejected') {
+        cookieBanner.classList.add('hidden');
+    } else {
+        // Show after a small delay for better UX
+        setTimeout(() => {
+            cookieBanner.classList.remove('translate-y-full', 'opacity-0');
+        }, 1000);
+    }
 
+    const hideBanner = () => {
+        cookieBanner.classList.add('translate-y-full', 'opacity-0');
+        setTimeout(() => cookieBanner.classList.add('hidden'), 500);
+    };
+
+    if (acceptCookies && rejectCookies) {
         acceptCookies.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'accepted');
             hideBanner();
@@ -820,3 +724,23 @@ const initCookieBanner = () => {
 };
 
 initCookieBanner();
+
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if(mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking a link
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
+});
