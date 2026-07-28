@@ -694,30 +694,25 @@ const initCookieBanner = () => {
 
     if (!cookieBanner) return;
 
-    const consent = localStorage.getItem('cookieConsent');
-    
-    if (consent === 'accepted' || consent === 'rejected') {
-        // ALWAYS SHOW: removed cookieBanner.classList.add('hidden');
-    } else {
-        // ...
-    }
-    
-    // Show after a small delay for better UX
+    // Always show banner on load
+    cookieBanner.classList.remove('hidden');
     setTimeout(() => {
         cookieBanner.classList.remove('translate-y-full', 'opacity-0');
-    }, 1000);
+    }, 500);
 
     const hideBanner = () => {
         cookieBanner.classList.add('translate-y-full', 'opacity-0');
         setTimeout(() => cookieBanner.classList.add('hidden'), 500);
     };
 
-    if (acceptCookies && rejectCookies) {
+    if (acceptCookies) {
         acceptCookies.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'accepted');
             hideBanner();
         });
+    }
 
+    if (rejectCookies) {
         rejectCookies.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'rejected');
             hideBanner();
