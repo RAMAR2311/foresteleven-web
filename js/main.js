@@ -697,13 +697,15 @@ const initCookieBanner = () => {
     const consent = localStorage.getItem('cookieConsent');
     
     if (consent === 'accepted' || consent === 'rejected') {
-        cookieBanner.classList.add('hidden');
+        // ALWAYS SHOW: removed cookieBanner.classList.add('hidden');
     } else {
-        // Show after a small delay for better UX
-        setTimeout(() => {
-            cookieBanner.classList.remove('translate-y-full', 'opacity-0');
-        }, 1000);
+        // ...
     }
+    
+    // Show after a small delay for better UX
+    setTimeout(() => {
+        cookieBanner.classList.remove('translate-y-full', 'opacity-0');
+    }, 1000);
 
     const hideBanner = () => {
         cookieBanner.classList.add('translate-y-full', 'opacity-0');
