@@ -74,16 +74,177 @@
             display: none !important;
         }
 
+        .hero-title {
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            line-height: 1.03;
+        }
+
+        .responsive-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .responsive-radio-group label {
+            width: 100%;
+        }
+
+        .workflow-tab-btn {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .footer-giant-text {
+            font-size: 18vw;
+        }
+
+        .step-indicators-wrapper {
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .step-indicators-row {
+            min-width: 780px;
+            display: flex;
+            justify-content: center;
+            gap: 1.75rem;
+        }
+
+        .step-indicator {
+            min-width: 4.5rem;
+        }
+
+        .step-indicator > div {
+            width: 3.35rem;
+            height: 3.35rem;
+            font-size: 1.1rem;
+        }
+
+        .step-indicator span {
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .form-navigation-bar {
+            position: relative;
+            width: 100%;
+            padding-top: 1.5rem;
+            padding-bottom: 1rem;
+            border-top: 1px solid rgba(229, 231, 235, 1);
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        @media (max-width: 768px) {
+            .step-indicators-row {
+                min-width: unset;
+                gap: 1rem;
+            }
+
+            .step-indicator {
+                min-width: 3.5rem;
+            }
+
+            .step-indicator > div {
+                width: 2.6rem;
+                height: 2.6rem;
+                font-size: 1rem;
+            }
+
+            .step-indicator span {
+                font-size: 0.75rem;
+                margin-top: 0.25rem;
+            }
+
+            .form-navigation-bar {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            #btn-prev,
+            #btn-next,
+            #btn-submit {
+                width: 100%;
+                max-width: none;
+            }
+
+            .form-navigation-bar {
+                gap: 0.75rem;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+        }
+            backdrop-filter: blur(12px);
+        }
+
+        .validation-popup {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.55);
+            z-index: 9999;
+            padding: 0;
+            min-height: 100vh;
+            overflow: auto;
+        }
+
+        .validation-popup-card {
+            max-width: 32rem;
+            width: min(100%, 32rem);
+            margin: 1.5rem;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(10, 194, 10, 0.25);
+            box-shadow: 0 35px 90px rgba(15, 23, 42, 0.25);
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            box-sizing: border-box;
+        }
+
+        .validation-popup-title {
+            font-size: 1.125rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .validation-popup-text {
+            margin-top: 0.75rem;
+            color: #334155;
+            line-height: 1.75;
+        }
+
+        .validation-popup-close {
+            margin-top: 1.5rem;
+            width: 100%;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.9rem 1.25rem;
+            border-radius: 9999px;
+            background: #0ac20a;
+            color: #ffffff;
+            font-weight: 700;
+            transition: background-color 0.2s ease;
+        }
+
+        .validation-popup-close:hover {
+            background: #05950c;
+        }
+
         .giant-bg-text {
             font-size: 20vw; /* Bigger on mobile */
             font-weight: 900;
-            color: #081108; /* Darker effect */
+            color: #0ac20a; /* Match button color */
             line-height: 0.8; /* slightly more line height so it doesn't cut off at the bottom */
             margin: 0;
             text-align: center;
             letter-spacing: -0.05em;
             user-select: none;
-            opacity: 0.8;
+            opacity: 0.9;
         }
         
         @media (min-width: 768px) {
@@ -94,7 +255,7 @@
         }
         
         .dark .giant-bg-text {
-            color: #081108; /* Keep it consistently dark */
+            color: #0ac20a; /* Keep it green in dark mode too */
         }
     </style>
 </head>
@@ -172,7 +333,7 @@
     <!-- VINCULACION CONTENT START -->
     <main class="min-h-screen py-16" id="vinculacion-app">
                 <!-- VINCULACION WIZARD CONTAINER -->
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-20">
+        <div class="max-w-full sm:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-20">
             <!-- Header -->
             <div class="text-center mb-10">
                 <h1 class="text-4xl md:text-5xl font-bold font-display text-forest-dark dark:text-white mb-4" data-i18n="kyc.mainTitle">
@@ -185,7 +346,8 @@
 
             <!-- Progress Bar -->
             <div class="mb-8">
-                <div class="flex items-center justify-between relative">
+                <div class="step-indicators-wrapper">
+                <div class="relative step-indicators-row">
                     <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full z-0"></div>
                     <div id="progress-bar-fill" class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-primary rounded-full z-0 transition-all duration-300" style="width: 20%;"></div>
                     
@@ -219,6 +381,13 @@
 
             <!-- Form Container -->
             <div class="glass-card rounded-2xl p-6 md:p-10 shadow-xl relative overflow-hidden">
+                <div id="validationPopup" class="validation-popup" hidden>
+                    <div class="validation-popup-card">
+                        <div class="validation-popup-title">Error de Validación</div>
+                        <p id="validationPopupMessage" class="validation-popup-text">Por favor, complete todos los campos obligatorios de este paso.</p>
+                        <button type="button" id="validationPopupClose" class="validation-popup-close">Cerrar</button>
+                    </div>
+                </div>
                 <form id="kycForm" class="relative min-h-[400px]">
                     
                     <!-- STEP 1: INFO Y DATOS GENERALES -->
@@ -258,12 +427,19 @@
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s1.city">Ciudad *</span></label>
-                                    <input type="text" name="ciudad" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s1.country">País *</span></label>
+                                    <select id="pais" name="pais" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                        <option value="">Seleccione...</option>
+                                        <option value="Colombia">Colombia</option>
+                                        <option value="Estados Unidos">Estados Unidos</option>
+                                        <option value="Mexico">México</option>
+                                    </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s1.country">País *</span></label>
-                                    <input type="text" name="pais" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s1.city">Ciudad *</span></label>
+                                    <select id="ciudad" name="ciudad" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                        <option value="">Seleccione un país primero...</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s1.phone">Teléfono *</span></label>
@@ -284,9 +460,7 @@
                                     <option value="">Seleccione...</option>
                                     <option value="Cliente">Cliente</option>
                                     <option value="Proveedor">Proveedor</option>
-                                    <option value="Contratista">Contratista</option>
                                     <option value="Empleado">Empleado</option>
-                                    <option value="Otro">Otro</option>
                                 </select>
                             </div>
                         </div>
@@ -363,28 +537,34 @@
                         <!-- Contacto Principal -->
                         <div>
                             <h3 class="text-lg font-bold text-primary mb-4"><span data-i18n="kyc.s2.contactMain">Contacto Principal (Compras, Administrativo, Financiero)</span></h3>
+                            <div id="sameAsRepresentativeContainer" class="flex items-center gap-3 mb-4">
+                                <label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <input id="sameAsRepresentative" type="checkbox" class="h-4 w-4 text-primary rounded border-gray-300 dark:border-gray-600 focus:ring-primary">
+                                    <span>El contacto principal es el mismo del representante legal</span>
+                                </label>
+                            </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Nombre *</label>
-                                    <input type="text" name="con_nombre" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <input type="text" id="con_nombre" name="con_nombre" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Cédula *</label>
-                                    <input type="text" name="con_cedula" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <input type="text" id="con_cedula" name="con_cedula" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Cargo *</label>
-                                    <input type="text" name="con_cargo" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <input type="text" id="con_cargo" name="con_cargo" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email *</label>
-                                    <input type="email" name="con_email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <input type="email" id="con_email" name="con_email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s1.phone">Teléfono *</span></label>
-                                    <input type="tel" name="con_telefono" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <input type="tel" id="con_telefono" name="con_telefono" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                                 </div>
                             </div>
                             <div class="mt-4 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-sm">
@@ -405,26 +585,19 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s3.activity">Descripción Actividad Económica *</span></label>
-                                <input type="text" name="actividad_economica" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                <select id="actividad_economica" name="actividad_economica" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                    <option value="" disabled selected>Seleccione una actividad...</option>
+                                    <option value="6201">Actividades de desarrollo de sistemas informáticos (planificación, análisis, diseño, programación, pruebas).</option>
+                                    <option value="6202">Actividades de consultoría informática y administración de instalaciones informáticas.</option>
+                                    <option value="6209">Otras actividades de tecnologías de información y servicios informáticos.</option>
+                                    <option value="4651">Comercio al por mayor de computadores, equipos periféricos y programas de informática.</option>
+                                    <option value="4741">Comercio al por menor de computadores, equipos periféricos, programas de informática y equipos de telecomunicaciones.</option>
+                                    <option value="7310">Publicidad.</option>
+                                </select>
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s3.ciiu">Código CIIU *</span></label>
-                                <input type="text" name="codigo_ciiu" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s3.bank">Banco *</span></label>
-                                <input type="text" name="banco" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s3.account">Número de Cuenta *</span></label>
-                                <input type="text" name="num_cuenta" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span data-i18n="kyc.s3.swift">Código SWIFT</span></label>
-                                <input type="text" name="codigo_swift" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                                <input type="text" id="codigo_ciiu" name="codigo_ciiu" required readonly class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                             </div>
                         </div>
 
@@ -498,7 +671,10 @@
                         </div>
 
                         <div class="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-                            <h3 class="font-bold text-lg mb-3 dark:text-white">Tratamiento de Datos Personales</h3>
+                            <div class="flex items-center justify-between gap-3 mb-3">
+                                <h3 class="font-bold text-lg dark:text-white">Tratamiento de Datos Personales</h3>
+                                <a href="assets/pdf/POLITICA Y MANUAL DE PROTECCION DE DATOS PERSONALES Y SEGURIDAD DE LA INFORMACIOìN.docx.pdf" target="_blank" class="text-primary font-semibold hover:underline text-sm">Ver documento</a>
+                            </div>
                             <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 h-32 overflow-y-auto pr-2 custom-scrollbar">
                                 Autorizo de manera previa, expresa e informada a FORESTELEVEN S.A.S. para que los datos suministrados sean utilizados con las finalidades de: 
                                 Consultar y reportar a centrales de riesgo, adelantar gestiones de cobranza, llevar a cabo procesos administrativos, informarme acerca de ofertas comerciales (Ley 1581 de 2012), y realizar estudios de mercado.
@@ -521,28 +697,47 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- Siempre requeridos -->
                                 <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-4 text-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                                    <label class="cursor-pointer block">
-                                        <span class="material-symbols-outlined text-4xl text-gray-400 mb-2 block">face</span>
-                                        <span class="block text-sm font-bold text-forest-dark dark:text-white">Selfie *</span>
-                                        <span class="block text-xs text-gray-500 mt-1" id="file-name-selfie">Seleccionar archivo</span>
-                                        <input type="file" name="doc_selfie" id="doc_selfie" accept="image/*" class="hidden" required>
-                                    </label>
+                                    <div class="flex flex-col items-center gap-4">
+                                        <div>
+                                            <span class="material-symbols-outlined text-4xl text-gray-400 mb-2 block">face</span>
+                                            <span class="block text-sm font-bold text-forest-dark dark:text-white">Selfie *</span>
+                                            <span class="block text-xs text-gray-500 mt-1">Toma una foto con tu cámara o selecciona un archivo</span>
+                                        </div>
+                                        <button type="button" id="openCameraBtn" class="w-full sm:w-auto px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold hover:bg-green-600 transition-colors">Usar cámara</button>
+                                        <label class="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-300 dark:bg-surface-dark dark:border-gray-600 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                            <span>Seleccionar archivo</span>
+                                            <input type="file" name="doc_selfie" id="doc_selfie" accept="image/*" class="hidden" required>
+                                        </label>
+                                        <span class="block text-xs text-gray-500 mt-1" id="file-name-selfie">Ningún archivo seleccionado</span>
+                                    </div>
                                 </div>
                                 <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-4 text-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                                    <label class="cursor-pointer block">
-                                        <span class="material-symbols-outlined text-4xl text-gray-400 mb-2 block">badge</span>
-                                        <span class="block text-sm font-bold text-forest-dark dark:text-white">Documento de Identidad *</span>
-                                        <span class="block text-xs text-gray-500 mt-1" id="file-name-id">Seleccionar archivo</span>
-                                        <input type="file" name="doc_id" id="doc_id" accept="image/*,.pdf" class="hidden" required>
-                                    </label>
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div>
+                                            <span class="material-symbols-outlined text-4xl text-gray-400 mb-2 block">badge</span>
+                                            <span class="block text-sm font-bold text-forest-dark dark:text-white">Documento de Identidad *</span>
+                                            <span class="block text-xs text-gray-500 mt-1">Selecciona un archivo desde tu dispositivo</span>
+                                        </div>
+                                        <label class="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-300 dark:bg-surface-dark dark:border-gray-600 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                            <span>Seleccionar archivo</span>
+                                            <input type="file" name="doc_id" id="doc_id" accept="image/*,.pdf" class="hidden" required>
+                                        </label>
+                                        <span class="block text-xs text-gray-500 mt-1" id="file-name-id">Ningún archivo seleccionado</span>
+                                    </div>
                                 </div>
                                 <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-4 text-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                                    <label class="cursor-pointer block">
-                                        <span class="material-symbols-outlined text-4xl text-gray-400 mb-2 block">description</span>
-                                        <span class="block text-sm font-bold text-forest-dark dark:text-white">RUT (Si aplica)</span>
-                                        <span class="block text-xs text-gray-500 mt-1" id="file-name-rut">Seleccionar archivo</span>
-                                        <input type="file" name="doc_rut" id="doc_rut" accept=".pdf" class="hidden">
-                                    </label>
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div>
+                                            <span class="material-symbols-outlined text-4xl text-gray-400 mb-2 block">description</span>
+                                            <span class="block text-sm font-bold text-forest-dark dark:text-white">RUT</span>
+                                            <span class="block text-xs text-gray-500 mt-1">Selecciona un archivo PDF</span>
+                                        </div>
+                                        <label class="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-300 dark:bg-surface-dark dark:border-gray-600 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                            <span>Seleccionar archivo</span>
+                                            <input type="file" name="doc_rut" id="doc_rut" accept=".pdf" class="hidden" required>
+                                        </label>
+                                        <span class="block text-xs text-gray-500 mt-1" id="file-name-rut">Ningún archivo seleccionado</span>
+                                    </div>
                                 </div>
                                 
                                 <!-- Solo Jurídica -->
@@ -553,6 +748,21 @@
                                         <span class="block text-xs text-gray-500 mt-1" id="file-name-camara">Seleccionar archivo</span>
                                         <input type="file" name="doc_camara" id="doc_camara" accept=".pdf" class="hidden">
                                     </label>
+                                </div>
+                            </div>
+                            <div id="cameraModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4">
+                                <div class="w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl">
+                                    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+                                        <h3 class="text-lg font-semibold text-gray-900">Tomar selfie</h3>
+                                        <button type="button" id="cameraCloseBtn" class="text-sm text-gray-500 hover:text-gray-900">Cerrar</button>
+                                    </div>
+                                    <div class="p-4">
+                                        <video id="cameraVideo" autoplay playsinline class="w-full rounded-2xl bg-black"></video>
+                                    </div>
+                                    <div class="flex gap-3 p-4">
+                                        <button type="button" id="cameraCaptureBtn" class="flex-1 rounded-full bg-primary text-white py-3 font-semibold hover:bg-green-600">Capturar</button>
+                                        <button type="button" id="cameraCancelBtn" class="flex-1 rounded-full border border-gray-300 text-gray-700 py-3 hover:bg-gray-100">Cancelar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -577,8 +787,8 @@
                     </div>
 
                     <!-- Navigation Buttons -->
-                    <div class="mt-10 flex justify-between pt-6 border-t border-gray-200 dark:border-gray-700 absolute bottom-0 left-0 w-full px-6 pb-6 bg-white dark:bg-surface-dark">
-                        <button type="button" id="btn-prev" data-i18n="kyc.btn.prev" class="px-6 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-3 pt-6 border-t border-gray-200 dark:border-gray-700 px-6 pb-6 bg-white/95 dark:bg-surface-dark/95 form-navigation-bar">
+                        <button type="button" id="btn-prev" hidden class="px-8 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
                             Anterior
                         </button>
                         <button type="button" id="btn-next" data-i18n="kyc.btn.next" class="px-8 py-2 rounded-lg bg-primary text-white font-bold hover:bg-green-600 shadow-lg shadow-green-500/30 transition-all">
@@ -588,10 +798,6 @@
                             Enviar Solicitud
                         </button>
                     </div>
-
-                    <!-- Add padding at the bottom so the absolute buttons don't cover content -->
-                    <div class="h-24 w-full"></div>
-                </form>
                 
                 <!-- Success Message -->
                 <div id="kycSuccess" class="hidden absolute inset-0 bg-white dark:bg-surface-dark flex-col items-center justify-center p-8 text-center z-20">
@@ -604,8 +810,6 @@
                         Volver al Inicio
                     </a>
                 </div>
-            </div>
-                </form>
             </div>
         </div>
     </main>

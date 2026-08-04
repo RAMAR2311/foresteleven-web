@@ -74,16 +74,62 @@
             display: none !important;
         }
 
+        .hero-title {
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            line-height: 1.03;
+        }
+
+        .responsive-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .responsive-radio-group label {
+            width: 100%;
+        }
+
+        .workflow-tab-btn {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .footer-giant-text {
+            font-size: 18vw;
+        }
+
+        .step-indicators-wrapper {
+            overflow-x: auto;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-indicators-row {
+            min-width: 680px;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-navigation-bar {
+            position: relative;
+            width: 100%;
+            padding-top: 1.5rem;
+            padding-bottom: 1rem;
+            border-top: 1px solid rgba(229, 231, 235, 1);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+        }
+
         .giant-bg-text {
             font-size: 20vw; /* Bigger on mobile */
             font-weight: 900;
-            color: #081108; /* Darker effect */
+            color: #0ac20a; /* Button color */
             line-height: 0.8; /* slightly more line height so it doesn't cut off at the bottom */
             margin: 0;
             text-align: center;
             letter-spacing: -0.05em;
             user-select: none;
-            opacity: 0.8;
+            opacity: 0.9;
         }
         
         @media (min-width: 768px) {
@@ -94,7 +140,7 @@
         }
         
         .dark .giant-bg-text {
-            color: #081108; /* Keep it consistently dark */
+            color: #0ac20a; /* Button color in dark mode too */
         }
     </style>
 </head>
@@ -190,7 +236,7 @@
                 <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
                     <div class="max-w-2xl">
                         <h1
-                            class="text-7xl md:text-8xl lg:text-[7rem] font-black tracking-tight text-forest-dark dark:text-white mb-6 leading-[0.9]">
+                            class="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-black tracking-tight text-forest-dark dark:text-white mb-6 leading-[1.03] md:leading-[0.95] lg:leading-[0.9]">
                             <span data-i18n="hero.clear">Clear.</span><br />
                             <span data-i18n="hero.fast">Fast.</span><br />
                             <span class="text-primary" data-i18n="hero.done">Done.</span>
@@ -819,19 +865,19 @@
                     <!-- MONEDA -->
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.fiat">Moneda fiat</label>
-                        <div class="flex gap-2">
+                        <div class="responsive-radio-group">
                             <!-- COP -->
-                            <label class="flex-1 cursor-pointer">
+                            <label class="w-full sm:flex-1 cursor-pointer">
                                 <input type="radio" name="currency" value="COP" checked class="peer sr-only">
                                 <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">COP</div>
                             </label>
                             <!-- MXN -->
-                            <label class="flex-1 cursor-pointer">
+                            <label class="w-full sm:flex-1 cursor-pointer">
                                 <input type="radio" name="currency" value="MXN" class="peer sr-only">
                                 <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">MXN</div>
                             </label>
                             <!-- USD -->
-                            <label class="flex-1 cursor-pointer">
+                            <label class="w-full sm:flex-1 cursor-pointer">
                                 <input type="radio" name="currency" value="USD" class="peer sr-only">
                                 <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">USD</div>
                             </label>
@@ -840,12 +886,12 @@
                     <!-- ACTIVO DIGITAL -->
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-forest-dark dark:text-gray-300" data-i18n="form.label.digital">Activo digital</label>
-                        <div class="flex gap-2">
-                            <label class="flex-1 cursor-pointer">
+                        <div class="responsive-radio-group">
+                            <label class="w-full sm:flex-1 cursor-pointer">
                                 <input type="radio" name="activo" value="USDT" checked class="peer sr-only">
                                 <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">USDT</div>
                             </label>
-                            <label class="flex-1 cursor-pointer">
+                            <label class="w-full sm:flex-1 cursor-pointer">
                                 <input type="radio" name="activo" value="USDC" class="peer sr-only">
                                 <div class="h-12 flex items-center justify-center rounded-lg border border-gray-200 bg-white peer-checked:border-primary peer-checked:bg-[#e7f4e7] peer-checked:text-forest-dark transition-all text-sm font-medium text-gray-500 shadow-sm">USDC</div>
                             </label>

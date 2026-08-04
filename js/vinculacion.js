@@ -7,9 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPrev = document.getElementById('btn-prev');
     const btnSubmit = document.getElementById('btn-submit');
     const progressBarFill = document.getElementById('progress-bar-fill');
+    const validationPopup = document.getElementById('validationPopup');
+    const validationPopupMessage = document.getElementById('validationPopupMessage');
+    const validationPopupClose = document.getElementById('validationPopupClose');
+
+    if (validationPopup) {
+        validationPopup.hidden = true;
+        validationPopup.style.display = 'none';
+    }
     
     // UI Elements
     const tipoPersonaSelect = document.getElementById('tipo_persona');
+    const countrySelect = document.getElementById('pais');
+    const citySelect = document.getElementById('ciudad');
+    const actividadEconomicaSelect = document.getElementById('actividad_economica');
+    const codigoCiiuInput = document.getElementById('codigo_ciiu');
+    const sameAsRepresentative = document.getElementById('sameAsRepresentative');
+    const sameAsRepresentativeContainer = document.getElementById('sameAsRepresentativeContainer');
+    const conNombre = document.getElementById('con_nombre');
+    const conCedula = document.getElementById('con_cedula');
+    const conCargo = document.getElementById('con_cargo');
+    const conEmail = document.getElementById('con_email');
+    const conTelefono = document.getElementById('con_telefono');
     const boxCamara = document.getElementById('box-camara');
     const docCamaraInput = document.getElementById('doc_camara');
 
@@ -50,7 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Update Buttons
-        btnPrev.disabled = currentStep === 1;
+        if (btnPrev) {
+            const showPrev = currentStep > 1;
+            btnPrev.classList.toggle('hidden', !showPrev);
+            btnPrev.hidden = !showPrev;
+            btnPrev.disabled = !showPrev;
+        }
         
         if (currentStep === totalSteps) {
             btnNext.classList.add('hidden');
@@ -62,6 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Validation function for current step
+    function showValidationPopup(message) {
+        if (!validationPopup || !validationPopupMessage) return;
+        validationPopupMessage.textContent = message;
+        validationPopup.hidden = false;
+        validationPopup.style.display = 'flex';
+        clearTimeout(window.validationPopupTimeout);
+        window.validationPopupTimeout = setTimeout(() => {
+            hideValidationPopup();
+        }, 4200);
+    }
+
+    function hideValidationPopup() {
+        if (!validationPopup) return;
+        validationPopup.hidden = true;
+        validationPopup.style.display = 'none';
+        clearTimeout(window.validationPopupTimeout);
+    }
+
     function validateStep(step) {
         const stepEl = document.getElementById(`step-${step}`);
         if (!stepEl) return true;
@@ -72,22 +114,41 @@ document.addEventListener('DOMContentLoaded', () => {
         requiredInputs.forEach(input => {
             // Remove previous error styles
             input.classList.remove('ring-2', 'ring-red-500', 'border-red-500');
-
-            if (!input.value.trim()) {
-                // Only validate visible inputs (handles dynamic logic)
-                if (input.offsetParent !== null) {
-                    isValid = false;
-                    input.classList.add('ring-2', 'ring-red-500', 'border-red-500');
-                }
+            if (input.parentElement) {
+                input.parentElement.classList.remove('ring-2', 'ring-red-500');
             }
-            
-            // Checkbox validation
-            if(input.type === 'checkbox' && !input.checked && input.offsetParent !== null) {
+
+            const visible = input.offsetParent !== null;
+            if (!visible) return;
+
+            if (input.type === 'checkbox') {
+                if (!input.checked) {
+                    isValid = false;
+                    if (input.parentElement) {
+                        input.parentElement.classList.add('ring-2', 'ring-red-500');
+                        setTimeout(() => {
+                            input.parentElement.classList.remove('ring-2', 'ring-red-500');
+                        }, 2000);
+                    }
+                }
+            } else if (!input.value.trim()) {
                 isValid = false;
-                input.parentElement.classList.add('ring-2', 'ring-red-500');
-                setTimeout(() => { input.parentElement.classList.remove('ring-2', 'ring-red-500'); }, 2000);
+                input.classList.add('ring-2', 'ring-red-500', 'border-red-500');
             }
         });
+
+        if (!isValid) {
+            const firstInvalid = Array.from(requiredInputs).find(input => {
+                const visible = input.offsetParent !== null;
+                if (!visible) return false;
+                if (input.type === 'checkbox') return !input.checked;
+                return !input.value.trim();
+            });
+            if (firstInvalid && typeof firstInvalid.focus === 'function') {
+                firstInvalid.focus();
+            }
+            showValidationPopup('Por favor, complete todos los campos obligatorios de este paso.');
+        }
 
         return isValid;
     }
@@ -105,38 +166,241 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (currentStep > totalSteps) currentStep = totalSteps;
             updateStepUI();
-        } else {
-            alert('Por favor, complete todos los campos obligatorios de este paso.');
         }
     });
 
-    btnPrev.addEventListener('click', () => {
-        // Logic for Persona Natural skipping Step 2 and 4
-        if (tipoPersonaSelect.value === 'Natural') {
-            if (currentStep === 5) currentStep = 3; 
-            else if (currentStep === 3) currentStep = 1; 
-            else currentStep--;
-        } else {
-            currentStep--;
-        }
-        
-        if (currentStep < 1) currentStep = 1;
-        updateStepUI();
-    });
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            // Logic for Persona Natural skipping Step 2 and 4
+            if (tipoPersonaSelect.value === 'Natural') {
+                if (currentStep === 5) currentStep = 3; 
+                else if (currentStep === 3) currentStep = 1; 
+                else currentStep--;
+            } else {
+                currentStep--;
+            }
+            
+            if (currentStep < 1) currentStep = 1;
+            updateStepUI();
+        });
+    }
 
     // --- DYNAMIC LOGIC ---
-    tipoPersonaSelect.addEventListener('change', (e) => {
-        const isJuridica = e.target.value === 'Juridica';
-        
-        // Hide/Show Cámara de Comercio in Step 6
-        if (isJuridica) {
-            boxCamara.style.display = 'block';
-            docCamaraInput.setAttribute('required', 'required');
-        } else {
-            boxCamara.style.display = 'none';
-            docCamaraInput.removeAttribute('required');
+    const cityOptions = {
+        "Colombia": [
+            "Bogotá",
+            "Medellín",
+            "Cali",
+            "Barranquilla",
+            "Cartagena",
+            "Bucaramanga",
+            "Pereira",
+            "Cúcuta",
+            "Manizales",
+            "Ibagué"
+        ],
+        "Estados Unidos": [
+            "New York",
+            "Los Angeles",
+            "Miami",
+            "Houston",
+            "Chicago",
+            "Dallas",
+            "San Francisco",
+            "Atlanta",
+            "Washington D.C.",
+            "Boston"
+        ],
+        "Mexico": [
+            "Ciudad de México",
+            "Guadalajara",
+            "Monterrey",
+            "Cancún",
+            "Mérida",
+            "Tijuana",
+            "Puebla",
+            "Querétaro",
+            "León",
+            "Chihuahua"
+        ]
+    };
+
+    function updateCityOptions(country) {
+        if (!citySelect) return;
+        citySelect.innerHTML = '';
+
+        if (!country || !cityOptions[country]) {
+            const emptyOption = document.createElement('option');
+            emptyOption.value = '';
+            emptyOption.textContent = 'Seleccione un país primero...';
+            citySelect.appendChild(emptyOption);
+            citySelect.disabled = true;
+            return;
         }
-    });
+
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Seleccione una ciudad...';
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        citySelect.appendChild(placeholder);
+
+        cityOptions[country].forEach(city => {
+            const option = document.createElement('option');
+            option.value = city;
+            option.textContent = city;
+            citySelect.appendChild(option);
+        });
+
+        citySelect.disabled = false;
+    }
+
+    if (countrySelect) {
+        countrySelect.addEventListener('change', (e) => {
+            updateCityOptions(e.target.value);
+        });
+    }
+
+    const ciiuMap = {
+        '6201': '6201',
+        '6202': '6202',
+        '6209': '6209',
+        '4651': '4651',
+        '4741': '4741',
+        '7310': '7310'
+    };
+
+    function updateCodigoCiiu() {
+        if (!actividadEconomicaSelect || !codigoCiiuInput) return;
+        const selectedValue = actividadEconomicaSelect.value;
+        if (selectedValue && ciiuMap[selectedValue]) {
+            codigoCiiuInput.value = ciiuMap[selectedValue];
+        } else {
+            codigoCiiuInput.value = '';
+        }
+    }
+
+    if (actividadEconomicaSelect) {
+        actividadEconomicaSelect.addEventListener('change', updateCodigoCiiu);
+    }
+
+    function isRepresentativeLegalComplete() {
+        const repNombre = document.querySelector('input[name="rep_nombre"]')?.value.trim();
+        const repCedula = document.querySelector('input[name="rep_cedula"]')?.value.trim();
+        const repEmail = document.querySelector('input[name="rep_email"]')?.value.trim();
+        const repTelefono = document.querySelector('input[name="rep_telefono"]')?.value.trim();
+
+        return repNombre && repCedula && repEmail && repTelefono;
+    }
+
+    function syncContactPrincipalFromRepresentative() {
+        if (!sameAsRepresentative?.checked) return;
+
+        const repNombre = document.querySelector('input[name="rep_nombre"]')?.value || '';
+        const repCedula = document.querySelector('input[name="rep_cedula"]')?.value || '';
+        const repCargo = document.querySelector('input[name="rep_cargo"]')?.value || '';
+        const repEmail = document.querySelector('input[name="rep_email"]')?.value || '';
+        const repTelefono = document.querySelector('input[name="rep_telefono"]')?.value || '';
+
+        if (conNombre) conNombre.value = repNombre;
+        if (conCedula) conCedula.value = repCedula;
+        if (conCargo) conCargo.value = repCargo;
+        if (conEmail) conEmail.value = repEmail;
+        if (conTelefono) conTelefono.value = repTelefono;
+    }
+
+    function setContactPrincipalEditable(isEditable) {
+        if (conNombre) conNombre.readOnly = !isEditable;
+        if (conCedula) conCedula.readOnly = !isEditable;
+        if (conCargo) conCargo.readOnly = !isEditable;
+        if (conEmail) conEmail.readOnly = !isEditable;
+        if (conTelefono) conTelefono.readOnly = !isEditable;
+    }
+
+    function updateRepresentativeCheckboxVisibility(isJuridica) {
+        if (!sameAsRepresentativeContainer) return;
+        sameAsRepresentativeContainer.style.display = isJuridica ? 'flex' : 'none';
+        if (!isJuridica && sameAsRepresentative) {
+            sameAsRepresentative.checked = false;
+            sameAsRepresentative.disabled = true;
+            setContactPrincipalEditable(true);
+        }
+    }
+
+    function updateRepresentativeCheckboxState() {
+        if (!sameAsRepresentative) return;
+
+        const enabled = isRepresentativeLegalComplete();
+        sameAsRepresentative.disabled = !enabled;
+
+        if (!enabled && sameAsRepresentative.checked) {
+            sameAsRepresentative.checked = false;
+            setContactPrincipalEditable(true);
+        }
+    }
+
+    if (tipoPersonaSelect) {
+        tipoPersonaSelect.addEventListener('change', (e) => {
+            const isJuridica = e.target.value === 'Juridica';
+            
+            // Hide/Show Cámara de Comercio in Step 6
+            if (isJuridica) {
+                boxCamara.style.display = 'block';
+                docCamaraInput.setAttribute('required', 'required');
+            } else {
+                boxCamara.style.display = 'none';
+                docCamaraInput.removeAttribute('required');
+            }
+
+            updateRepresentativeCheckboxVisibility(isJuridica);
+            updateRepresentativeCheckboxState();
+            if (isJuridica && sameAsRepresentative?.checked) {
+                syncContactPrincipalFromRepresentative();
+                setContactPrincipalEditable(false);
+            }
+        });
+    }
+
+    if (sameAsRepresentative) {
+        sameAsRepresentative.addEventListener('change', () => {
+            const isChecked = sameAsRepresentative.checked;
+
+            if (isChecked) {
+                if (!isRepresentativeLegalComplete()) {
+                    sameAsRepresentative.checked = false;
+                    showValidationPopup('Complete primero los datos del representante legal antes de usar esta opción.');
+                    return;
+                }
+
+                syncContactPrincipalFromRepresentative();
+                setContactPrincipalEditable(false);
+            } else {
+                setContactPrincipalEditable(true);
+            }
+        });
+    }
+
+    ['input[name="rep_nombre"]', 'input[name="rep_cedula"]', 'input[name="rep_cargo"]', 'input[name="rep_email"]', 'input[name="rep_telefono"]']
+        .forEach(selector => {
+            const repInput = document.querySelector(selector);
+            if (repInput) {
+                repInput.addEventListener('input', () => {
+                    updateRepresentativeCheckboxState();
+                    if (sameAsRepresentative?.checked) {
+                        if (isRepresentativeLegalComplete()) {
+                            syncContactPrincipalFromRepresentative();
+                        } else {
+                            sameAsRepresentative.checked = false;
+                            setContactPrincipalEditable(true);
+                            showValidationPopup('La información del representante legal debe estar completa para mantener el contacto principal igual.');
+                        }
+                    }
+                });
+            }
+        });
+
+    updateRepresentativeCheckboxVisibility(tipoPersonaSelect?.value === 'Juridica');
+    updateCityOptions(countrySelect ? countrySelect.value : '');
 
     // File name update logic
     ['doc_selfie', 'doc_id', 'doc_rut', 'doc_camara'].forEach(id => {
@@ -154,6 +418,78 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Camera capture logic for selfie
+    const openCameraBtn = document.getElementById('openCameraBtn');
+    const cameraModal = document.getElementById('cameraModal');
+    const cameraVideo = document.getElementById('cameraVideo');
+    const cameraCaptureBtn = document.getElementById('cameraCaptureBtn');
+    const cameraCancelBtn = document.getElementById('cameraCancelBtn');
+    const cameraCloseBtn = document.getElementById('cameraCloseBtn');
+    const selfieInput = document.getElementById('doc_selfie');
+    const selfieName = document.getElementById('file-name-selfie');
+    let cameraStream = null;
+
+    async function openCameraModal() {
+        if (!cameraModal || !cameraVideo) return;
+
+        try {
+            cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+            cameraVideo.srcObject = cameraStream;
+            cameraVideo.play();
+            cameraModal.classList.remove('hidden');
+        } catch (error) {
+            showValidationPopup('No se pudo acceder a la cámara. Por favor permite el uso de la cámara o selecciona una imagen.');
+        }
+    }
+
+    function closeCameraModal() {
+        if (!cameraModal) return;
+        cameraModal.classList.add('hidden');
+        if (cameraVideo) {
+            cameraVideo.pause();
+            cameraVideo.srcObject = null;
+        }
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+            cameraStream = null;
+        }
+    }
+
+    function captureSelfie() {
+        if (!cameraVideo || !selfieInput || !selfieName) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = cameraVideo.videoWidth;
+        canvas.height = cameraVideo.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(cameraVideo, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(async (blob) => {
+            if (!blob) return;
+            const fileName = `selfie_${Date.now()}.jpg`;
+            const file = new File([blob], fileName, { type: 'image/jpeg' });
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            selfieInput.files = dataTransfer.files;
+            selfieName.textContent = fileName;
+            selfieName.classList.add('text-primary', 'font-bold');
+            closeCameraModal();
+        }, 'image/jpeg', 0.95);
+    }
+
+    if (openCameraBtn) {
+        openCameraBtn.addEventListener('click', openCameraModal);
+    }
+    if (cameraCancelBtn) {
+        cameraCancelBtn.addEventListener('click', closeCameraModal);
+    }
+    if (cameraCloseBtn) {
+        cameraCloseBtn.addEventListener('click', closeCameraModal);
+    }
+    if (cameraCaptureBtn) {
+        cameraCaptureBtn.addEventListener('click', captureSelfie);
+    }
 
     // Dynamic Beneficiarios Table (Step 4)
     const btnAddBeneficiario = document.getElementById('btn-add-beneficiario');
@@ -183,6 +519,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- FORM SUBMISSION ---
+    validationPopupClose.addEventListener('click', hideValidationPopup);
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
