@@ -599,46 +599,66 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (fileRut) urlRut = await uploadFileToSupabase(fileRut, folderPath);
                     if (fileCamara) urlCamara = await uploadFileToSupabase(fileCamara, folderPath);
 
-                    // 2. Construir objeto llenando TANTO los nombres originales como los nombres exactos del HTML
-                    const rawRazonSocial = formData.get('razon_social') || '';
-                    const rawNitCc = formData.get('nit_cc') || '';
-                    const rawEmail = formData.get('email_principal') || '';
-                    const rawIngresos = formData.get('ingresos_anuales') || '';
-                    const rawFuente = formData.get('fuente_ingresos') || '';
-                    const rawActivos = formData.get('total_activos') || '';
+                    // 2. Construir objeto llenando TODOS los campos (nombres desglosados y formulario completo)
+                    const rawRazonSocial = (formData.get('razon_social') || '').trim();
+                    const rawNitCc = (formData.get('nit_cc') || '').trim();
+                    const rawEmail = (formData.get('email_principal') || '').trim();
+                    const rawIngresos = (formData.get('ingresos_anuales') || '').trim();
+                    const rawFuente = (formData.get('fuente_ingresos') || '').trim();
+                    const rawActivos = (formData.get('total_activos') || '').trim();
+                    const tipoPersonaVal = formData.get('tipo_persona') || 'Natural';
+                    const tipoDocVal = tipoPersonaVal === 'Juridica' ? 'NIT' : 'CC';
+
+                    // Desglosar nombre en partes para llenar primer_nombre, segundo_nombre, etc.
+                    const nameParts = rawRazonSocial.split(/\s+/).filter(Boolean);
+                    const pNombre = nameParts[0] || rawRazonSocial || 'N/A';
+                    const sNombre = nameParts.length > 2 ? nameParts[1] : (nameParts.length === 2 ? '' : 'N/A');
+                    const pApellido = nameParts.length === 2 ? nameParts[1] : (nameParts.length >= 3 ? nameParts[nameParts.length - 2] : 'N/A');
+                    const sApellido = nameParts.length >= 4 ? nameParts[nameParts.length - 1] : 'N/A';
 
                     let payload = {
-                        // Compatibilidad con Schema Original (Script 1)
-                        tipo_persona: formData.get('tipo_persona') || '',
-                        primer_nombre: rawRazonSocial,
+                        // Schema Original (Script 1)
+                        tipo_persona: tipoPersonaVal,
+                        primer_nombre: pNombre,
+                        segundo_nombre: sNombre,
+                        primer_apellido: pApellido,
+                        segundo_apellido: sApellido,
+                        tipo_doc: tipoDocVal,
                         num_doc: rawNitCc,
-                        pais: formData.get('pais') || '',
-                        ciudad: formData.get('ciudad') || '',
+                        fecha_expedicion: 'N/A',
+                        pais: formData.get('pais') || 'N/A',
+                        ciudad: formData.get('ciudad') || 'N/A',
                         email: rawEmail,
-                        telefono: formData.get('telefono') || '',
-                        direccion: formData.get('direccion') || '',
-                        actividad_economica: formData.get('actividad_economica') || '',
-                        codigo_ciiu: formData.get('codigo_ciiu') || '',
+                        telefono: formData.get('telefono') || 'N/A',
+                        direccion: formData.get('direccion') || 'N/A',
+                        actividad_economica: formData.get('actividad_economica') || 'N/A',
+                        codigo_ciiu: formData.get('codigo_ciiu') || 'N/A',
                         ingresos_mensuales: rawIngresos,
                         egresos_mensuales: rawFuente,
                         activos: rawActivos,
-                        rep_nombre: formData.get('rep_nombre') || '',
-                        rep_cedula: formData.get('rep_cedula') || '',
-                        rep_cargo: formData.get('rep_cargo') || '',
-                        rep_email: formData.get('rep_email') || '',
-                        rep_telefono: formData.get('rep_telefono') || '',
-                        con_nombre: formData.get('con_nombre') || '',
-                        con_cedula: formData.get('con_cedula') || '',
-                        con_cargo: formData.get('con_cargo') || '',
-                        con_email: formData.get('con_email') || '',
-                        con_telefono: formData.get('con_telefono') || '',
+                        pasivos: '0',
+                        rep_nombre: formData.get('rep_nombre') || 'N/A',
+                        rep_cedula: formData.get('rep_cedula') || 'N/A',
+                        rep_cargo: formData.get('rep_cargo') || 'N/A',
+                        rep_email: formData.get('rep_email') || 'N/A',
+                        rep_telefono: formData.get('rep_telefono') || 'N/A',
+                        con_nombre: formData.get('con_nombre') || 'N/A',
+                        con_cedula: formData.get('con_cedula') || 'N/A',
+                        con_cargo: formData.get('con_cargo') || 'N/A',
+                        con_email: formData.get('con_email') || 'N/A',
+                        con_telefono: formData.get('con_telefono') || 'N/A',
+                        beneficiarios: beneficiarios,
+                        url_selfie: urlSelfie || '',
+                        url_doc_id: urlId || '',
+                        url_doc_rut: urlRut || '',
+                        url_doc_camara: urlCamara || '',
 
-                        // Atributos exactos del Formulario HTML (Script 2)
-                        tipo_tramite: formData.get('tipo_tramite') || '',
+                        // Columnas Extendidas (Script 2)
+                        tipo_tramite: formData.get('tipo_tramite') || 'N/A',
                         razon_social: rawRazonSocial,
                         nit_cc: rawNitCc,
                         email_principal: rawEmail,
-                        tipo_contraparte: formData.get('tipo_contraparte') || '',
+                        tipo_contraparte: formData.get('tipo_contraparte') || 'N/A',
                         pep_recursos: formData.get('pep_recursos') || 'NO',
                         pep_poder: formData.get('pep_poder') || 'NO',
                         pep_vinculo: formData.get('pep_vinculo') || 'NO',
@@ -653,11 +673,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         total_activos: rawActivos,
                         acepto_origen: formData.get('acepto_origen') === 'on',
                         acepto_datos: formData.get('acepto_datos') === 'on',
-                        beneficiarios: beneficiarios,
-                        url_selfie: urlSelfie,
-                        url_doc_id: urlId,
-                        url_doc_rut: urlRut,
-                        url_doc_camara: urlCamara,
                         created_at: new Date().toISOString()
                     };
 
@@ -665,15 +680,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         .from('solicitudes_vinculacion')
                         .insert([payload]);
 
-                    // Si Supabase rechaza por una columna inexistente en la tabla del usuario, eliminar columna conflictiva y reintentar
-                    if (error && error.message && error.message.includes('Could not find the')) {
-                        console.warn('Reintentando inserción sin columnas no existentes en la tabla:', error.message);
+                    // Bucle de reintento: Si Supabase rechaza columnas no existentes en la tabla del usuario, eliminarlas y reintentar
+                    let maxRetries = 15;
+                    while (error && error.message && error.message.includes('Could not find the') && maxRetries > 0) {
+                        maxRetries--;
                         const match = error.message.match(/'([^']+)'/);
                         if (match && match[1]) {
                             const badCol = match[1];
+                            console.warn(`Eliminando columna inexistente '${badCol}' del payload y reintentando...`);
                             delete payload[badCol];
                             const retry = await supabaseClient.from('solicitudes_vinculacion').insert([payload]);
                             error = retry.error;
+                        } else {
+                            break;
                         }
                     }
 
