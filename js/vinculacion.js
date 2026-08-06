@@ -674,15 +674,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Éxito en la presentación del formulario
             form.style.display = 'none';
-            document.getElementById('kycSuccess').classList.remove('hidden');
-            document.getElementById('kycSuccess').style.display = 'flex';
+            const kycSuccess = document.getElementById('kycSuccess');
+            const stepWrapper = document.querySelector('.step-indicators-wrapper');
             
-            // Reset de botones y formulario
+            if (stepWrapper) stepWrapper.style.display = 'none';
+            if (kycSuccess) {
+                kycSuccess.classList.remove('hidden');
+                kycSuccess.style.display = 'flex';
+                kycSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Reset de botones del formulario
             btnSubmit.disabled = false;
             btnSubmit.innerHTML = 'Enviar Solicitud';
-            form.reset();
         }
     });
+
+    // Función global para reiniciar el formulario desde la pantalla de éxito
+    window.resetKycForm = function() {
+        form.reset();
+        form.style.display = 'block';
+        const kycSuccess = document.getElementById('kycSuccess');
+        const stepWrapper = document.querySelector('.step-indicators-wrapper');
+        
+        if (kycSuccess) {
+            kycSuccess.classList.add('hidden');
+            kycSuccess.style.display = 'none';
+        }
+        if (stepWrapper) {
+            stepWrapper.style.display = 'block';
+        }
+        currentStep = 1;
+        updateStepUI();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     // Initialize UI
     updateStepUI();
