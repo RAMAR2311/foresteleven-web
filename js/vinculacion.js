@@ -599,46 +599,58 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (fileRut) urlRut = await uploadFileToSupabase(fileRut, folderPath);
                     if (fileCamara) urlCamara = await uploadFileToSupabase(fileCamara, folderPath);
 
-                    // 2. Construir objeto coincidiendo exactamente con los atributos 'name' del HTML vinculacion.html
-                    const payload = {
-                        tipo_tramite: formData.get('tipo_tramite'),
-                        tipo_persona: formData.get('tipo_persona'),
-                        razon_social: formData.get('razon_social'),
-                        nit_cc: formData.get('nit_cc'),
-                        num_doc: formData.get('nit_cc'),
-                        pais: formData.get('pais'),
-                        ciudad: formData.get('ciudad'),
-                        telefono: formData.get('telefono'),
-                        direccion: formData.get('direccion'),
-                        email_principal: formData.get('email_principal'),
-                        email: formData.get('email_principal'),
-                        tipo_contraparte: formData.get('tipo_contraparte'),
+                    // 2. Construir objeto llenando TANTO los nombres originales como los nombres exactos del HTML
+                    const rawRazonSocial = formData.get('razon_social') || '';
+                    const rawNitCc = formData.get('nit_cc') || '';
+                    const rawEmail = formData.get('email_principal') || '';
+                    const rawIngresos = formData.get('ingresos_anuales') || '';
+                    const rawFuente = formData.get('fuente_ingresos') || '';
+                    const rawActivos = formData.get('total_activos') || '';
+
+                    let payload = {
+                        // Compatibilidad con Schema Original (Script 1)
+                        tipo_persona: formData.get('tipo_persona') || '',
+                        primer_nombre: rawRazonSocial,
+                        num_doc: rawNitCc,
+                        pais: formData.get('pais') || '',
+                        ciudad: formData.get('ciudad') || '',
+                        email: rawEmail,
+                        telefono: formData.get('telefono') || '',
+                        direccion: formData.get('direccion') || '',
+                        actividad_economica: formData.get('actividad_economica') || '',
+                        codigo_ciiu: formData.get('codigo_ciiu') || '',
+                        ingresos_mensuales: rawIngresos,
+                        egresos_mensuales: rawFuente,
+                        activos: rawActivos,
+                        rep_nombre: formData.get('rep_nombre') || '',
+                        rep_cedula: formData.get('rep_cedula') || '',
+                        rep_cargo: formData.get('rep_cargo') || '',
+                        rep_email: formData.get('rep_email') || '',
+                        rep_telefono: formData.get('rep_telefono') || '',
+                        con_nombre: formData.get('con_nombre') || '',
+                        con_cedula: formData.get('con_cedula') || '',
+                        con_cargo: formData.get('con_cargo') || '',
+                        con_email: formData.get('con_email') || '',
+                        con_telefono: formData.get('con_telefono') || '',
+
+                        // Atributos exactos del Formulario HTML (Script 2)
+                        tipo_tramite: formData.get('tipo_tramite') || '',
+                        razon_social: rawRazonSocial,
+                        nit_cc: rawNitCc,
+                        email_principal: rawEmail,
+                        tipo_contraparte: formData.get('tipo_contraparte') || '',
                         pep_recursos: formData.get('pep_recursos') || 'NO',
                         pep_poder: formData.get('pep_poder') || 'NO',
                         pep_vinculo: formData.get('pep_vinculo') || 'NO',
-                        rep_nombre: formData.get('rep_nombre'),
-                        rep_cedula: formData.get('rep_cedula'),
-                        rep_cargo: formData.get('rep_cargo'),
-                        rep_email: formData.get('rep_email'),
-                        rep_telefono: formData.get('rep_telefono'),
                         rep_pep_recursos: formData.get('rep_pep_recursos') === 'on',
                         rep_pep_poder: formData.get('rep_pep_poder') === 'on',
                         rep_pep_vinculo: formData.get('rep_pep_vinculo') === 'on',
-                        con_nombre: formData.get('con_nombre'),
-                        con_cedula: formData.get('con_cedula'),
-                        con_cargo: formData.get('con_cargo'),
-                        con_email: formData.get('con_email'),
-                        con_telefono: formData.get('con_telefono'),
                         con_pep_recursos: formData.get('con_pep_recursos') === 'on',
                         con_pep_poder: formData.get('con_pep_poder') === 'on',
                         con_pep_vinculo: formData.get('con_pep_vinculo') === 'on',
-                        actividad_economica: formData.get('actividad_economica'),
-                        codigo_ciiu: formData.get('codigo_ciiu'),
-                        ingresos_anuales: formData.get('ingresos_anuales'),
-                        ingresos_mensuales: formData.get('ingresos_anuales'),
-                        fuente_ingresos: formData.get('fuente_ingresos'),
-                        total_activos: formData.get('total_activos'),
-                        activos: formData.get('total_activos'),
+                        ingresos_anuales: rawIngresos,
+                        fuente_ingresos: rawFuente,
+                        total_activos: rawActivos,
                         acepto_origen: formData.get('acepto_origen') === 'on',
                         acepto_datos: formData.get('acepto_datos') === 'on',
                         beneficiarios: beneficiarios,
@@ -649,13 +661,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         created_at: new Date().toISOString()
                     };
 
-                    const { data, error } = await supabaseClient
+                    let { data, error } = await supabaseClient
                         .from('solicitudes_vinculacion')
                         .insert([payload]);
 
+                    // Si Supabase rechaza por una columna inexistente en la tabla del usuario, eliminar columna conflictiva y reintentar
+                    if (error && error.message && error.message.includes('Could not find the')) {
+                        console.warn('Reintentando inserción sin columnas no existentes en la tabla:', error.message);
+                        const match = error.message.match(/'([^']+)'/);
+                        if (match && match[1]) {
+                            const badCol = match[1];
+                            delete payload[badCol];
+                            const retry = await supabaseClient.from('solicitudes_vinculacion').insert([payload]);
+                            error = retry.error;
+                        }
+                    }
+
                     if (error) {
                         console.error('Error insertando en Supabase:', error);
-                        showValidationPopup('Ocurrió un error al guardar la solicitud en la base de datos: ' + error.message);
+                        showValidationPopup('Error al guardar en Supabase: ' + error.message);
                         btnSubmit.disabled = false;
                         btnSubmit.innerHTML = 'Enviar Solicitud';
                         return;
