@@ -133,6 +133,7 @@
             padding-bottom: 1rem;
             border-top: 1px solid rgba(229, 231, 235, 1);
             background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
         }
 
         @media (max-width: 768px) {
@@ -175,8 +176,6 @@
             .glass-card {
                 padding: 1.5rem;
             }
-        }
-            backdrop-filter: blur(12px);
         }
 
         .validation-popup {
@@ -910,13 +909,15 @@
         </svg>
     </a>
 
-    <!-- EmailJS & Main Script -->
+    <!-- EmailJS, Supabase & Main Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
             (function () {
                 emailjs.init("43XxNQwXJJvI0-ttS");
             })();
     </script>
+    <script src="js/supabaseConfig.js"></script>
     <script src="js/main.js"></script>
     <script src="js/vinculacion.js"></script>
 

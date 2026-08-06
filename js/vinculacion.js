@@ -518,30 +518,158 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- FORM SUBMISSION ---
+    // --- FORM SUBMISSION (SUPABASE INTEGRATION) ---
     validationPopupClose.addEventListener('click', hideValidationPopup);
 
-    form.addEventListener('submit', (e) => {
+    // Helper: Subir archivo a Supabase Storage
+    async function uploadFileToSupabase(file, folder) {
+        if (!supabaseClient || SUPABASE_URL.includes('TU_PROYECTO')) return null;
+        try {
+            const timestamp = Date.now();
+            const cleanName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+            const filePath = `${folder}/${timestamp}_${cleanName}`;
+            
+            const { data, error } = await supabaseClient
+                .storage
+                .from('documentos_kyc')
+                .upload(filePath, file, { cacheControl: '3600', upsert: true });
+
+            if (error) {
+                console.error(`Error subiendo ${file.name}:`, error.message);
+                return null;
+            }
+
+            const { data: urlData } = supabaseClient
+                .storage
+                .from('documentos_kyc')
+                .getPublicUrl(filePath);
+
+            return urlData ? urlData.publicUrl : filePath;
+        } catch (err) {
+            console.error('Error en uploadFileToSupabase:', err);
+            return null;
+        }
+    }
+
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         if (validateStep(currentStep)) {
             btnSubmit.disabled = true;
             btnSubmit.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2">refresh</span> Enviando...';
             
-            // Collect Form Data
+            // Recolectar datos del formulario
             const formData = new FormData(form);
+            const numDoc = formData.get('num_doc') || 'generico';
+
+            // Archivos a subir
+            const fileSelfie = document.getElementById('doc_selfie')?.files[0];
+            const fileId = document.getElementById('doc_id')?.files[0];
+            const fileRut = document.getElementById('doc_rut')?.files[0];
+            const fileCamara = document.getElementById('doc_camara')?.files[0];
+
+            let urlSelfie = null;
+            let urlId = null;
+            let urlRut = null;
+            let urlCamara = null;
+
+            // Extraer Beneficiarios Finales de la tabla
+            const beneficiarios = [];
+            const rows = document.querySelectorAll('#beneficiarios-table tbody tr');
+            rows.forEach(row => {
+                const tipo = row.querySelector('[name="bf_tipo[]"]')?.value || '';
+                const num = row.querySelector('[name="bf_num[]"]')?.value || '';
+                const nombre = row.querySelector('[name="bf_nombre[]"]')?.value || '';
+                const porc = row.querySelector('[name="bf_porc[]"]')?.value || '';
+                const pep = row.querySelector('[name="bf_pep[]"]')?.checked || false;
+                if (nombre || num) {
+                    beneficiarios.push({ tipo_doc: tipo, num_doc: num, nombre, porcentaje: porc, es_pep: pep });
+                }
+            });
+
+            // Si Supabase está configurado con las llaves reales
+            const isSupabaseConfigured = supabaseClient && typeof SUPABASE_URL === 'string' && !SUPABASE_URL.includes('TU_PROYECTO');
+
+            if (isSupabaseConfigured) {
+                try {
+                    // 1. Subir Archivos a Supabase Storage
+                    const folderPath = `solicitudes/${numDoc}`;
+                    if (fileSelfie) urlSelfie = await uploadFileToSupabase(fileSelfie, folderPath);
+                    if (fileId) urlId = await uploadFileToSupabase(fileId, folderPath);
+                    if (fileRut) urlRut = await uploadFileToSupabase(fileRut, folderPath);
+                    if (fileCamara) urlCamara = await uploadFileToSupabase(fileCamara, folderPath);
+
+                    // 2. Construir objeto para insertar en la tabla de Supabase
+                    const payload = {
+                        tipo_persona: formData.get('tipo_persona'),
+                        primer_nombre: formData.get('primer_nombre'),
+                        segundo_nombre: formData.get('segundo_nombre'),
+                        primer_apellido: formData.get('primer_apellido'),
+                        segundo_apellido: formData.get('segundo_apellido'),
+                        tipo_doc: formData.get('tipo_doc'),
+                        num_doc: formData.get('num_doc'),
+                        fecha_expedicion: formData.get('fecha_expedicion'),
+                        pais: formData.get('pais'),
+                        ciudad: formData.get('ciudad'),
+                        email: formData.get('email'),
+                        telefono: formData.get('telefono'),
+                        direccion: formData.get('direccion'),
+                        actividad_economica: formData.get('actividad_economica'),
+                        codigo_ciiu: formData.get('codigo_ciiu'),
+                        ingresos_mensuales: formData.get('ingresos_mensuales'),
+                        egresos_mensuales: formData.get('egresos_mensuales'),
+                        activos: formData.get('activos'),
+                        pasivos: formData.get('pasivos'),
+                        rep_nombre: formData.get('rep_nombre'),
+                        rep_cedula: formData.get('rep_cedula'),
+                        rep_cargo: formData.get('rep_cargo'),
+                        rep_email: formData.get('rep_email'),
+                        rep_telefono: formData.get('rep_telefono'),
+                        con_nombre: formData.get('con_nombre'),
+                        con_cedula: formData.get('con_cedula'),
+                        con_cargo: formData.get('con_cargo'),
+                        con_email: formData.get('con_email'),
+                        con_telefono: formData.get('con_telefono'),
+                        beneficiarios: beneficiarios,
+                        url_selfie: urlSelfie,
+                        url_doc_id: urlId,
+                        url_doc_rut: urlRut,
+                        url_doc_camara: urlCamara,
+                        created_at: new Date().toISOString()
+                    };
+
+                    const { data, error } = await supabaseClient
+                        .from('solicitudes_vinculacion')
+                        .insert([payload]);
+
+                    if (error) {
+                        console.error('Error insertando en Supabase:', error);
+                        showValidationPopup('Ocurrió un error al guardar la solicitud en la base de datos: ' + error.message);
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerHTML = 'Enviar Solicitud';
+                        return;
+                    }
+                } catch (err) {
+                    console.error('Error general en el envío a Supabase:', err);
+                    showValidationPopup('Ocurrió un error inesperado al conectar con Supabase.');
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = 'Enviar Solicitud';
+                    return;
+                }
+            } else {
+                console.info('Supabase no está configurado aún (usando llaves por defecto). Ejecutando simulación.');
+                await new Promise(resolve => setTimeout(resolve, 1500));
+            }
+
+            // Éxito en la presentación del formulario
+            form.style.display = 'none';
+            document.getElementById('kycSuccess').classList.remove('hidden');
+            document.getElementById('kycSuccess').style.display = 'flex';
             
-            // Simulation
-            setTimeout(() => {
-                form.style.display = 'none';
-                document.getElementById('kycSuccess').classList.remove('hidden');
-                document.getElementById('kycSuccess').style.display = 'flex';
-                
-                // Reset form completely
-                btnSubmit.disabled = false;
-                btnSubmit.innerHTML = 'Enviar Solicitud';
-                form.reset();
-            }, 2000);
+            // Reset de botones y formulario
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = 'Enviar Solicitud';
+            form.reset();
         }
     });
 
