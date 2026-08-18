@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipoPersonaSelect = document.getElementById('tipo_persona');
     const countrySelect = document.getElementById('pais');
     const citySelect = document.getElementById('ciudad');
+    const actividadEconomicaFilter = document.getElementById('actividad_economica_filter');
     const actividadEconomicaSelect = document.getElementById('actividad_economica');
     const codigoCiiuInput = document.getElementById('codigo_ciiu');
     const sameAsRepresentative = document.getElementById('sameAsRepresentative');
@@ -35,21 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateStepUI() {
         // Update Progress Bar
         const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
-        progressBarFill.style.width = `${progressPercentage}%`;
+        if (progressBarFill) {
+            progressBarFill.style.width = `${progressPercentage}%`;
+        }
 
         // Update Step Indicators
         document.querySelectorAll('.step-indicator').forEach(indicator => {
             const stepNum = parseInt(indicator.getAttribute('data-step'));
             const circle = indicator.querySelector('div');
+            if (!circle) return;
             
-            if (stepNum < currentStep) {
-                // Completed
-                circle.className = 'w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg ring-4 ring-background-light dark:ring-background-dark transition-colors duration-300';
-            } else if (stepNum === currentStep) {
-                // Active
+            if (stepNum <= currentStep) {
                 circle.className = 'w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg ring-4 ring-background-light dark:ring-background-dark transition-colors duration-300';
             } else {
-                // Pending
                 circle.className = 'w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 flex items-center justify-center font-bold ring-4 ring-background-light dark:ring-background-dark transition-colors duration-300';
             }
         });
@@ -76,16 +75,17 @@ document.addEventListener('DOMContentLoaded', () => {
             btnPrev.disabled = !showPrev;
         }
         
-        if (currentStep === totalSteps) {
-            btnNext.classList.add('hidden');
-            btnSubmit.classList.remove('hidden');
-        } else {
-            btnNext.classList.remove('hidden');
-            btnSubmit.classList.add('hidden');
+        if (btnNext && btnSubmit) {
+            if (currentStep === totalSteps) {
+                btnNext.classList.add('hidden');
+                btnSubmit.classList.remove('hidden');
+            } else {
+                btnNext.classList.remove('hidden');
+                btnSubmit.classList.add('hidden');
+            }
         }
     }
 
-    // Validation function for current step
     function showValidationPopup(message) {
         if (!validationPopup || !validationPopupMessage) return;
         validationPopupMessage.textContent = message;
@@ -112,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let isValid = true;
 
         requiredInputs.forEach(input => {
-            // Remove previous error styles
             input.classList.remove('ring-2', 'ring-red-500', 'border-red-500');
             if (input.parentElement) {
                 input.parentElement.classList.remove('ring-2', 'ring-red-500');
@@ -153,26 +152,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return isValid;
     }
 
-    btnNext.addEventListener('click', () => {
-        if (validateStep(currentStep)) {
-            // Logic for Persona Natural skipping Step 2 and 4
-            if (tipoPersonaSelect.value === 'Natural') {
-                if (currentStep === 1) currentStep = 3; // Skip 2 (Contactos)
-                else if (currentStep === 3) currentStep = 5; // Skip 4 (Beneficiarios)
-                else currentStep++;
-            } else {
-                currentStep++;
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                if (tipoPersonaSelect && tipoPersonaSelect.value === 'Natural') {
+                    if (currentStep === 1) currentStep = 3;
+                    else if (currentStep === 3) currentStep = 5;
+                    else currentStep++;
+                } else {
+                    currentStep++;
+                }
+                
+                if (currentStep > totalSteps) currentStep = totalSteps;
+                updateStepUI();
             }
-            
-            if (currentStep > totalSteps) currentStep = totalSteps;
-            updateStepUI();
-        }
-    });
+        });
+    }
 
     if (btnPrev) {
         btnPrev.addEventListener('click', () => {
-            // Logic for Persona Natural skipping Step 2 and 4
-            if (tipoPersonaSelect.value === 'Natural') {
+            if (tipoPersonaSelect && tipoPersonaSelect.value === 'Natural') {
                 if (currentStep === 5) currentStep = 3; 
                 else if (currentStep === 3) currentStep = 1; 
                 else currentStep--;
@@ -185,43 +184,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- DYNAMIC LOGIC ---
+    // --- CIIU 503 CATALOG LOGIC ---
+    function normalizeStr(str) {
+        return (str || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function populateCiiuData(filterText = '') {
+        if (!actividadEconomicaSelect) return;
+
+        const rawData = window.CIIU_DATA || [];
+        const normFilter = normalizeStr(filterText);
+
+        const currentValue = actividadEconomicaSelect.value;
+        actividadEconomicaSelect.innerHTML = '';
+
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.disabled = true;
+        placeholder.selected = !currentValue;
+        placeholder.textContent = filterText 
+            ? `Resultados para "${filterText}"...` 
+            : `Seleccione una actividad económica (${rawData.length} disponibles)...`;
+        actividadEconomicaSelect.appendChild(placeholder);
+
+        let matchCount = 0;
+        rawData.forEach(item => {
+            const normName = normalizeStr(item.name);
+            const normCode = normalizeStr(item.code);
+
+            if (!normFilter || normName.includes(normFilter) || normCode.includes(normFilter)) {
+                const opt = document.createElement('option');
+                opt.value = item.code;
+                opt.textContent = item.name;
+                if (item.code === currentValue) {
+                    opt.selected = true;
+                }
+                actividadEconomicaSelect.appendChild(opt);
+                matchCount++;
+            }
+        });
+
+        if (matchCount === 0) {
+            const noRes = document.createElement('option');
+            noRes.disabled = true;
+            noRes.textContent = 'No se encontraron actividades coincidentes';
+            actividadEconomicaSelect.appendChild(noRes);
+        }
+    }
+
+    if (actividadEconomicaSelect) {
+        populateCiiuData('');
+
+        actividadEconomicaSelect.addEventListener('change', (e) => {
+            if (codigoCiiuInput) {
+                codigoCiiuInput.value = e.target.value || '';
+            }
+        });
+    }
+
+    if (actividadEconomicaFilter) {
+        actividadEconomicaFilter.addEventListener('input', (e) => {
+            populateCiiuData(e.target.value);
+        });
+    }
+
+    // --- DYNAMIC CITIES & PERSONA JURIDICA LOGIC ---
     const cityOptions = {
         "Colombia": [
-            "Bogotá",
-            "Medellín",
-            "Cali",
-            "Barranquilla",
-            "Cartagena",
-            "Bucaramanga",
-            "Pereira",
-            "Cúcuta",
-            "Manizales",
-            "Ibagué"
+            "Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena",
+            "Bucaramanga", "Pereira", "Cúcuta", "Manizales", "Ibagué"
         ],
         "Estados Unidos": [
-            "New York",
-            "Los Angeles",
-            "Miami",
-            "Houston",
-            "Chicago",
-            "Dallas",
-            "San Francisco",
-            "Atlanta",
-            "Washington D.C.",
-            "Boston"
+            "New York", "Los Angeles", "Miami", "Houston", "Chicago",
+            "Dallas", "San Francisco", "Atlanta", "Washington D.C.", "Boston"
         ],
         "Mexico": [
-            "Ciudad de México",
-            "Guadalajara",
-            "Monterrey",
-            "Cancún",
-            "Mérida",
-            "Tijuana",
-            "Puebla",
-            "Querétaro",
-            "León",
-            "Chihuahua"
+            "Ciudad de México", "Guadalajara", "Monterrey", "Cancún", "Mérida",
+            "Tijuana", "Puebla", "Querétaro", "León", "Chihuahua"
         ]
     };
 
@@ -261,41 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const ciiuMap = {
-        '6201': '6201',
-        '6202': '6202',
-        '6209': '6209',
-        '4651': '4651',
-        '4741': '4741',
-        '7310': '7310'
-    };
-
-    function updateCodigoCiiu() {
-        if (!actividadEconomicaSelect || !codigoCiiuInput) return;
-        const selectedValue = actividadEconomicaSelect.value;
-        if (selectedValue && ciiuMap[selectedValue]) {
-            codigoCiiuInput.value = ciiuMap[selectedValue];
-        } else {
-            codigoCiiuInput.value = '';
-        }
-    }
-
-    if (actividadEconomicaSelect) {
-        actividadEconomicaSelect.addEventListener('change', updateCodigoCiiu);
-    }
-
     function isRepresentativeLegalComplete() {
         const repNombre = document.querySelector('input[name="rep_nombre"]')?.value.trim();
         const repCedula = document.querySelector('input[name="rep_cedula"]')?.value.trim();
         const repEmail = document.querySelector('input[name="rep_email"]')?.value.trim();
         const repTelefono = document.querySelector('input[name="rep_telefono"]')?.value.trim();
-
         return repNombre && repCedula && repEmail && repTelefono;
     }
 
     function syncContactPrincipalFromRepresentative() {
         if (!sameAsRepresentative?.checked) return;
-
         const repNombre = document.querySelector('input[name="rep_nombre"]')?.value || '';
         const repCedula = document.querySelector('input[name="rep_cedula"]')?.value || '';
         const repCargo = document.querySelector('input[name="rep_cargo"]')?.value || '';
@@ -329,10 +343,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateRepresentativeCheckboxState() {
         if (!sameAsRepresentative) return;
-
         const enabled = isRepresentativeLegalComplete();
         sameAsRepresentative.disabled = !enabled;
-
         if (!enabled && sameAsRepresentative.checked) {
             sameAsRepresentative.checked = false;
             setContactPrincipalEditable(true);
@@ -342,14 +354,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tipoPersonaSelect) {
         tipoPersonaSelect.addEventListener('change', (e) => {
             const isJuridica = e.target.value === 'Juridica';
-            
-            // Hide/Show Cámara de Comercio in Step 6
-            if (isJuridica) {
-                boxCamara.style.display = 'block';
-                docCamaraInput.setAttribute('required', 'required');
-            } else {
-                boxCamara.style.display = 'none';
-                docCamaraInput.removeAttribute('required');
+            if (boxCamara && docCamaraInput) {
+                if (isJuridica) {
+                    boxCamara.style.display = 'block';
+                    docCamaraInput.setAttribute('required', 'required');
+                } else {
+                    boxCamara.style.display = 'none';
+                    docCamaraInput.removeAttribute('required');
+                }
             }
 
             updateRepresentativeCheckboxVisibility(isJuridica);
@@ -363,15 +375,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (sameAsRepresentative) {
         sameAsRepresentative.addEventListener('change', () => {
-            const isChecked = sameAsRepresentative.checked;
-
-            if (isChecked) {
+            if (sameAsRepresentative.checked) {
                 if (!isRepresentativeLegalComplete()) {
                     sameAsRepresentative.checked = false;
                     showValidationPopup('Complete primero los datos del representante legal antes de usar esta opción.');
                     return;
                 }
-
                 syncContactPrincipalFromRepresentative();
                 setContactPrincipalEditable(false);
             } else {
@@ -392,110 +401,267 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             sameAsRepresentative.checked = false;
                             setContactPrincipalEditable(true);
-                            showValidationPopup('La información del representante legal debe estar completa para mantener el contacto principal igual.');
                         }
                     }
                 });
             }
         });
 
-    updateRepresentativeCheckboxVisibility(tipoPersonaSelect?.value === 'Juridica');
-    updateCityOptions(countrySelect ? countrySelect.value : '');
-
-    // File name update logic
+    // --- FILE INPUT HANDLERS ---
     ['doc_selfie', 'doc_id', 'doc_rut', 'doc_camara'].forEach(id => {
         const input = document.getElementById(id);
         const textSpan = document.getElementById(`file-name-${id.split('_')[1]}`);
-        if(input && textSpan) {
+        if (input && textSpan) {
             input.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
+                if (e.target.files && e.target.files.length > 0) {
                     textSpan.textContent = e.target.files[0].name;
-                    textSpan.classList.add('text-primary', 'font-bold');
+                    textSpan.className = 'text-primary font-bold';
                 } else {
-                    textSpan.textContent = 'Seleccionar archivo';
-                    textSpan.classList.remove('text-primary', 'font-bold');
+                    textSpan.textContent = 'Ningún archivo cargado';
+                    textSpan.className = 'text-gray-500 dark:text-gray-400';
                 }
             });
         }
     });
 
-    // Camera capture logic for selfie
-    const openCameraBtn = document.getElementById('openCameraBtn');
+    // --- QR MODAL LOGIC ---
+    const qrModal = document.getElementById('qrModal');
+    const qrModalDocTitle = document.getElementById('qrModalDocTitle');
+    const qrCodeContainer = document.getElementById('qrCodeContainer');
+    const qrDirectUrlInput = document.getElementById('qrDirectUrlInput');
+    const qrCopyUrlBtn = document.getElementById('qrCopyUrlBtn');
+    const qrDoneBtn = document.getElementById('qrDoneBtn');
+    const qrCloseBtn = document.getElementById('qrCloseBtn');
+    let qrCodeInstance = null;
+
+    function openQrModal(docType, docTitle) {
+        if (!qrModal) return;
+
+        const baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        const targetUrl = `${baseUrl}?doc=${docType}&step=6`;
+
+        if (qrModalDocTitle) {
+            qrModalDocTitle.textContent = `Escanea para adjuntar: ${docTitle}`;
+        }
+        if (qrDirectUrlInput) {
+            qrDirectUrlInput.value = targetUrl;
+        }
+
+        if (qrCodeContainer) {
+            qrCodeContainer.innerHTML = '';
+            if (window.QRCode) {
+                qrCodeInstance = new window.QRCode(qrCodeContainer, {
+                    text: targetUrl,
+                    width: 200,
+                    height: 200
+                });
+            } else {
+                qrCodeContainer.innerHTML = `<p class="text-xs text-red-500">No se pudo cargar la librería QR. Copia el enlace abajo.</p>`;
+            }
+        }
+
+        qrModal.classList.remove('hidden');
+        qrModal.classList.add('flex');
+    }
+
+    function closeQrModal() {
+        if (!qrModal) return;
+        qrModal.classList.add('hidden');
+        qrModal.classList.remove('flex');
+    }
+
+    document.querySelectorAll('.btn-qr-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const docType = btn.getAttribute('data-doc-type') || 'documento';
+            const docTitle = btn.getAttribute('data-doc-title') || 'Documento';
+            openQrModal(docType, docTitle);
+        });
+    });
+
+    if (qrCopyUrlBtn && qrDirectUrlInput) {
+        qrCopyUrlBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(qrDirectUrlInput.value);
+                const oldText = qrCopyUrlBtn.textContent;
+                qrCopyUrlBtn.textContent = '¡Copiado!';
+                qrCopyUrlBtn.classList.replace('bg-primary', 'bg-green-700');
+                setTimeout(() => {
+                    qrCopyUrlBtn.textContent = oldText;
+                    qrCopyUrlBtn.classList.replace('bg-green-700', 'bg-primary');
+                }, 2000);
+            } catch (err) {
+                showValidationPopup('Copia el enlace manualmente desde la caja de texto.');
+            }
+        });
+    }
+
+    if (qrDoneBtn) qrDoneBtn.addEventListener('click', closeQrModal);
+    if (qrCloseBtn) qrCloseBtn.addEventListener('click', closeQrModal);
+
+    // --- ENHANCED CAMERA MODAL LOGIC ---
     const cameraModal = document.getElementById('cameraModal');
+    const cameraModalTitle = document.getElementById('cameraModalTitle');
     const cameraVideo = document.getElementById('cameraVideo');
+    const cameraCanvas = document.getElementById('cameraCanvas');
     const cameraCaptureBtn = document.getElementById('cameraCaptureBtn');
+    const cameraRetakeBtn = document.getElementById('cameraRetakeBtn');
+    const cameraConfirmBtn = document.getElementById('cameraConfirmBtn');
     const cameraCancelBtn = document.getElementById('cameraCancelBtn');
     const cameraCloseBtn = document.getElementById('cameraCloseBtn');
-    const selfieInput = document.getElementById('doc_selfie');
-    const selfieName = document.getElementById('file-name-selfie');
-    let cameraStream = null;
 
-    async function openCameraModal() {
+    let activeDocType = null;
+    let activeStream = null;
+    let capturedBlob = null;
+
+    async function openCameraForDoc(docType, docTitle) {
         if (!cameraModal || !cameraVideo) return;
+        activeDocType = docType;
+        capturedBlob = null;
+
+        if (cameraModalTitle) {
+            cameraModalTitle.innerHTML = `<span class="material-symbols-outlined text-primary">photo_camera</span> Tomar foto: ${docTitle}`;
+        }
+
+        if (cameraVideo) cameraVideo.classList.remove('hidden');
+        if (cameraCanvas) cameraCanvas.classList.add('hidden');
+        if (cameraCaptureBtn) cameraCaptureBtn.classList.remove('hidden');
+        if (cameraRetakeBtn) cameraRetakeBtn.classList.add('hidden');
+        if (cameraConfirmBtn) cameraConfirmBtn.classList.add('hidden');
 
         try {
-            cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
-            cameraVideo.srcObject = cameraStream;
+            const facing = (docType === 'selfie') ? 'user' : { ideal: 'environment' };
+            activeStream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } }, 
+                audio: false 
+            });
+            cameraVideo.srcObject = activeStream;
             cameraVideo.play();
             cameraModal.classList.remove('hidden');
+            cameraModal.classList.add('flex');
         } catch (error) {
-            showValidationPopup('No se pudo acceder a la cámara. Por favor permite el uso de la cámara o selecciona una imagen.');
+            showValidationPopup('No se pudo acceder a la cámara. Por favor permite el acceso a la cámara en tu navegador o sube una imagen.');
+        }
+    }
+
+    function stopCameraStream() {
+        if (activeStream) {
+            activeStream.getTracks().forEach(track => track.stop());
+            activeStream = null;
+        }
+        if (cameraVideo) {
+            cameraVideo.pause();
+            cameraVideo.srcObject = null;
         }
     }
 
     function closeCameraModal() {
         if (!cameraModal) return;
         cameraModal.classList.add('hidden');
-        if (cameraVideo) {
-            cameraVideo.pause();
-            cameraVideo.srcObject = null;
-        }
-        if (cameraStream) {
-            cameraStream.getTracks().forEach(track => track.stop());
-            cameraStream = null;
-        }
+        cameraModal.classList.remove('flex');
+        stopCameraStream();
+        activeDocType = null;
+        capturedBlob = null;
     }
 
-    function captureSelfie() {
-        if (!cameraVideo || !selfieInput || !selfieName) return;
+    function capturePhoto() {
+        if (!cameraVideo || !cameraCanvas) return;
 
-        const canvas = document.createElement('canvas');
-        canvas.width = cameraVideo.videoWidth;
-        canvas.height = cameraVideo.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(cameraVideo, 0, 0, canvas.width, canvas.height);
+        cameraCanvas.width = cameraVideo.videoWidth || 640;
+        cameraCanvas.height = cameraVideo.videoHeight || 480;
+        const ctx = cameraCanvas.getContext('2d');
+        ctx.drawImage(cameraVideo, 0, 0, cameraCanvas.width, cameraCanvas.height);
 
-        canvas.toBlob(async (blob) => {
-            if (!blob) return;
-            const fileName = `selfie_${Date.now()}.jpg`;
-            const file = new File([blob], fileName, { type: 'image/jpeg' });
+        stopCameraStream();
+
+        cameraVideo.classList.add('hidden');
+        cameraCanvas.classList.remove('hidden');
+
+        cameraCanvas.toBlob((blob) => {
+            capturedBlob = blob;
+        }, 'image/jpeg', 0.92);
+
+        if (cameraCaptureBtn) cameraCaptureBtn.classList.add('hidden');
+        if (cameraRetakeBtn) cameraRetakeBtn.classList.remove('hidden');
+        if (cameraConfirmBtn) cameraConfirmBtn.classList.remove('hidden');
+    }
+
+    function retakePhoto() {
+        const docTitle = activeDocType === 'selfie' ? 'Selfie' : 'Documento';
+        openCameraForDoc(activeDocType, docTitle);
+    }
+
+    function confirmPhoto() {
+        if (!capturedBlob || !activeDocType) return;
+
+        const targetInput = document.getElementById(`doc_${activeDocType}`);
+        const textSpan = document.getElementById(`file-name-${activeDocType}`);
+
+        if (targetInput) {
+            const fileName = `${activeDocType}_foto_${Date.now()}.jpg`;
+            const file = new File([capturedBlob], fileName, { type: 'image/jpeg' });
             const dataTransfer = new DataTransfer();
             dataTransfer.items.add(file);
-            selfieInput.files = dataTransfer.files;
-            selfieName.textContent = fileName;
-            selfieName.classList.add('text-primary', 'font-bold');
-            closeCameraModal();
-        }, 'image/jpeg', 0.95);
+            targetInput.files = dataTransfer.files;
+
+            if (textSpan) {
+                textSpan.textContent = fileName;
+                textSpan.className = 'text-primary font-bold';
+            }
+        }
+
+        closeCameraModal();
     }
 
-    if (openCameraBtn) {
-        openCameraBtn.addEventListener('click', openCameraModal);
-    }
-    if (cameraCancelBtn) {
-        cameraCancelBtn.addEventListener('click', closeCameraModal);
-    }
-    if (cameraCloseBtn) {
-        cameraCloseBtn.addEventListener('click', closeCameraModal);
-    }
-    if (cameraCaptureBtn) {
-        cameraCaptureBtn.addEventListener('click', captureSelfie);
+    document.querySelectorAll('.btn-camera-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const docType = btn.getAttribute('data-doc-type') || 'selfie';
+            const docTitle = btn.getAttribute('data-doc-title') || 'Documento';
+            openCameraForDoc(docType, docTitle);
+        });
+    });
+
+    if (cameraCaptureBtn) cameraCaptureBtn.addEventListener('click', capturePhoto);
+    if (cameraRetakeBtn) cameraRetakeBtn.addEventListener('click', retakePhoto);
+    if (cameraConfirmBtn) cameraConfirmBtn.addEventListener('click', confirmPhoto);
+    if (cameraCancelBtn) cameraCancelBtn.addEventListener('click', closeCameraModal);
+    if (cameraCloseBtn) cameraCloseBtn.addEventListener('click', closeCameraModal);
+
+    // --- CHECK FOR URL QUERY PARAMS (MOBILE QR REDIRECT) ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramStep = urlParams.get('step');
+    const paramDoc = urlParams.get('doc');
+
+    if (paramStep) {
+        const parsedStep = parseInt(paramStep);
+        if (parsedStep >= 1 && parsedStep <= totalSteps) {
+            currentStep = parsedStep;
+        }
     }
 
-    // Dynamic Beneficiarios Table (Step 4)
+    // --- DYNAMIC INITIALIZATION ---
+    updateRepresentativeCheckboxVisibility(tipoPersonaSelect?.value === 'Juridica');
+    updateCityOptions(countrySelect ? countrySelect.value : '');
+    updateStepUI();
+
+    if (tipoPersonaSelect) {
+        tipoPersonaSelect.dispatchEvent(new Event('change'));
+    }
+
+    // Auto open camera if doc param provided from QR scan
+    if (paramDoc) {
+        setTimeout(() => {
+            const docBtn = document.querySelector(`.btn-camera-option[data-doc-type="${paramDoc}"]`);
+            if (docBtn) {
+                docBtn.click();
+            }
+        }, 600);
+    }
+
+    // --- BENEFICIARIOS DYNAMIC TABLE ---
     const btnAddBeneficiario = document.getElementById('btn-add-beneficiario');
     const tableBody = document.querySelector('#beneficiarios-table tbody');
 
-    if(btnAddBeneficiario && tableBody) {
+    if (btnAddBeneficiario && tableBody) {
         btnAddBeneficiario.addEventListener('click', () => {
             const newRow = document.createElement('tr');
             newRow.className = 'bg-white dark:bg-surface-dark border-b dark:border-gray-700';
@@ -511,238 +677,222 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             tableBody.appendChild(newRow);
 
-            // Add listener to new remove button
             newRow.querySelector('.btn-remove-row').addEventListener('click', () => {
                 tableBody.removeChild(newRow);
             });
         });
     }
 
-    // --- FORM SUBMISSION (SUPABASE INTEGRATION) ---
-    validationPopupClose.addEventListener('click', hideValidationPopup);
+    // --- SUPABASE STORAGE HELPER ---
+    async function uploadFileToSupabase(fileInputId, folderName) {
+        const fileInput = document.getElementById(fileInputId);
+        if (!fileInput || !fileInput.files || fileInput.files.length === 0) return null;
+        if (typeof supabaseClient === 'undefined' || !supabaseClient) return null;
 
-    // Helper: Subir archivo a Supabase Storage
-    async function uploadFileToSupabase(file, folder) {
-        if (!supabaseClient || SUPABASE_URL.includes('TU_PROYECTO')) return null;
+        const file = fileInput.files[0];
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${folderName}/${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+
         try {
-            const timestamp = Date.now();
-            const cleanName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
-            const filePath = `${folder}/${timestamp}_${cleanName}`;
-            
-            const { data, error } = await supabaseClient
-                .storage
-                .from('documentos_kyc')
-                .upload(filePath, file, { cacheControl: '3600', upsert: true });
+            const { data, error } = await supabaseClient.storage
+                .from('documentos-vinculacion')
+                .upload(fileName, file);
 
             if (error) {
-                console.error(`Error subiendo ${file.name}:`, error.message);
+                console.warn(`Error al subir ${fileInputId} a Supabase Storage:`, error.message);
                 return null;
             }
 
-            const { data: urlData } = supabaseClient
-                .storage
-                .from('documentos_kyc')
-                .getPublicUrl(filePath);
+            const { data: publicUrlData } = supabaseClient.storage
+                .from('documentos-vinculacion')
+                .getPublicUrl(fileName);
 
-            return urlData ? urlData.publicUrl : filePath;
+            return publicUrlData.publicUrl;
         } catch (err) {
-            console.error('Error en uploadFileToSupabase:', err);
+            console.error(`Excepción al subir ${fileInputId}:`, err);
             return null;
         }
     }
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        if (validateStep(currentStep)) {
-            btnSubmit.disabled = true;
-            btnSubmit.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2">refresh</span> Enviando...';
+    // --- FORM SUBMISSION ---
+    if (validationPopupClose) {
+        validationPopupClose.addEventListener('click', hideValidationPopup);
+    }
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            // Recolectar datos del formulario
-            const formData = new FormData(form);
-            const numDoc = formData.get('nit_cc') || formData.get('num_doc') || 'generico';
-
-            // Archivos a subir
-            const fileSelfie = document.getElementById('doc_selfie')?.files[0];
-            const fileId = document.getElementById('doc_id')?.files[0];
-            const fileRut = document.getElementById('doc_rut')?.files[0];
-            const fileCamara = document.getElementById('doc_camara')?.files[0];
-
-            let urlSelfie = null;
-            let urlId = null;
-            let urlRut = null;
-            let urlCamara = null;
-
-            // Extraer Beneficiarios Finales de la tabla
-            const beneficiarios = [];
-            const rows = document.querySelectorAll('#beneficiarios-table tbody tr');
-            rows.forEach(row => {
-                const tipo = row.querySelector('[name="bf_tipo[]"]')?.value || '';
-                const num = row.querySelector('[name="bf_num[]"]')?.value || '';
-                const nombre = row.querySelector('[name="bf_nombre[]"]')?.value || '';
-                const porc = row.querySelector('[name="bf_porc[]"]')?.value || '';
-                const pep = row.querySelector('[name="bf_pep[]"]')?.checked || false;
-                if (nombre || num) {
-                    beneficiarios.push({ tipo_doc: tipo, num_doc: num, nombre, porcentaje: porc, es_pep: pep });
+            if (validateStep(currentStep)) {
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerHTML = '<span class="material-symbols-outlined animate-spin mr-2">refresh</span> Enviando...';
                 }
-            });
 
-            // Si Supabase está configurado con las llaves reales
-            const isSupabaseConfigured = supabaseClient && typeof SUPABASE_URL === 'string' && !SUPABASE_URL.includes('TU_PROYECTO');
+                // If Supabase is connected, handle real storage upload and database insert
+                if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+                    try {
+                        const [urlSelfie, urlId, urlRut, urlCamara] = await Promise.all([
+                            uploadFileToSupabase('doc_selfie', 'selfies'),
+                            uploadFileToSupabase('doc_id', 'identificaciones'),
+                            uploadFileToSupabase('doc_rut', 'ruts'),
+                            uploadFileToSupabase('doc_camara', 'camaras_comercio')
+                        ]);
 
-            if (isSupabaseConfigured) {
-                try {
-                    // 1. Subir Archivos a Supabase Storage
-                    const folderPath = `solicitudes/${numDoc}`;
-                    if (fileSelfie) urlSelfie = await uploadFileToSupabase(fileSelfie, folderPath);
-                    if (fileId) urlId = await uploadFileToSupabase(fileId, folderPath);
-                    if (fileRut) urlRut = await uploadFileToSupabase(fileRut, folderPath);
-                    if (fileCamara) urlCamara = await uploadFileToSupabase(fileCamara, folderPath);
+                        const formData = new FormData(form);
+                        const tipoPersonaVal = formData.get('tipo_persona') || 'Natural';
+                        const rawRazonSocial = formData.get('razon_social') || '';
+                        const rawNitCc = formData.get('nit_cc') || '';
+                        const rawEmail = formData.get('email') || '';
+                        const rawIngresos = formData.get('ingresos_anuales') || '0';
+                        const rawFuente = formData.get('fuente_ingresos') || 'N/A';
+                        const rawActivos = formData.get('total_activos') || '0';
+                        const tipoDocVal = tipoPersonaVal === 'Juridica' ? 'NIT' : 'CC';
 
-                    // 2. Construir objeto llenando TODOS los campos (nombres desglosados y formulario completo)
-                    const rawRazonSocial = (formData.get('razon_social') || '').trim();
-                    const rawNitCc = (formData.get('nit_cc') || '').trim();
-                    const rawEmail = (formData.get('email_principal') || '').trim();
-                    const rawIngresos = (formData.get('ingresos_anuales') || '').trim();
-                    const rawFuente = (formData.get('fuente_ingresos') || '').trim();
-                    const rawActivos = (formData.get('total_activos') || '').trim();
-                    const tipoPersonaVal = formData.get('tipo_persona') || 'Natural';
-                    const tipoDocVal = tipoPersonaVal === 'Juridica' ? 'NIT' : 'CC';
+                        // Extract name components for natural person compatibility
+                        const nameParts = rawRazonSocial.trim().split(/\s+/);
+                        const pNombre = nameParts[0] || rawRazonSocial || 'N/A';
+                        const sNombre = nameParts.length > 2 ? nameParts[1] : (nameParts.length === 2 ? '' : 'N/A');
+                        const pApellido = nameParts.length === 2 ? nameParts[1] : (nameParts.length >= 3 ? nameParts[nameParts.length - 2] : 'N/A');
+                        const sApellido = nameParts.length >= 4 ? nameParts[nameParts.length - 1] : 'N/A';
 
-                    // Desglosar nombre en partes para llenar primer_nombre, segundo_nombre, etc.
-                    const nameParts = rawRazonSocial.split(/\s+/).filter(Boolean);
-                    const pNombre = nameParts[0] || rawRazonSocial || 'N/A';
-                    const sNombre = nameParts.length > 2 ? nameParts[1] : (nameParts.length === 2 ? '' : 'N/A');
-                    const pApellido = nameParts.length === 2 ? nameParts[1] : (nameParts.length >= 3 ? nameParts[nameParts.length - 2] : 'N/A');
-                    const sApellido = nameParts.length >= 4 ? nameParts[nameParts.length - 1] : 'N/A';
+                        // Beneficiarios JSON array
+                        const bfTipos = formData.getAll('bf_tipo[]');
+                        const bfNums = formData.getAll('bf_num[]');
+                        const bfNombres = formData.getAll('bf_nombre[]');
+                        const bfPorcs = formData.getAll('bf_porc[]');
+                        const bfPeps = formData.getAll('bf_pep[]');
 
-                    let payload = {
-                        // Schema Original (Script 1)
-                        tipo_persona: tipoPersonaVal,
-                        primer_nombre: pNombre,
-                        segundo_nombre: sNombre,
-                        primer_apellido: pApellido,
-                        segundo_apellido: sApellido,
-                        tipo_doc: tipoDocVal,
-                        num_doc: rawNitCc,
-                        fecha_expedicion: 'N/A',
-                        fecha_expedición: 'N/A',
-                        pais: formData.get('pais') || 'N/A',
-                        país: formData.get('pais') || 'N/A',
-                        ciudad: formData.get('ciudad') || 'N/A',
-                        email: rawEmail,
-                        telefono: formData.get('telefono') || 'N/A',
-                        teléfono: formData.get('telefono') || 'N/A',
-                        direccion: formData.get('direccion') || 'N/A',
-                        dirección: formData.get('direccion') || 'N/A',
-                        actividad_economica: formData.get('actividad_economica') || 'N/A',
-                        actividad_económica: formData.get('actividad_economica') || 'N/A',
-                        codigo_ciiu: formData.get('codigo_ciiu') || 'N/A',
-                        código_ciiu: formData.get('codigo_ciiu') || 'N/A',
-                        ingresos_mensuales: rawIngresos,
-                        egresos_mensuales: rawFuente,
-                        activos: rawActivos,
-                        pasivos: '0',
-                        rep_nombre: formData.get('rep_nombre') || 'N/A',
-                        rep_cedula: formData.get('rep_cedula') || 'N/A',
-                        rep_cargo: formData.get('rep_cargo') || 'N/A',
-                        rep_email: formData.get('rep_email') || 'N/A',
-                        rep_telefono: formData.get('rep_telefono') || 'N/A',
-                        con_nombre: formData.get('con_nombre') || 'N/A',
-                        con_cedula: formData.get('con_cedula') || 'N/A',
-                        con_cargo: formData.get('con_cargo') || 'N/A',
-                        con_email: formData.get('con_email') || 'N/A',
-                        con_telefono: formData.get('con_telefono') || 'N/A',
-                        beneficiarios: beneficiarios,
-                        url_selfie: urlSelfie || '',
-                        url_doc_id: urlId || '',
-                        url_doc_rut: urlRut || '',
-                        url_doc_camara: urlCamara || '',
-
-                        // Columnas Extendidas (Script 2)
-                        tipo_tramite: formData.get('tipo_tramite') || 'N/A',
-                        razon_social: rawRazonSocial,
-                        nit_cc: rawNitCc,
-                        email_principal: rawEmail,
-                        tipo_contraparte: formData.get('tipo_contraparte') || 'N/A',
-                        pep_recursos: formData.get('pep_recursos') || 'NO',
-                        pep_poder: formData.get('pep_poder') || 'NO',
-                        pep_vinculo: formData.get('pep_vinculo') || 'NO',
-                        rep_pep_recursos: formData.get('rep_pep_recursos') === 'on',
-                        rep_pep_poder: formData.get('rep_pep_poder') === 'on',
-                        rep_pep_vinculo: formData.get('rep_pep_vinculo') === 'on',
-                        con_pep_recursos: formData.get('con_pep_recursos') === 'on',
-                        con_pep_poder: formData.get('con_pep_poder') === 'on',
-                        con_pep_vinculo: formData.get('con_pep_vinculo') === 'on',
-                        ingresos_anuales: rawIngresos,
-                        fuente_ingresos: rawFuente,
-                        total_activos: rawActivos,
-                        acepto_origen: formData.get('acepto_origen') === 'on',
-                        acepto_datos: formData.get('acepto_datos') === 'on',
-                        created_at: new Date().toISOString()
-                    };
-
-                    let { data, error } = await supabaseClient
-                        .from('solicitudes_vinculacion')
-                        .insert([payload]);
-
-                    // Bucle de reintento: Si Supabase rechaza columnas no existentes en la tabla del usuario, eliminarlas y reintentar
-                    let maxRetries = 15;
-                    while (error && error.message && error.message.includes('Could not find the') && maxRetries > 0) {
-                        maxRetries--;
-                        const match = error.message.match(/'([^']+)'/);
-                        if (match && match[1]) {
-                            const badCol = match[1];
-                            console.warn(`Eliminando columna inexistente '${badCol}' del payload y reintentando...`);
-                            delete payload[badCol];
-                            const retry = await supabaseClient.from('solicitudes_vinculacion').insert([payload]);
-                            error = retry.error;
-                        } else {
-                            break;
+                        const beneficiarios = [];
+                        if (tipoPersonaVal === 'Juridica' && bfNombres.length > 0) {
+                            for (let i = 0; i < bfNombres.length; i++) {
+                                if (bfNombres[i] && bfNombres[i].trim()) {
+                                    beneficiarios.push({
+                                        tipo_ident: bfTipos[i] || '',
+                                        numero: bfNums[i] || '',
+                                        nombre: bfNombres[i] || '',
+                                        porcentaje: bfPorcs[i] || '0',
+                                        is_pep: bfPeps[i] === 'on'
+                                    });
+                                }
+                            }
                         }
-                    }
 
-                    if (error) {
-                        console.error('Error insertando en Supabase:', error);
-                        showValidationPopup('Error al guardar en Supabase: ' + error.message);
-                        btnSubmit.disabled = false;
-                        btnSubmit.innerHTML = 'Enviar Solicitud';
-                        return;
+                        let payload = {
+                            tipo_persona: tipoPersonaVal,
+                            primer_nombre: pNombre,
+                            segundo_nombre: sNombre,
+                            primer_apellido: pApellido,
+                            segundo_apellido: sApellido,
+                            tipo_doc: tipoDocVal,
+                            num_doc: rawNitCc,
+                            fecha_expedicion: 'N/A',
+                            fecha_expedición: 'N/A',
+                            pais: formData.get('pais') || 'N/A',
+                            país: formData.get('pais') || 'N/A',
+                            ciudad: formData.get('ciudad') || 'N/A',
+                            email: rawEmail,
+                            telefono: formData.get('telefono') || 'N/A',
+                            teléfono: formData.get('telefono') || 'N/A',
+                            direccion: formData.get('direccion') || 'N/A',
+                            dirección: formData.get('direccion') || 'N/A',
+                            actividad_economica: formData.get('actividad_economica') || 'N/A',
+                            actividad_económica: formData.get('actividad_economica') || 'N/A',
+                            codigo_ciiu: formData.get('codigo_ciiu') || 'N/A',
+                            código_ciiu: formData.get('codigo_ciiu') || 'N/A',
+                            ingresos_mensuales: rawIngresos,
+                            egresos_mensuales: rawFuente,
+                            activos: rawActivos,
+                            pasivos: '0',
+                            rep_nombre: formData.get('rep_nombre') || 'N/A',
+                            rep_cedula: formData.get('rep_cedula') || 'N/A',
+                            rep_cargo: formData.get('rep_cargo') || 'N/A',
+                            rep_email: formData.get('rep_email') || 'N/A',
+                            rep_telefono: formData.get('rep_telefono') || 'N/A',
+                            con_nombre: formData.get('con_nombre') || 'N/A',
+                            con_cedula: formData.get('con_cedula') || 'N/A',
+                            con_cargo: formData.get('con_cargo') || 'N/A',
+                            con_email: formData.get('con_email') || 'N/A',
+                            con_telefono: formData.get('con_telefono') || 'N/A',
+                            beneficiarios: beneficiarios,
+                            url_selfie: urlSelfie || '',
+                            url_doc_id: urlId || '',
+                            url_doc_rut: urlRut || '',
+                            url_doc_camara: urlCamara || '',
+
+                            tipo_tramite: formData.get('tipo_tramite') || 'N/A',
+                            razon_social: rawRazonSocial,
+                            nit_cc: rawNitCc,
+                            email_principal: rawEmail,
+                            tipo_contraparte: formData.get('tipo_contraparte') || 'N/A',
+                            pep_recursos: formData.get('pep_recursos') || 'NO',
+                            pep_poder: formData.get('pep_poder') || 'NO',
+                            pep_vinculo: formData.get('pep_vinculo') || 'NO',
+                            ingresos_anuales: rawIngresos,
+                            fuente_ingresos: rawFuente,
+                            total_activos: rawActivos,
+                            acepto_origen: formData.get('acepto_origen') === 'on',
+                            acepto_datos: formData.get('acepto_datos') === 'on',
+                            created_at: new Date().toISOString()
+                        };
+
+                        let { error } = await supabaseClient
+                            .from('solicitudes_vinculacion')
+                            .insert([payload]);
+
+                        // Retry loop if Supabase rejects unknown columns
+                        let maxRetries = 15;
+                        while (error && error.message && error.message.includes('Could not find the') && maxRetries > 0) {
+                            maxRetries--;
+                            const match = error.message.match(/'([^']+)'/);
+                            if (match && match[1]) {
+                                const badCol = match[1];
+                                delete payload[badCol];
+                                const retry = await supabaseClient.from('solicitudes_vinculacion').insert([payload]);
+                                error = retry.error;
+                            } else {
+                                break;
+                            }
+                        }
+
+                        if (error) {
+                            console.error('Error insertando en Supabase:', error);
+                            showValidationPopup('Error al guardar en Supabase: ' + error.message);
+                            if (btnSubmit) {
+                                btnSubmit.disabled = false;
+                                btnSubmit.innerHTML = 'Enviar Solicitud';
+                            }
+                            return;
+                        }
+                    } catch (err) {
+                        console.error('Excepción en envío a Supabase:', err);
                     }
-                } catch (err) {
-                    console.error('Error general en el envío a Supabase:', err);
-                    showValidationPopup('Ocurrió un error inesperado al conectar con Supabase.');
+                } else {
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                }
+                
+                form.style.display = 'none';
+                const successCard = document.getElementById('kycSuccess');
+                const stepWrapper = document.querySelector('.step-indicators-wrapper');
+                
+                if (stepWrapper) stepWrapper.style.display = 'none';
+                if (successCard) {
+                    successCard.classList.remove('hidden');
+                    successCard.style.display = 'flex';
+                    successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                if (btnSubmit) {
                     btnSubmit.disabled = false;
                     btnSubmit.innerHTML = 'Enviar Solicitud';
-                    return;
                 }
-            } else {
-                console.info('Supabase no está configurado aún (usando llaves por defecto). Ejecutando simulación.');
-                await new Promise(resolve => setTimeout(resolve, 1500));
             }
+        });
+    }
 
-            // Éxito en la presentación del formulario
-            form.style.display = 'none';
-            const kycSuccess = document.getElementById('kycSuccess');
-            const stepWrapper = document.querySelector('.step-indicators-wrapper');
-            
-            if (stepWrapper) stepWrapper.style.display = 'none';
-            if (kycSuccess) {
-                kycSuccess.classList.remove('hidden');
-                kycSuccess.style.display = 'flex';
-                kycSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            
-            // Reset de botones del formulario
-            btnSubmit.disabled = false;
-            btnSubmit.innerHTML = 'Enviar Solicitud';
-        }
-    });
-
-    // Función global para reiniciar el formulario desde la pantalla de éxito
     window.resetKycForm = function() {
-        form.reset();
-        form.style.display = 'block';
+        if (form) form.reset();
+        if (form) form.style.display = 'block';
         const kycSuccess = document.getElementById('kycSuccess');
         const stepWrapper = document.querySelector('.step-indicators-wrapper');
         
@@ -757,9 +907,4 @@ document.addEventListener('DOMContentLoaded', () => {
         updateStepUI();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
-
-    // Initialize UI
-    updateStepUI();
-    // Trigger change event to set initial dynamic state
-    tipoPersonaSelect.dispatchEvent(new Event('change'));
 });

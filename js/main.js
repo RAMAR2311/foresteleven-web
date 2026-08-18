@@ -79,8 +79,8 @@ const translations = {
         "workflow.tab.persona": "Individual",
         "workflow.tab.empresa": "Corporate",
         
-        "workflow.persona.s1.title": "Request + KYC",
-        "workflow.persona.s1.desc": "Submit your details and complete the KYC verification.",
+        "workflow.persona.s1.title": "Request + Identity Verification",
+        "workflow.persona.s1.desc": "Submit your details and complete the identity verification.",
         "workflow.persona.s2.title": "Quote & Validation",
         "workflow.persona.s2.desc": "We review your information and confirm rate, conditions and availability.",
         "workflow.persona.s3.title": "Execution & Settlement",
@@ -96,7 +96,7 @@ const translations = {
         "workflow.empresa.s4.desc": "You send payment or assets; we verify receipt and complete the operation.",
         "workflow.note": "All operations are subject to liquidity availability, fund confirmation and internal compliance review.",
 
-        "compliance.text": "May apply KYC/AML. Service available for eligible clients.",
+        "compliance.text": "May apply Identity Verification / AML. Service available for eligible clients.",
 
         "form.title": "Start Your Transaction",
         "form.subtitle": "Fill in the details below and an executive will contact you shortly.",
@@ -149,7 +149,7 @@ const translations = {
         "faq.q8": "How long does an operation take?",
         "faq.a8": "The time depends on the currency, payment method, bank confirmation, blockchain network, liquidity availability and internal review.",
 
-        "nav.vinculacion": "KYC Form",
+        "nav.vinculacion": "Identity Verification",
         "kyc.mainTitle": "Counterparty <span class=\"text-primary italic\">Onboarding</span>",
         "kyc.mainSubtitle": "Single Onboarding Form. Please complete the requested information.",
         "kyc.step1": "Information",
@@ -321,8 +321,8 @@ const translations = {
         "workflow.tab.persona": "Persona",
         "workflow.tab.empresa": "Empresa",
         
-        "workflow.persona.s1.title": "Solicitud + KYC",
-        "workflow.persona.s1.desc": "Envías tus datos y completamos la verificación KYC.",
+        "workflow.persona.s1.title": "Solicitud + Verificación de identidad",
+        "workflow.persona.s1.desc": "Envías tus datos y completamos la verificación de identidad.",
         "workflow.persona.s2.title": "Cotización y validación",
         "workflow.persona.s2.desc": "Revisamos la información y confirmamos tasa, condiciones y disponibilidad.",
         "workflow.persona.s3.title": "Ejecución y liquidación",
@@ -338,7 +338,7 @@ const translations = {
         "workflow.empresa.s4.desc": "Realizas el pago o envío de activos; verificamos la recepción y completamos la operación.",
         "workflow.note": "Todas las operaciones están sujetas a disponibilidad de liquidez, confirmación de fondos y revisión interna de cumplimiento.",
 
-        "compliance.text": "Puede aplicar KYC/AML. Servicio disponible para clientes elegibles.",
+        "compliance.text": "Puede aplicar verificación de identidad / AML. Servicio disponible para clientes elegibles.",
 
         "form.title": "Inicia tu Transacción",
         "form.subtitle": "Completa los datos y te contactaremos pronto.",
@@ -391,7 +391,7 @@ const translations = {
         "faq.q8": "¿Cuánto tarda una operación?",
         "faq.a8": "El tiempo depende de la moneda, método de pago, confirmación bancaria, red blockchain, disponibilidad de liquidez y revisión interna.",
 
-        "nav.vinculacion": "Formulario KYC",
+        "nav.vinculacion": "Verificación de identidad",
         "kyc.mainTitle": "Vinculación de <span class=\"text-primary italic\">Contrapartes</span>",
         "kyc.mainSubtitle": "Formato Único de Vinculación. Por favor, complete la información solicitada.",
         "kyc.step1": "Información",
