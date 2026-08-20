@@ -104,6 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(window.validationPopupTimeout);
     }
 
+    function clearDocCardError(docType) {
+        const box = document.getElementById(`box-${docType}`);
+        if (box) {
+            box.classList.remove('ring-2', 'ring-red-500', '!border-red-500');
+        }
+    }
+
+    function highlightDocCardError(docType) {
+        const box = document.getElementById(`box-${docType}`);
+        if (box) {
+            box.classList.add('ring-2', 'ring-red-500', '!border-red-500');
+        }
+    }
+
     function validateStep(step) {
         const stepEl = document.getElementById(`step-${step}`);
         if (!stepEl) return true;
@@ -136,6 +150,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Validar subida de documentos obligatorios en tarjetas (inputs hidden)
+        const docTypesToValidate = [
+            { id: 'doc_selfie', docType: 'selfie', required: true },
+            { id: 'doc_id', docType: 'id', required: true },
+            { id: 'doc_rut', docType: 'rut', required: true },
+            { id: 'doc_camara', docType: 'camara', required: (tipoPersonaSelect && tipoPersonaSelect.value === 'Juridica') }
+        ];
+
+        let firstMissingDocBox = null;
+
+        docTypesToValidate.forEach(item => {
+            clearDocCardError(item.docType);
+            const input = document.getElementById(item.id);
+            if (input && item.required) {
+                if (stepEl.contains(input)) {
+                    const hasFile = input.files && input.files.length > 0;
+                    if (!hasFile) {
+                        isValid = false;
+                        highlightDocCardError(item.docType);
+                        if (!firstMissingDocBox) {
+                            firstMissingDocBox = document.getElementById(`box-${item.docType}`);
+                        }
+                    }
+                }
+            }
+        });
+
         if (!isValid) {
             const firstInvalid = Array.from(requiredInputs).find(input => {
                 const visible = input.offsetParent !== null;
@@ -145,8 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (firstInvalid && typeof firstInvalid.focus === 'function') {
                 firstInvalid.focus();
+            } else if (firstMissingDocBox && typeof firstMissingDocBox.scrollIntoView === 'function') {
+                firstMissingDocBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-            showValidationPopup('Por favor, complete todos los campos obligatorios de este paso.');
+            showValidationPopup('Por favor, complete los campos obligatorios y adjunte los documentos requeridos en rojo.');
         }
 
         return isValid;
@@ -361,6 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     boxCamara.style.display = 'none';
                     docCamaraInput.removeAttribute('required');
+                    clearDocCardError('camara');
                 }
             }
 
@@ -410,15 +454,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- FILE INPUT HANDLERS ---
     ['doc_selfie', 'doc_id', 'doc_rut', 'doc_camara'].forEach(id => {
         const input = document.getElementById(id);
-        const textSpan = document.getElementById(`file-name-${id.split('_')[1]}`);
-        if (input && textSpan) {
+        const docType = id.split('_')[1];
+        const textSpan = document.getElementById(`file-name-${docType}`);
+        if (input) {
             input.addEventListener('change', (e) => {
                 if (e.target.files && e.target.files.length > 0) {
-                    textSpan.textContent = e.target.files[0].name;
-                    textSpan.className = 'text-primary font-bold';
+                    if (textSpan) {
+                        textSpan.textContent = e.target.files[0].name;
+                        textSpan.className = 'text-primary font-bold';
+                    }
+                    clearDocCardError(docType);
                 } else {
-                    textSpan.textContent = 'Ningún archivo cargado';
-                    textSpan.className = 'text-gray-500 dark:text-gray-400';
+                    if (textSpan) {
+                        textSpan.textContent = 'Ningún archivo cargado';
+                        textSpan.className = 'text-gray-500 dark:text-gray-400';
+                    }
                 }
             });
         }
@@ -607,6 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 textSpan.textContent = fileName;
                 textSpan.className = 'text-primary font-bold';
             }
+            clearDocCardError(activeDocType);
         }
 
         closeCameraModal();

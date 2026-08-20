@@ -42,6 +42,10 @@
         }
     </script>
     <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
         html:not(.dark) body {
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
         }
@@ -52,6 +56,7 @@
 
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
@@ -59,6 +64,11 @@
         .dark .glass-card {
             background: rgba(26, 51, 26, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .backdrop-blur-md {
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
         }
 
         /* Oculta la flecha nativa de todos los select y la del plugin de Tailwind Forms */
@@ -74,9 +84,17 @@
             display: none !important;
         }
 
+        /* Evita el auto-zoom molesto en iOS Safari al tocar un campo de texto */
+        @media (max-width: 767px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+
         .hero-title {
-            font-size: clamp(3.2rem, 7vw, 6rem);
-            line-height: 1.03;
+            font-size: clamp(2.2rem, 6.5vw, 5.5rem);
+            line-height: 1.05;
+            word-break: break-word;
         }
 
         .responsive-radio-group {
@@ -100,6 +118,7 @@
 
         .step-indicators-wrapper {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             padding-bottom: 1rem;
             margin-bottom: 1.25rem;
         }
@@ -133,6 +152,8 @@
             padding-bottom: 1rem;
             border-top: 1px solid rgba(229, 231, 235, 1);
             background: rgba(255, 255, 255, 0.96);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
         }
 
         @media (max-width: 768px) {
@@ -174,6 +195,7 @@
 
             .glass-card {
                 padding: 1.5rem;
+                -webkit-backdrop-filter: blur(12px);
                 backdrop-filter: blur(12px);
             }
         }
@@ -267,23 +289,23 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20 relative">
                 <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity no-underline flex-shrink-0 z-10">
-                    <img src="assets/images/logo-2.png" alt="ForestEleven" class="w-40 md:w-48 lg:w-56 h-auto object-contain">
+                <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity no-underline flex-shrink-0 z-10 mr-4 lg:mr-8">
+                    <img src="assets/images/logo-2.png" alt="ForestEleven" class="w-32 sm:w-40 md:w-44 lg:w-48 h-auto object-contain">
                 </a>
                 
-                <!-- Desktop Nav (Absolutely Centered) -->
-                <nav class="hidden md:flex items-center gap-6 lg:gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-max z-0">
-                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 z-10 ml-auto mr-4 lg:mr-8">
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
                         href="index.html#what-we-do" data-i18n="nav.whatWeDo">What We Do</a>
-                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
                         href="index.html#desks" data-i18n="nav.desks">Desks</a>
-                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
                         href="index.html#why-foresteleven" data-i18n="nav.whyUs">Why ForestEleven</a>
-                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
                         href="index.html#workflow" data-i18n="nav.howItWorks">How it Works</a>
-                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
                         href="index.html#contact" data-i18n="nav.contact">Contact</a>
-                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors"
+                    <a class="text-sm font-medium text-charcoal dark:text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
                         href="vinculacion.html" data-i18n="nav.vinculacion">Verificación de identidad</a>
                 </nav>
 
@@ -623,7 +645,7 @@
                         <p class="text-sm text-gray-500 mb-6">Identificación de accionistas que tengan directa o indirectamente más del 5% del capital social.</p>
                         
                         <div class="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 mb-4">
-                            <table class="w-full text-sm text-left" id="beneficiarios-table">
+                            <table class="w-full text-sm text-left min-w-[600px]" id="beneficiarios-table">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400">
                                     <tr>
                                         <th class="px-4 py-3">Tipo Ident.</th>
@@ -716,7 +738,7 @@
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <!-- 1. Selfie -->
-                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-all">
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-all" id="box-selfie">
                                     <div class="flex items-center gap-3 mb-4">
                                         <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">
                                             <span class="material-symbols-outlined text-xl">face</span>
@@ -747,7 +769,7 @@
                                 </div>
 
                                 <!-- 2. Documento de Identidad -->
-                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-all">
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-all" id="box-id">
                                     <div class="flex items-center gap-3 mb-4">
                                         <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">
                                             <span class="material-symbols-outlined text-xl">badge</span>
@@ -778,7 +800,7 @@
                                 </div>
 
                                 <!-- 3. RUT -->
-                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-all">
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-sm hover:shadow-md transition-all" id="box-rut">
                                     <div class="flex items-center gap-3 mb-4">
                                         <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">
                                             <span class="material-symbols-outlined text-xl">description</span>

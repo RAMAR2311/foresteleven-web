@@ -387,7 +387,7 @@ const translations = {
         "faq.q6": "¿Qué documentos pueden solicitar?",
         "faq.a6": "Dependiendo del monto, país y perfil de riesgo, podremos solicitar documento de identidad, información de contacto, validación de cuenta bancaria, soporte de origen de fondos o documentos empresariales.",
         "faq.q7": "¿Aceptan operaciones de terceros?",
-        "faq.a7": "Por seguridad y cumplimiento solo se aceptan las operaciones deben realizarse desde y hacia cuentas o wallets asociadas al cliente validado.",
+        "faq.a7": "Por seguridad y cumplimiento solo se aceptan las operaciones desde y hacia cuenta o wallets asociadas al cliente autorizado previamente.",
         "faq.q8": "¿Cuánto tarda una operación?",
         "faq.a8": "El tiempo depende de la moneda, método de pago, confirmación bancaria, red blockchain, disponibilidad de liquidez y revisión interna.",
 
@@ -727,9 +727,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     
-    if(mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
 
         // Close menu when clicking a link
@@ -738,6 +743,13 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
+        });
+
+        // Close menu when clicking anywhere outside
+        document.addEventListener('click', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
         });
     }
 });
