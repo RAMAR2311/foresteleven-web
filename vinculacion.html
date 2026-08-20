@@ -257,15 +257,18 @@
         }
 
         .giant-bg-text {
-            font-size: 20vw; /* Bigger on mobile */
+            font-size: clamp(1.8rem, 12.2vw, 11vw);
             font-weight: 900;
-            color: #0ac20a; /* Match button color */
-            line-height: 0.8; /* slightly more line height so it doesn't cut off at the bottom */
+            color: #0ac20a;
+            line-height: 0.85;
             margin: 0;
             text-align: center;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.06em;
             user-select: none;
             opacity: 0.9;
+            white-space: nowrap;
+            max-width: 100%;
+            display: block;
         }
         
         @media (min-width: 768px) {
