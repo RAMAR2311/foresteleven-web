@@ -33,6 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const boxCamara = document.getElementById('box-camara');
     const docCamaraInput = document.getElementById('doc_camara');
 
+    // Auto pre-select tipo de persona from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramTipo = urlParams.get('tipo');
+    if (paramTipo && tipoPersonaSelect) {
+        if (paramTipo.toLowerCase().includes('natural') || paramTipo.toLowerCase().includes('persona')) {
+            tipoPersonaSelect.value = 'Natural';
+        } else if (paramTipo.toLowerCase().includes('juridica') || paramTipo.toLowerCase().includes('empresa')) {
+            tipoPersonaSelect.value = 'Juridica';
+        }
+        tipoPersonaSelect.dispatchEvent(new Event('change'));
+    }
+
     function updateStepUI() {
         // Update Progress Bar
         const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;

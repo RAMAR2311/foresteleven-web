@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ForestEleven - Iniciar Verificación</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ac20a",
+                        "primary-hover": "#089e08",
+                        "background-light": "#FDFBF7",
+                        "background-dark": "#09131d",
+                        "charcoal": "#1f2937",
+                        "forest-dark": "#09131d",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#0f1d2e"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        * { -webkit-tap-highlight-color: transparent; }
+        html:not(.dark) body {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        html { scroll-behavior: smooth; }
+        .giant-bg-text {
+            font-size: clamp(1.8rem, 12.2vw, 11vw);
+            font-weight: 900;
+            color: #0ac20a;
+            line-height: 0.85;
+            margin: 0;
+            text-align: center;
+            letter-spacing: -0.06em;
+            user-select: none;
+            opacity: 0.9;
+            white-space: nowrap;
+            max-width: 100%;
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .giant-bg-text { font-size: 11vw; line-height: 0.75; }
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-100 overflow-x-hidden transition-colors duration-300">
+
+    <!-- HEADER (Navigation) -->
+    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 dark:bg-[#09131d]/90 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity no-underline flex-shrink-0 mr-4 lg:mr-8">
+                    <img src="assets/images/logo-2.png" alt="ForestEleven" class="w-36 sm:w-44 md:w-48 lg:w-52 h-auto object-contain">
+                </a>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 ml-auto mr-4 lg:mr-8">
+                    <a class="text-sm font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors whitespace-nowrap"
+                        href="index.html#soluciones" data-i18n="nav.solutions">Soluciones</a>
+                    <a class="text-sm font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors whitespace-nowrap"
+                        href="index.html#mercados" data-i18n="nav.markets">Mercados</a>
+                    <a class="text-sm font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors whitespace-nowrap"
+                        href="index.html#clientes" data-i18n="nav.clients">Clientes</a>
+                    <a class="text-sm font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors whitespace-nowrap"
+                        href="index.html#como-funciona" data-i18n="nav.howItWorks">Cómo funciona</a>
+                    
+                    <!-- Cumplimiento Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center gap-1 text-sm font-semibold text-primary font-bold transition-colors py-2 whitespace-nowrap focus:outline-none">
+                            <span data-i18n="nav.compliance">Cumplimiento</span>
+                            <span class="material-symbols-outlined text-base group-hover:rotate-180 transition-transform">expand_more</span>
+                        </button>
+                        
+                        <div class="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-80 p-3 bg-white dark:bg-[#0f1d2e] rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="index.html#cumplimiento-gestion" class="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-colors group/item">
+                                <div class="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-primary flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-200/50 dark:border-emerald-800/50">
+                                    <span class="material-symbols-outlined text-lg">shield</span>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-gray-900 dark:text-white group-hover/item:text-primary transition-colors" data-i18n="nav.complianceDropdown.risk">Gestión de riesgo</h5>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-snug" data-i18n="nav.complianceDropdown.riskDesc">Conoce nuestros controles de verificación, origen de fondos y activos digitales.</p>
+                                </div>
+                            </a>
+
+                            <a href="iniciar-verificacion.html" class="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/80 transition-colors group/item mt-1">
+                                <div class="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-primary flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-200/50 dark:border-emerald-800/50">
+                                    <span class="material-symbols-outlined text-lg">badge</span>
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-gray-900 dark:text-white group-hover/item:text-primary transition-colors" data-i18n="nav.complianceDropdown.verify">Iniciar verificación</h5>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-snug" data-i18n="nav.complianceDropdown.verifyDesc">Comienza el proceso de onboarding para Persona, Empresa o Institucional.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a class="text-sm font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors whitespace-nowrap"
+                        href="index.html#contacto" data-i18n="nav.contact">Contacto</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3 flex-shrink-0">
+                    <div class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800/80 px-2.5 py-1 rounded-full text-xs font-bold border border-gray-200 dark:border-gray-700">
+                        <button id="lang-es" onclick="setLanguage('es')" class="transition-colors hover:text-primary">ES</button>
+                        <span class="text-gray-400">|</span>
+                        <button id="lang-en" onclick="setLanguage('en')" class="transition-colors hover:text-primary">EN</button>
+                    </div>
+
+                    <button id="theme-toggle" onclick="toggleTheme()"
+                        class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <span class="material-symbols-outlined dark:hidden text-xl">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:block text-xl">light_mode</span>
+                    </button>
+
+                    <a href="index.html#contacto" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-all shadow-sm" data-i18n="nav.rfq">
+                        Solicitar RFQ
+                    </a>
+
+                    <button id="mobile-menu-btn" class="p-2 md:hidden text-gray-700 dark:text-gray-200 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-2xl">menu</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Drawer -->
+            <div id="mobile-menu" class="hidden md:hidden pb-6 pt-3 border-t border-gray-200 dark:border-gray-800">
+                <nav class="flex flex-col gap-3 px-2">
+                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="index.html#soluciones" data-i18n="nav.solutions">Soluciones</a>
+                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="index.html#mercados" data-i18n="nav.markets">Mercados</a>
+                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="index.html#clientes" data-i18n="nav.clients">Clientes</a>
+                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="index.html#como-funciona" data-i18n="nav.howItWorks">Cómo funciona</a>
+                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="index.html#cumplimiento-gestion" data-i18n="nav.complianceDropdown.risk">Gestión de riesgo</a>
+                    <a class="text-base font-semibold text-primary font-bold hover:text-primary transition-colors py-1.5 mobile-link" href="iniciar-verificacion.html" data-i18n="nav.complianceDropdown.verify">Iniciar verificación</a>
+                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="index.html#contacto" data-i18n="nav.contact">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- INICIAR VERIFICACIÓN SECTION (Matching Mockup Image 1) -->
+    <section class="py-16 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <span class="inline-block py-1 px-4 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-primary text-xs font-bold uppercase tracking-wider">
+                ONBOARDING
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-black text-gray-900 dark:text-white tracking-tight">
+                Iniciar verificación
+            </h1>
+            <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-normal">
+                Selecciona el perfil correspondiente para comenzar el proceso de verificación.
+            </p>
+        </div>
+
+        <!-- 3 Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Card 1: Onboarding Institucional (Directs to Contacto per user prompt) -->
+            <div class="lg:col-span-5 bg-gradient-to-br from-emerald-50/60 to-white dark:from-[#0f1d2e] dark:to-[#09131d] p-8 rounded-3xl border border-emerald-200/80 dark:border-emerald-800/60 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                <div>
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300/50 dark:border-emerald-700/50 text-primary flex items-center justify-center flex-shrink-0 shadow-sm">
+                            <span class="material-symbols-outlined text-4xl">account_balance</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Onboarding institucional</h2>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-snug">Proceso de verificación y due diligence para contrapartes profesionales y operaciones de alto volumen.</p>
+                        </div>
+                    </div>
+
+                    <!-- Checklist Bullets -->
+                    <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300 mb-8 pt-2">
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">description</span> Entidad o estructura</li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">badge</span> Beneficiarios finales</li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">public</span> Volumen y jurisdicción</li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-lg">receipt_long</span> Soportes de fondos</li>
+                    </ul>
+                </div>
+
+                <a href="index.html#contacto" class="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-emerald-900 hover:bg-emerald-950 text-white font-bold text-sm transition-all shadow-md shadow-emerald-950/20">
+                    Iniciar onboarding institucional ➔
+                </a>
+            </div>
+
+            <!-- Card 2: Persona (Directs to vinculacion.html?tipo=natural per user prompt) -->
+            <div class="lg:col-span-3.5 bg-surface-light dark:bg-[#0f1d2e] p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between text-center">
+                <div class="space-y-4 flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-2">
+                        <span class="material-symbols-outlined text-4xl">person</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Persona</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Verificación para individuos y operaciones personales.
+                    </p>
+                </div>
+
+                <a href="vinculacion.html?tipo=natural" class="mt-8 w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-all">
+                    Iniciar onboarding persona ➔
+                </a>
+            </div>
+
+            <!-- Card 3: Empresa (Directs to vinculacion.html?tipo=juridica per user prompt) -->
+            <div class="lg:col-span-3.5 bg-surface-light dark:bg-[#0f1d2e] p-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between text-center">
+                <div class="space-y-4 flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-2">
+                        <span class="material-symbols-outlined text-4xl">corporate_fare</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Empresa</h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        Verificación para empresas y personas jurídicas.
+                    </p>
+                </div>
+
+                <a href="vinculacion.html?tipo=juridica" class="mt-8 w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-all">
+                    Iniciar onboarding empresa ➔
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Bottom Confidentiality Box -->
+        <div class="mt-12 p-5 rounded-2xl bg-gray-50/90 dark:bg-[#0f1d2e]/60 border border-gray-200/80 dark:border-gray-800 flex items-center gap-4 justify-center text-center max-w-4xl mx-auto">
+            <span class="material-symbols-outlined text-primary text-2xl flex-shrink-0">verified</span>
+            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                La información se revisa de forma confidencial y conforme a políticas internas de cumplimiento.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- FOOTER (Year 2026, Social Icons Hidden) -->
+    <footer class="bg-[#060c14] text-white pt-14 pb-0 border-t border-gray-800 overflow-hidden relative flex flex-col justify-between min-h-[340px]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+            <div class="flex flex-col items-center gap-8">
+                
+                <div class="flex flex-col md:flex-row items-center justify-between w-full max-w-5xl gap-6">
+                    <!-- Footer Links -->
+                    <div class="flex flex-wrap justify-center md:justify-start gap-6 text-sm font-medium text-gray-400">
+                        <a class="hover:text-white transition-all" data-i18n="footer.privacy" href="assets/pdf/Aviso%20de%20privacidad-2%20FORES.docx.pdf" target="_blank">Política de Privacidad</a>
+                        <a class="hover:text-white transition-all" data-i18n="footer.terms" href="assets/pdf/T%C3%A9rminos%20y%20condiciones%20operaci%C3%B3n%20de%20activos%20intangibles.docx.pdf" target="_blank">Términos de Servicio</a>
+                        <a class="hover:text-white transition-all" data-i18n="footer.dataTreatment" href="assets/pdf/POLITICA%20Y%20MANUAL%20DE%20PROTECCION%20DE%20DATOS%20PERSONALES%20Y%20SEGURIDAD%20DE%20LA%20INFORMACIO%CC%80N.docx.pdf" target="_blank">Tratamiento de Datos</a>
+                        <a class="hover:text-white transition-all" data-i18n="footer.cookies" href="assets/pdf/POLITICA%20DE%20COOKIES-2%20FORES.docx.pdf" target="_blank">Política de Cookies</a>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-5xl h-px bg-gray-800/80 my-1"></div>
+
+                <div class="flex justify-center w-full max-w-5xl mb-2">
+                    <div class="text-sm text-gray-500 font-medium">
+                        © 2026 ForestEleven. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="giant-bg-text w-full mt-4">FORESTELEVEN</h1>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
