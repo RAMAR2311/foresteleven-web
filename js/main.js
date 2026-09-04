@@ -313,7 +313,7 @@ const translations = {
         "nav.howItWorks": "Cómo funciona",
         "nav.compliance": "Cumplimiento",
         "nav.contact": "Contacto",
-        "nav.rfq": "Solicitar RFQ",
+        "nav.rfq": "Request a Quote",
         "nav.whatWeDo": "Soluciones",
         "nav.desks": "Mercados",
         "nav.whyUs": "Principios",
@@ -336,7 +336,7 @@ const translations = {
         "hero.f2": "Ejecución rápida y personalizada",
         "hero.f3": "Soluciones para empresas e instituciones",
         "hero.f4": "Cumplimiento normativo y estándares internacionales",
-        "cta.main": "Solicitar RFQ",
+        "cta.main": "Request a Quote",
         "cta.whatsapp": "Contactar por WhatsApp",
 
         // Soluciones (Nuestro Servicio)
@@ -677,18 +677,15 @@ if (formEl) {
 
         const name = document.getElementById("name").value;
         const tipo_cliente = document.getElementById("tipo_cliente").value;
-        const pais = document.getElementById("pais").value;
+        const pais = document.getElementById("jurisdiccion").value;
         const tipo_operacion = document.getElementById("tipo_operacion").value;
         const email = document.getElementById("email").value;
-        const whatsapp = document.getElementById("whatsapp").value;
-        const amount = document.getElementById("amount").value;
+        const whatsapp = document.getElementById("phone").value;
+        const amount = document.getElementById("volumen").value;
         const mensaje = document.getElementById("mensaje").value;
 
-        const currencyElement = document.querySelector('input[name="currency"]:checked');
-        const currency = currencyElement ? currencyElement.value : "COP";
-
-        const activoElement = document.querySelector('input[name="activo"]:checked');
-        const activo = activoElement ? activoElement.value : "USDT";
+        const currency = document.getElementById("moneda_origen").value;
+        const activo = document.getElementById("moneda_destino").value;
 
         const text_message = `
 *Nueva Solicitud OTC - ForestEleven*
@@ -731,7 +728,6 @@ Mensaje: ${mensaje}
             .then(() => {
                 showSuccessMessage();
                 document.getElementById("transactionForm").reset();
-                updateForm("COP");
 
                 setTimeout(() => {
                     const phoneNumber = "17867221582";
@@ -749,57 +745,8 @@ Mensaje: ${mensaje}
     });
 }
 
-const amountSelect = document.getElementById("amount");
 
-const amountOptions = {
-    USD: [
-        "$10K – $100K",
-        "$100K – $1M",
-        "$1M – $10M",
-        "$100M+"
-    ],
-    EUR: [
-        "€10K – €100K",
-        "€100K – €1M",
-        "€1M – €10M",
-        "€100M+"
-    ],
-    COP: [
-        "$10M – $100M",
-        "$100M – $1.000M",
-        "$1.000M – $10.000M",
-        "$10.000M – $100.000M",
-        "$100.000M+"
-    ],
-    MXN: [
-        "$200K – $1M",
-        "$1M – $10M",
-        "$10M – $100M",
-        "$100M – $1.000M",
-        "$1.000M+"
-    ]
-};
 
-function updateForm(currency) {
-    if(!amountSelect) return;
-    amountSelect.innerHTML = '';
-    if(amountOptions[currency]) {
-        amountOptions[currency].forEach(range => {
-            const option = document.createElement("option");
-            option.value = range;
-            option.textContent = range;
-            amountSelect.appendChild(option);
-        });
-    }
-}
-
-document.querySelectorAll('input[name="currency"]').forEach(radio => {
-    radio.addEventListener("change", function () {
-        updateForm(this.value);
-    });
-});
-
-updateForm("COP");
 
 // --- COOKIE BANNER ---
 const initCookieBanner = () => {
