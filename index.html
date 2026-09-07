@@ -137,7 +137,7 @@
                     </div>
 
                     <a class="text-sm font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors whitespace-nowrap"
-                        href="#contacto" data-i18n="nav.contact">Contacto</a>
+                        href="contacto.html" data-i18n="nav.contact">Contacto</a>
                 </nav>
 
                 <!-- Actions -->
@@ -154,7 +154,7 @@
                         <span class="material-symbols-outlined hidden dark:block text-xl">light_mode</span>
                     </button>
 
-                    <a href="#contacto" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-all shadow-sm" data-i18n="nav.rfq">
+                    <a href="contacto.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-all shadow-sm" data-i18n="nav.rfq">
                         Request a Quote
                     </a>
 
@@ -173,15 +173,15 @@
                     <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="#como-funciona" data-i18n="nav.howItWorks">Cómo funciona</a>
                     <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="#cumplimiento-gestion" data-i18n="nav.complianceDropdown.risk">Gestión de riesgo</a>
                     <a class="text-base font-semibold text-primary font-bold hover:text-primary transition-colors py-1.5 mobile-link" href="vinculacion.html" data-i18n="nav.complianceDropdown.verify">Iniciar verificación</a>
-                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="#contacto" data-i18n="nav.contact">Contacto</a>
+                    <a class="text-base font-semibold text-charcoal dark:text-gray-200 hover:text-primary transition-colors py-1.5 mobile-link" href="contacto.html" data-i18n="nav.contact">Contacto</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <!-- 2. HERO SECTION -->
-    <section class="py-10 md:py-16 px-4 sm:px-6 max-w-[1400px] mx-auto">
-        <div class="relative bg-surface-light dark:bg-surface-dark rounded-3xl p-6 sm:p-10 lg:p-14 shadow-xl border border-gray-100 dark:border-gray-800/80 overflow-hidden transition-all duration-300">
+    <section class="py-10 md:py-16">
+        <div class="px-4 sm:px-6 max-w-[1400px] mx-auto relative overflow-visible">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
                 <div class="lg:col-span-7 space-y-6 md:space-y-8">
                     <h1 class="hero-title font-black text-gray-900 dark:text-white tracking-tight">
@@ -196,236 +196,101 @@
                     </p>
 
                     <div>
-                        <p class="text-xs uppercase tracking-widest font-bold text-gray-400 mb-3" data-i18n="hero.currencies">
+                        <p class="text-[11px] uppercase tracking-wider font-bold text-gray-500 dark:text-gray-400 mb-5" data-i18n="hero.currencies">
                             Divisas que operamos
                         </p>
-                        <div class="flex flex-wrap items-center gap-3">
-                            <div class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gray-50 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow-sm">
-                                <img src="https://flagcdn.com/w40/us.png" alt="USD" class="w-5 h-3.5 object-cover rounded-[2px]">
-                                <span class="text-xs font-black text-gray-800 dark:text-gray-100">USD</span>
+                        <div class="flex flex-wrap items-start gap-4 sm:gap-6">
+                            <!-- USD -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-11 h-11 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center bg-white dark:bg-[#101722] shadow-sm">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="USD" class="w-6 h-6 object-cover rounded-full border border-gray-100 dark:border-gray-600">
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-xs font-black text-gray-900 dark:text-white">USD</span>
+                                    <span class="block text-[9px] text-gray-500 font-medium leading-tight mt-0.5">Dólar<br>Estadounidense</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gray-50 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow-sm">
-                                <img src="https://flagcdn.com/w40/co.png" alt="COP" class="w-5 h-3.5 object-cover rounded-[2px]">
-                                <span class="text-xs font-black text-gray-800 dark:text-gray-100">COP</span>
+                            <!-- COP -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-11 h-11 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center bg-white dark:bg-[#101722] shadow-sm">
+                                    <img src="https://flagcdn.com/w40/co.png" alt="COP" class="w-6 h-6 object-cover rounded-full border border-gray-100 dark:border-gray-600">
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-xs font-black text-gray-900 dark:text-white">COP</span>
+                                    <span class="block text-[9px] text-gray-500 font-medium leading-tight mt-0.5">Peso<br>Colombiano</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gray-50 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow-sm">
-                                <img src="https://flagcdn.com/w40/mx.png" alt="MXN" class="w-5 h-3.5 object-cover rounded-[2px]">
-                                <span class="text-xs font-black text-gray-800 dark:text-gray-100">MXN</span>
+                            <!-- MXN -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-11 h-11 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center bg-white dark:bg-[#101722] shadow-sm">
+                                    <img src="https://flagcdn.com/w40/mx.png" alt="MXN" class="w-6 h-6 object-cover rounded-full border border-gray-100 dark:border-gray-600">
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-xs font-black text-gray-900 dark:text-white">MXN</span>
+                                    <span class="block text-[9px] text-gray-500 font-medium leading-tight mt-0.5">Peso<br>Mexicano</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gray-50 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow-sm">
-                                <img src="https://flagcdn.com/w40/eu.png" alt="EUR" class="w-5 h-3.5 object-cover rounded-[2px]">
-                                <span class="text-xs font-black text-gray-800 dark:text-gray-100">EUR</span>
+                            <!-- EUR -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-11 h-11 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center bg-white dark:bg-[#101722] shadow-sm">
+                                    <img src="https://flagcdn.com/w40/eu.png" alt="EUR" class="w-6 h-6 object-cover rounded-full border border-gray-100 dark:border-gray-600">
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-xs font-black text-gray-900 dark:text-white">EUR</span>
+                                    <span class="block text-[9px] text-gray-500 font-medium leading-tight mt-0.5">Euro<br>&nbsp;</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gray-50 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow-sm">
-                                <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/usdt.svg" alt="USDT" class="w-4 h-4">
-                                <span class="text-xs font-black text-gray-800 dark:text-gray-100">USDT</span>
+                            <!-- USDT -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-11 h-11 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center bg-white dark:bg-[#101722] shadow-sm">
+                                    <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/usdt.svg" alt="USDT" class="w-6 h-6">
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-xs font-black text-gray-900 dark:text-white">USDT</span>
+                                    <span class="block text-[9px] text-gray-500 font-medium leading-tight mt-0.5">Tether<br>&nbsp;</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gray-50 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 shadow-sm">
-                                <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/usdc.svg" alt="USDC" class="w-4 h-4">
-                                <span class="text-xs font-black text-gray-800 dark:text-gray-100">USDC</span>
+                            <!-- USDC -->
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-11 h-11 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center bg-white dark:bg-[#101722] shadow-sm">
+                                    <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/usdc.svg" alt="USDC" class="w-6 h-6">
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-xs font-black text-gray-900 dark:text-white">USDC</span>
+                                    <span class="block text-[9px] text-gray-500 font-medium leading-tight mt-0.5">USD Coin<br>&nbsp;</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                        <a class="inline-flex items-center justify-center h-13 px-8 rounded-full bg-primary hover:bg-green-600 text-white font-bold text-base transition-all shadow-lg shadow-primary/25" href="#contacto" data-i18n="cta.main">
-                            Request a Quote
-                        </a>
-                        <a class="inline-flex items-center justify-center h-13 px-8 rounded-full bg-gray-100 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-bold text-base transition-colors hover:bg-gray-200 dark:hover:bg-gray-700" href="https://wa.me/17867221582?text=Hola%20ForestEleven" target="_blank">
-                            <span class="material-symbols-outlined mr-2 text-primary">chat</span>
-                            <span data-i18n="cta.whatsapp">Contactar por WhatsApp</span>
-                        </a>
-                    </div>
                 </div>
 
-                <!-- Right Map Visual (Theme-Responsive Dotted World Map Croquis with Animated Arcs) -->
-                <div class="lg:col-span-5 relative w-full aspect-[2/1] min-h-[240px] sm:aspect-auto sm:h-[460px] rounded-2xl bg-[#fcfcfc] dark:bg-[#0c121a] overflow-hidden flex items-center justify-center border border-gray-200/60 dark:border-[#1e2532] shadow-sm">
-                    <!-- Subtle dotted grid background matching the reference -->
-                    <div class="absolute inset-0 z-0">
-                        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <pattern id="bg-grid-dots-light" width="24" height="24" patternUnits="userSpaceOnUse">
-                                    <circle cx="2" cy="2" r="1" fill="#e2e8f0" class="dark:hidden" />
-                                    <circle cx="2" cy="2" r="1" fill="#1e293b" class="hidden dark:block" />
-                                </pattern>
-                            </defs>
-                            <rect width="100%" height="100%" fill="url(#bg-grid-dots-light)" />
-                        </svg>
-                    </div>
+                <!-- Right Map Visual -->
+                <div class="lg:col-span-5 relative w-full flex items-center justify-center pt-8 lg:pt-0">
                     
-                    <svg class="w-full h-full absolute inset-0 z-10" viewBox="40 10 920 380" preserveAspectRatio="xMidYMid meet" fill="none">
-                        <style>
-                            @keyframes dash-flow {
-                                from { stroke-dashoffset: 22; }
-                                to { stroke-dashoffset: 0; }
-                            }
-                            .arc-flow path {
-                                animation: dash-flow 1.5s linear infinite;
-                            }
-                        </style>
-                        <defs>
-                            <filter id="blur-glow-large" x="-100%" y="-100%" width="300%" height="300%">
-                                <feGaussianBlur stdDeviation="25" result="blur" />
-                            </filter>
-                            <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="4" result="blur" />
-                                <feMerge>
-                                    <feMergeNode in="blur" />
-                                    <feMergeNode in="SourceGraphic" />
-                                </feMerge>
-                            </filter>
+                    <!-- Map Images (Dark/Light Mode) -->
+                    <img src="assets/images/Gemini_Generated_Image_vm4s9mvm4s9mvm4s.jpg" alt="Mapa global" class="w-full h-auto object-contain dark:hidden mix-blend-multiply transform lg:scale-110 transition-all duration-700 opacity-95 hover:opacity-100" />
+                    <img src="assets/images/Gemini_Generated_Image_xpyy1pxpyy1pxpyy.jpg" alt="Mapa global" class="w-full h-auto object-contain hidden dark:block mix-blend-screen transform lg:scale-110 transition-all duration-700 opacity-95 hover:opacity-100" />
 
-                            <!-- Dotted Pattern for Continents -->
-                            <pattern id="map-dots" width="8" height="8" patternUnits="userSpaceOnUse">
-                                <circle cx="4" cy="4" r="1.5" fill="#cbd5e1" class="dark:hidden" />
-                                <circle cx="4" cy="4" r="1.5" fill="#1e293b" class="hidden dark:block" />
-                            </pattern>
-
-                            <!-- Accurate World Map Silhouette Mask -->
-                            <mask id="world-mask-full">
-                                <g fill="#ffffff">
-                                    <!-- Greenland & Arctic -->
-                                    <path d="M 260,30 Q 320,20 340,40 Q 310,80 270,70 Z" />
-                                    
-                                    <!-- North America -->
-                                    <path d="M 70,60 Q 140,40 230,50 Q 250,80 230,120 Q 240,150 200,190 Q 170,210 160,180 Q 140,150 110,130 Q 70,100 70,60 Z" />
-                                    <path d="M 170,180 L 190,200 L 180,215 L 165,195 Z" /> <!-- Central America -->
-                                    
-                                    <!-- South America -->
-                                    <path d="M 210,215 Q 275,205 295,250 Q 290,320 250,380 Q 230,370 220,310 Q 200,250 210,215 Z" />
-                                    
-                                    <!-- Europe -->
-                                    <path d="M 420,55 Q 480,45 530,70 Q 540,110 500,140 Q 440,145 420,100 Z" />
-                                    <path d="M 400,60 Q 420,40 430,70 Z" /> <!-- UK / Scandinavia -->
-                                    <path d="M 460,40 Q 500,25 510,65 Z" />
-                                    
-                                    <!-- Africa -->
-                                    <path d="M 420,150 Q 530,140 565,190 Q 560,240 505,320 Q 470,300 450,250 Q 410,200 420,150 Z" />
-                                    <path d="M 565,240 Q 585,250 575,280 Z" /> <!-- Madagascar -->
-                                    
-                                    <!-- Asia -->
-                                    <path d="M 530,60 Q 720,40 860,60 Q 890,110 840,170 Q 770,230 680,220 Q 610,180 540,140 Z" />
-                                    <path d="M 620,180 Q 660,200 640,240 Z" /> <!-- India -->
-                                    <path d="M 750,180 Q 820,190 780,240 Z" /> <!-- SE Asia -->
-                                    <path d="M 830,110 Q 860,120 840,170 Z" opacity="0.9" /> <!-- Japan -->
-                                    
-                                    <!-- Australia & Oceania -->
-                                    <path d="M 710,270 Q 810,260 825,310 Q 800,360 725,350 Q 700,310 710,270 Z" />
-                                    <path d="M 830,340 Q 850,330 840,370 Z" /> <!-- New Zealand -->
-                                </g>
-                            </mask>
-                        </defs>
-
-                        <!-- Large blurry green highlight in the background -->
-                        <circle cx="200" cy="140" r="40" fill="#0ac20a" opacity="0.15" filter="url(#blur-glow-large)" class="hidden dark:block" />
-                        <circle cx="200" cy="140" r="40" fill="#0ac20a" opacity="0.25" filter="url(#blur-glow-large)" class="dark:hidden" />
-                        
-                        <circle cx="600" cy="200" r="50" fill="#0ac20a" opacity="0.1" filter="url(#blur-glow-large)" class="hidden dark:block" />
-                        <circle cx="600" cy="200" r="50" fill="#0ac20a" opacity="0.15" filter="url(#blur-glow-large)" class="dark:hidden" />
-
-                        <!-- World Map Rendered with Dotted Pattern Mask -->
-                        <rect width="1000" height="500" fill="url(#map-dots)" mask="url(#world-mask-full)" />
-
-                        <!-- Dashed Green Bezier Arc Connections (Animated flow) -->
-                        <!-- Dashed Green Bezier Arc Connections (Animated flow) -->
-                        <g class="arcs-group arc-flow" stroke="#16c916" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="6, 5">
-                            <!-- US East to Europe Arc -->
-                            <path id="arc1" d="M 230 140 Q 360 50, 480 110" filter="url(#neon-glow)" class="opacity-90"/>
-                            <!-- US West to US East Arc -->
-                            <path id="arc2" d="M 120 120 Q 170 90, 230 140" filter="url(#neon-glow)" class="opacity-70"/>
-                            <!-- Europe to Asia Arc -->
-                            <path id="arc3" d="M 480 110 Q 660 70, 830 140" filter="url(#neon-glow)" class="opacity-90"/>
-                            <!-- LATAM to Europe Arc -->
-                            <path id="arc4" d="M 240 230 Q 380 200, 480 110" filter="url(#neon-glow)" class="opacity-90"/>
-                            <!-- LATAM to Asia (Bottom curve) -->
-                            <path id="arc5" d="M 240 230 Q 550 350, 830 140" filter="url(#neon-glow)" class="opacity-70"/>
-                        </g>
-
-                        <!-- Traveling Dots along paths (Data transfer animation) -->
-                        <g fill="#ffffff" filter="url(#neon-glow)">
-                            <circle r="3.5">
-                                <animateMotion dur="2.5s" repeatCount="indefinite">
-                                    <mpath href="#arc1" />
-                                </animateMotion>
-                            </circle>
-                            <circle r="2.5">
-                                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.8s">
-                                    <mpath href="#arc2" />
-                                </animateMotion>
-                            </circle>
-                            <circle r="3.5">
-                                <animateMotion dur="3s" repeatCount="indefinite" begin="0.5s">
-                                    <mpath href="#arc3" />
-                                </animateMotion>
-                            </circle>
-                            <circle r="3.5">
-                                <animateMotion dur="2.8s" repeatCount="indefinite" begin="0.2s">
-                                    <mpath href="#arc4" />
-                                </animateMotion>
-                            </circle>
-                            <circle r="2.5">
-                                <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.5s">
-                                    <mpath href="#arc5" />
-                                </animateMotion>
-                            </circle>
-                        </g>
-
-                        <!-- Nodes (Matching Reference exactly) -->
-                        <g class="nodes-group">
-                            <!-- Node 1: US West -->
-                            <circle cx="120" cy="120" r="14" fill="#16c916" fill-opacity="0.25" filter="url(#neon-glow)"/>
-                            <rect x="116" y="116" width="8" height="8" rx="2" fill="#16c916" filter="url(#neon-glow)"/>
-                            <circle cx="120" cy="120" r="2.5" fill="#ffffff"/>
-
-                            <!-- Node 2: US East -->
-                            <circle cx="230" cy="140" r="14" fill="#16c916" fill-opacity="0.25" filter="url(#neon-glow)"/>
-                            <rect x="226" y="136" width="8" height="8" rx="2" fill="#16c916" filter="url(#neon-glow)"/>
-                            <circle cx="230" cy="140" r="2.5" fill="#ffffff"/>
-
-                            <!-- Node 3: LATAM -->
-                            <circle cx="240" cy="230" r="14" fill="#16c916" fill-opacity="0.25" filter="url(#neon-glow)"/>
-                            <rect x="236" y="226" width="8" height="8" rx="2" fill="#16c916" filter="url(#neon-glow)"/>
-                            <circle cx="240" cy="230" r="2.5" fill="#ffffff"/>
-
-                            <!-- Node 4: Europe -->
-                            <circle cx="480" cy="110" r="14" fill="#16c916" fill-opacity="0.25" filter="url(#neon-glow)"/>
-                            <rect x="476" y="106" width="8" height="8" rx="2" fill="#16c916" filter="url(#neon-glow)"/>
-                            <circle cx="480" cy="110" r="2.5" fill="#ffffff"/>
-
-                            <!-- Node 5: Asia -->
-                            <circle cx="830" cy="140" r="14" fill="#16c916" fill-opacity="0.25" filter="url(#neon-glow)"/>
-                            <rect x="826" y="136" width="8" height="8" rx="2" fill="#16c916" filter="url(#neon-glow)"/>
-                            <circle cx="830" cy="140" r="2.5" fill="#ffffff"/>
-                        </g>
-                    </svg>
-
-                    <!-- Live Status Badge -->
-                    <div class="absolute top-6 left-6 z-20 bg-white dark:bg-[#101722] px-4 py-2.5 rounded-[14px] border border-gray-100 dark:border-[#1e2532] text-[11px] sm:text-xs font-bold flex items-center gap-2.5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.4)] text-gray-800 dark:text-gray-100">
-                        <span class="w-3.5 h-3.5 rounded-full bg-[#16c916]/20 flex items-center justify-center relative">
-                            <span class="w-2 h-2 rounded-full bg-[#16c916]"></span>
-                        </span>
-                        <span data-i18n="hero.map_badge">US Rails / Global Settlement</span>
-                    </div>
                 </div>
             </div>
 
             <!-- Hero Feature Strip -->
-            <div class="mt-12 pt-8 border-t border-gray-200/80 dark:border-gray-800/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-gray-50/70 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800">
-                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><span class="material-symbols-outlined text-xl">verified_user</span></div>
-                    <span class="text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200" data-i18n="hero.f1">Confidencialidad y seguridad</span>
+            <div class="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-start border-t border-gray-100 dark:border-gray-800/50 pt-8">
+                <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-primary text-2xl flex-shrink-0">verified_user</span>
+                    <span class="text-[11px] sm:text-xs font-medium text-gray-600 dark:text-gray-400 leading-snug" data-i18n="hero.f1">Confidencialidad<br>y seguridad</span>
                 </div>
-                <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-gray-50/70 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800">
-                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><span class="material-symbols-outlined text-xl">bolt</span></div>
-                    <span class="text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200" data-i18n="hero.f2">Ejecución rápida y personalizada</span>
+                <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-primary text-2xl flex-shrink-0">bolt</span>
+                    <span class="text-[11px] sm:text-xs font-medium text-gray-600 dark:text-gray-400 leading-snug" data-i18n="hero.f2">Ejecución rápida<br>y personalizada</span>
                 </div>
-                <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-gray-50/70 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800">
-                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><span class="material-symbols-outlined text-xl">domain</span></div>
-                    <span class="text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200" data-i18n="hero.f3">Soluciones para empresas e instituciones</span>
+                <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-primary text-2xl flex-shrink-0">account_balance</span>
+                    <span class="text-[11px] sm:text-xs font-medium text-gray-600 dark:text-gray-400 leading-snug" data-i18n="hero.f3">Soluciones para<br>empresas e instituciones</span>
                 </div>
-                <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-gray-50/70 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-800">
-                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0"><span class="material-symbols-outlined text-xl">gavel</span></div>
-                    <span class="text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200" data-i18n="hero.f4">Cumplimiento normativo y estándares internacionales</span>
+                <div class="flex items-center gap-2.5">
+                    <span class="material-symbols-outlined text-primary text-2xl flex-shrink-0">gavel</span>
+                    <span class="text-[11px] sm:text-xs font-medium text-gray-600 dark:text-gray-400 leading-snug" data-i18n="hero.f4">Cumplimiento normativo<br>y estándares internacionales</span>
                 </div>
             </div>
         </div>
@@ -451,31 +316,31 @@
                 <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 lg:gap-8 items-start text-center">
                     
                     <div class="flex flex-col items-center">
-                        <div class="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-4xl">handshake</span></div>
+                        <div class="w-24 h-24 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-5xl">handshake</span></div>
                         <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2" data-i18n="solutions.c1.title">Cotización personalizada</h3>
                         <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="solutions.c1.desc">Cotizaciones directas y competitivas según el tamaño, par y características de tu operación.</p>
                     </div>
 
-                    <div class="hidden md:flex absolute left-1/4 top-10 -ml-3 text-primary text-2xl font-bold">›</div>
+                    <div class="hidden md:flex absolute left-1/4 top-12 -ml-3 text-primary text-2xl font-bold">›</div>
 
                     <div class="flex flex-col items-center">
-                        <div class="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-4xl">currency_exchange</span></div>
+                        <div class="w-24 h-24 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-5xl">currency_exchange</span></div>
                         <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2" data-i18n="solutions.c2.title">Cambio de divisas</h3>
                         <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="solutions.c2.desc">Operaciones directas entre USD, COP, MXN y EUR con ejecución eficiente y tasas competitivas.</p>
                     </div>
 
-                    <div class="hidden md:flex absolute left-2/4 top-10 -ml-1 text-primary text-2xl font-bold">›</div>
+                    <div class="hidden md:flex absolute left-2/4 top-12 -ml-1 text-primary text-2xl font-bold">›</div>
 
                     <div class="flex flex-col items-center">
-                        <div class="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-4xl">paid</span></div>
+                        <div class="w-24 h-24 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-5xl">paid</span></div>
                         <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2" data-i18n="solutions.c3.title">Operaciones con USDT y USDC</h3>
                         <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="solutions.c3.desc">Compra y venta de stablecoins (USDT y USDC) con liquidación segura y rápida en custodios confiables.</p>
                     </div>
 
-                    <div class="hidden md:flex absolute left-3/4 top-10 ml-2 text-primary text-2xl font-bold">›</div>
+                    <div class="hidden md:flex absolute left-3/4 top-12 ml-2 text-primary text-2xl font-bold">›</div>
 
                     <div class="flex flex-col items-center">
-                        <div class="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-4xl">headset_mic</span></div>
+                        <div class="w-24 h-24 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-100 flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-5xl">headset_mic</span></div>
                         <h3 class="text-base font-bold text-gray-900 dark:text-white mb-2" data-i18n="solutions.c4.title">Liquidación coordinada</h3>
                         <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="solutions.c4.desc">Acompañamiento dedicado desde el inicio hasta la liquidación final, asegurando una experiencia fluida y transparente.</p>
                     </div>
@@ -513,7 +378,7 @@
                             <span class="material-symbols-outlined text-emerald-500 text-xl">check_circle</span>
                             <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-i18n="markets.usd.desc2">Cotización directa.</span>
                         </div>
-                        <a href="#contacto" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
+                        <a href="contacto.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
                     </div>
                 </div>
 
@@ -531,7 +396,7 @@
                             <span class="material-symbols-outlined text-emerald-500 text-xl">check_circle</span>
                             <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-i18n="markets.cop.desc2">Liquidación coordinada.</span>
                         </div>
-                        <a href="#contacto" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
+                        <a href="contacto.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
                     </div>
                 </div>
 
@@ -549,7 +414,7 @@
                             <span class="material-symbols-outlined text-emerald-500 text-xl">check_circle</span>
                             <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-i18n="markets.mxn.desc2">Operaciones OTC personalizadas.</span>
                         </div>
-                        <a href="#contacto" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
+                        <a href="contacto.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
                     </div>
                 </div>
 
@@ -567,7 +432,7 @@
                             <span class="material-symbols-outlined text-emerald-500 text-xl">check_circle</span>
                             <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-i18n="markets.eur.desc2">Cotización directa.</span>
                         </div>
-                        <a href="#contacto" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
+                        <a href="contacto.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-primary text-primary hover:bg-primary hover:text-white font-bold text-sm transition-colors" data-i18n="markets.btn.quote">Solicitar cotización ➔</a>
                     </div>
                 </div>
             </div>
@@ -585,32 +450,32 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">corporate_fare</span></div>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-4xl">corporate_fare</span></div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="clients.c1.title">Empresas / Corporaciones</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="clients.c1.desc">Tesorería, pagos internacionales y conversión entre USD, COP, MXN, EUR, USDT y USDC.</p>
                 </div>
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">groups</span></div>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-4xl">groups</span></div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="clients.c2.title">Payroll y equipos globales</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="clients.c2.desc">Liquidación de fondos para nómina internacional, contratistas y equipos remotos.</p>
                 </div>
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">shield_person</span></div>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-4xl">shield_person</span></div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="clients.c3.title">Family Offices</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="clients.c3.desc">Ejecución privada y personalizada para operaciones de alto valor.</p>
                 </div>
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">account_balance</span></div>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-4xl">account_balance</span></div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="clients.c4.title">Fondos e inversionistas profesionales</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="clients.c4.desc">Liquidez OTC para posiciones relevantes en fiat y stablecoins.</p>
                 </div>
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">candlestick_chart</span></div>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-4xl">candlestick_chart</span></div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="clients.c5.title">Trading Firms / OTC Desks</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="clients.c5.desc">Liquidez adicional, ejecución por bloques y soporte de settlement.</p>
                 </div>
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">public</span></div>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-4xl">public</span></div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="clients.c6.title">Comercio internacional</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="clients.c6.desc">Cambio de divisas para pagos y cobros de importadores y exportadores.</p>
                 </div>
@@ -741,8 +606,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Card 1: Verificación de contraparte -->
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
-                        <span class="material-symbols-outlined text-3xl">badge</span>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
+                        <span class="material-symbols-outlined text-4xl">badge</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="complianceSec.c1.title">
                         Verificación de contraparte
@@ -754,8 +619,8 @@
 
                 <!-- Card 2: Origen y destino de fondos -->
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
-                        <span class="material-symbols-outlined text-3xl">account_balance</span>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
+                        <span class="material-symbols-outlined text-4xl">account_balance</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="complianceSec.c2.title">
                         Origen y destino de fondos
@@ -767,8 +632,8 @@
 
                 <!-- Card 3: Activos digitales -->
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
-                        <span class="material-symbols-outlined text-3xl">verified_user</span>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
+                        <span class="material-symbols-outlined text-4xl">verified_user</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="complianceSec.c3.title">
                         Activos digitales
@@ -780,8 +645,8 @@
 
                 <!-- Card 4: Prevención de riesgos -->
                 <div class="p-8 rounded-2xl bg-surface-light dark:bg-[#0f1d2e] border border-gray-200/80 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
-                        <span class="material-symbols-outlined text-3xl">lock</span>
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center text-primary mb-6">
+                        <span class="material-symbols-outlined text-4xl">lock</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2" data-i18n="complianceSec.c4.title">
                         Prevención de riesgos
@@ -795,8 +660,8 @@
             <!-- Request a Quote Bottom Card -->
             <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-emerald-50 to-emerald-100/50 dark:from-emerald-950/30 dark:to-gray-900/50 border border-emerald-200 dark:border-emerald-800/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                 <div class="flex items-start gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center flex-shrink-0 shadow-md">
-                        <span class="material-symbols-outlined text-2xl">description</span>
+                    <div class="w-14 h-14 rounded-xl bg-primary text-white flex items-center justify-center flex-shrink-0 shadow-md">
+                        <span class="material-symbols-outlined text-3xl">description</span>
                     </div>
                     <div>
                         <h4 class="font-bold text-gray-900 dark:text-white text-xl">
@@ -807,7 +672,7 @@
                         </p>
                     </div>
                 </div>
-                <a href="#contacto" class="whitespace-nowrap px-6 py-3.5 rounded-xl bg-primary hover:bg-green-600 text-white font-bold text-sm transition-all shadow-lg shadow-primary/20 flex-shrink-0">
+                <a href="contacto.html" class="whitespace-nowrap px-6 py-3.5 rounded-xl bg-primary hover:bg-green-600 text-white font-bold text-sm transition-all shadow-lg shadow-primary/20 flex-shrink-0">
                     Request Quote ➔
                 </a>
             </div>
@@ -822,212 +687,7 @@
     </section>
 
     <!-- 8. CONTACTO / FORM SECTION -->
-    <section id="contacto" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            
-            <!-- Left Column: Contact Info -->
-            <div class="space-y-8">
-                <div>
-                    <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-primary text-xs font-bold uppercase tracking-wider mb-4">CONTACTO</span>
-                    <h2 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight mb-6">
-                        Conecta con nuestro equipo<br><span class="text-primary">OTC</span>
-                    </h2>
-                    <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-normal leading-relaxed">
-                        Ofrecemos operaciones de alto volumen en USD, COP, MXN y EUR, con atención personalizada, ejecución segura y total confidencialidad.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-emerald-500">check_circle</span>
-                        <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Confidencialidad y seguridad</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-emerald-500">check_circle</span>
-                        <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Atención personalizada</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-emerald-500">check_circle</span>
-                        <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Respuesta rápida</span>
-                    </div>
-                </div>
-
-                <div class="pt-6 border-t border-gray-100 dark:border-gray-800">
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 font-medium">Prefiere una opción rápida:</p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="https://wa.me/17867221582?text=Hola%20ForestEleven" target="_blank" class="flex-1 flex flex-col p-4 rounded-2xl bg-gray-50 dark:bg-[#0f1d2e] border border-gray-200 dark:border-gray-800 hover:border-primary/50 transition-all group">
-                            <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">chat</span></div>
-                            <h4 class="font-bold text-gray-900 dark:text-white text-sm mb-1">Chat por WhatsApp</h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Respuestas inmediatas para consultas rápidas.</p>
-                            <span class="mt-auto inline-flex items-center text-xs font-bold text-primary">Iniciar chat ➔</span>
-                        </a>
-                        <a href="#" class="flex-1 flex flex-col p-4 rounded-2xl bg-gray-50 dark:bg-[#0f1d2e] border border-gray-200 dark:border-gray-800 hover:border-primary/50 transition-all group">
-                            <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">calendar_month</span></div>
-                            <h4 class="font-bold text-gray-900 dark:text-white text-sm mb-1">Reunión directa</h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Agenda una reunión con nuestro equipo OTC.</p>
-                            <span class="mt-auto inline-flex items-center text-xs font-bold text-primary">Agendar reunión ➔</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="mt-8 flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-[#09131d] border border-gray-100 dark:border-gray-800/60">
-                    <span class="material-symbols-outlined text-primary text-xl">lock</span>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                        <strong class="text-gray-800 dark:text-gray-200 font-semibold">Tu información está protegida.</strong> Cumplimos con los más altos estándares de seguridad.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Right Column: Form (No blue background box per user request) -->
-            <div>
-                <div class="mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Cuéntanos sobre tu operación</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Completa el formulario y nuestro equipo te contactará.</p>
-                </div>
-
-                <form id="transactionForm" class="space-y-5">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <!-- Tipo de cliente -->
-                        <div class="space-y-1.5">
-                            <label for="tipo_cliente" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Tipo de cliente *</label>
-                            <div class="relative">
-                                <select id="tipo_cliente" required class="w-full h-11 px-4 pr-10 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100 appearance-none">
-                                    <option value="" disabled selected>Selecciona</option>
-                                    <option value="Persona natural">Persona natural</option>
-                                    <option value="Empresa">Empresa</option>
-                                </select>
-                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-lg">expand_more</span>
-                            </div>
-                        </div>
-
-                        <!-- Tipo de operación -->
-                        <div class="space-y-1.5">
-                            <label for="tipo_operacion" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Tipo de operación *</label>
-                            <div class="relative">
-                                <select id="tipo_operacion" required class="w-full h-11 px-4 pr-10 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100 appearance-none">
-                                    <option value="" disabled selected>Selecciona</option>
-                                    <option value="Comprar">Comprar</option>
-                                    <option value="Vender">Vender</option>
-                                </select>
-                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-lg">expand_more</span>
-                            </div>
-                        </div>
-
-                        <!-- Moneda de origen -->
-                        <div class="space-y-1.5">
-                            <label for="moneda_origen" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Moneda de origen *</label>
-                            <div class="relative">
-                                <select id="moneda_origen" required class="w-full h-11 px-4 pr-10 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100 appearance-none">
-                                    <option value="" disabled selected>Selecciona</option>
-                                    <option value="USD">USD</option>
-                                    <option value="COP">COP</option>
-                                    <option value="MXN">MXN</option>
-                                    <option value="EUR">EUR</option>
-                                    <option value="USDT">USDT</option>
-                                    <option value="USDC">USDC</option>
-                                </select>
-                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-lg">expand_more</span>
-                            </div>
-                        </div>
-
-                        <!-- Moneda de destino -->
-                        <div class="space-y-1.5">
-                            <label for="moneda_destino" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Moneda de destino *</label>
-                            <div class="relative">
-                                <select id="moneda_destino" required class="w-full h-11 px-4 pr-10 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100 appearance-none">
-                                    <option value="" disabled selected>Selecciona</option>
-                                    <option value="USD">USD</option>
-                                    <option value="COP">COP</option>
-                                    <option value="MXN">MXN</option>
-                                    <option value="EUR">EUR</option>
-                                    <option value="USDT">USDT</option>
-                                    <option value="USDC">USDC</option>
-                                </select>
-                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-lg">expand_more</span>
-                            </div>
-                        </div>
-
-                        <!-- Jurisdicción de liquidación -->
-                        <div class="space-y-1.5">
-                            <label for="jurisdiccion" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Jurisdicción de liquidación *</label>
-                            <div class="relative">
-                                <select id="jurisdiccion" required class="w-full h-11 px-4 pr-10 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100 appearance-none">
-                                    <option value="" disabled selected>Selecciona</option>
-                                    <option value="Colombia">Colombia</option>
-                                    <option value="México">México</option>
-                                    <option value="Estados Unidos">Estados Unidos</option>
-                                    <option value="Europa">Europa</option>
-                                    <option value="Otro">Otro</option>
-                                </select>
-                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-lg">expand_more</span>
-                            </div>
-                        </div>
-
-                        <!-- Volumen mensual estimado -->
-                        <div class="space-y-1.5">
-                            <label for="volumen" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Volumen mensual estimado *</label>
-                            <div class="relative">
-                                <select id="volumen" required class="w-full h-11 px-4 pr-10 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100 appearance-none">
-                                    <option value="" disabled selected>Selecciona</option>
-                                    <option value="< 50k USD">&lt; 50.000 USD</option>
-                                    <option value="50k - 250k USD">50.000 - 250.000 USD</option>
-                                    <option value="250k - 1M USD">250.000 - 1.000.000 USD</option>
-                                    <option value="> 1M USD">&gt; 1.000.000 USD</option>
-                                </select>
-                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-lg">expand_more</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
-                        <!-- Nombre completo -->
-                        <div class="space-y-1.5">
-                            <label for="name" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Nombre completo *</label>
-                            <input id="name" type="text" placeholder="Ej. Juan Pérez" required class="w-full h-11 px-4 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100" />
-                        </div>
-
-                        <!-- Correo electrónico -->
-                        <div class="space-y-1.5">
-                            <label for="email" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Correo electrónico *</label>
-                            <input id="email" type="email" placeholder="ejemplo@empresa.com" required class="w-full h-11 px-4 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100" />
-                        </div>
-
-                        <!-- Número de teléfono (con intl-tel-input o similar, user requested "bandera en el numero y menu desplegable") -->
-                        <div class="space-y-1.5 sm:col-span-2">
-                            <label for="phone" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Número de teléfono *</label>
-                            <input id="phone" type="tel" required class="w-full h-11 px-4 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100" />
-                        </div>
-                    </div>
-
-                    <!-- Mensaje (opcional) -->
-                    <div class="space-y-1.5 pt-2">
-                        <label for="mensaje" class="text-xs font-semibold text-gray-700 dark:text-gray-300">Mensaje (opcional)</label>
-                        <textarea id="mensaje" rows="2" placeholder="Cuéntanos más sobre tu operación o requerimiento..." class="w-full p-4 rounded-lg bg-gray-50 dark:bg-[#09131d] border border-gray-200 dark:border-gray-800 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-900 dark:text-gray-100 resize-none"></textarea>
-                    </div>
-
-                    <!-- Privacy Checkbox -->
-                    <div class="flex items-start gap-3 pt-2">
-                        <input type="checkbox" id="privacy" required class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer accent-primary" />
-                        <label for="privacy" class="text-xs text-gray-600 dark:text-gray-400 leading-snug cursor-pointer">
-                            Acepto el tratamiento de mis datos de acuerdo con la <a href="assets/pdf/Aviso%20de%20privacidad-2%20FORES.docx.pdf" target="_blank" class="text-primary hover:underline font-medium">Política de Privacidad</a>.
-                        </label>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="pt-4 flex justify-end">
-                        <button type="submit" class="w-full sm:w-auto px-8 h-11 rounded-xl bg-primary text-white font-bold text-sm hover:bg-green-600 transition-all shadow-lg shadow-primary/25">
-                            Enviar mensaje ➔
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="successMessage" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-700 text-emerald-900 dark:text-emerald-100 text-center transition-all">
-                    <h3 class="font-bold text-sm mb-1">Mensaje Enviado</h3>
-                    <p class="text-xs">Un ejecutivo te contactará pronto.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- 9. FAQ SECTION -->
     <section id="faq" class="py-20 px-4 sm:px-6 max-w-[1400px] mx-auto">

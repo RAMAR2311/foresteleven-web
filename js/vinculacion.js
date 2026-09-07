@@ -43,6 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
             tipoPersonaSelect.value = 'Juridica';
         }
         tipoPersonaSelect.dispatchEvent(new Event('change'));
+        
+        // Hide the select container to make it a dedicated form experience
+        if (tipoPersonaSelect.parentElement) {
+            tipoPersonaSelect.parentElement.style.display = 'none';
+        }
     }
 
     function updateStepUI() {
@@ -409,6 +414,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tipoPersonaSelect) {
         tipoPersonaSelect.addEventListener('change', (e) => {
             const isJuridica = e.target.value === 'Juridica';
+            const labelNombre = document.getElementById('label_nombre');
+            const labelDoc = document.getElementById('label_doc');
+
+            if (isJuridica) {
+                if (labelNombre) labelNombre.textContent = "Razón Social *";
+                if (labelDoc) labelDoc.textContent = "NIT *";
+            } else {
+                if (labelNombre) labelNombre.textContent = "Nombre Completo *";
+                if (labelDoc) labelDoc.textContent = "Documento de Identidad (CC / Pasaporte) *";
+            }
+
             if (boxCamara && docCamaraInput) {
                 if (isJuridica) {
                     boxCamara.style.display = 'block';
