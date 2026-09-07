@@ -40,6 +40,10 @@ const translations = {
         "hero.f2": "Fast & Personalized Execution",
         "hero.f3": "Solutions for Enterprises & Institutions",
         "hero.f4": "Regulatory Compliance & Global Standards",
+        "hero.curr.usd": "US<br>Dollar",
+        "hero.curr.cop": "Colombian<br>Peso",
+        "hero.curr.mxn": "Mexican<br>Peso",
+        "hero.curr.eur": "Euro<br>&nbsp;",
         "cta.main": "Request RFQ",
         "cta.whatsapp": "Contact via WhatsApp",
 
@@ -366,6 +370,10 @@ const translations = {
         "hero.f2": "Ejecución rápida y personalizada",
         "hero.f3": "Soluciones para empresas e instituciones",
         "hero.f4": "Cumplimiento normativo y estándares internacionales",
+        "hero.curr.usd": "Dólar<br>Estadounidense",
+        "hero.curr.cop": "Peso<br>Colombiano",
+        "hero.curr.mxn": "Peso<br>Mexicano",
+        "hero.curr.eur": "Euro<br>&nbsp;",
         "cta.main": "Request a Quote",
         "cta.whatsapp": "Contactar por WhatsApp",
 
