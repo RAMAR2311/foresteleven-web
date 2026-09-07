@@ -418,11 +418,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const labelDoc = document.getElementById('label_doc');
 
             if (isJuridica) {
-                if (labelNombre) labelNombre.textContent = "Razón Social *";
-                if (labelDoc) labelDoc.textContent = "NIT *";
+                if (labelNombre) labelNombre.setAttribute('data-i18n', 'kyc.s1.name.juridica');
+                if (labelDoc) labelDoc.setAttribute('data-i18n', 'kyc.s1.id.juridica');
             } else {
-                if (labelNombre) labelNombre.textContent = "Nombre Completo *";
-                if (labelDoc) labelDoc.textContent = "Documento de Identidad (CC / Pasaporte) *";
+                if (labelNombre) labelNombre.setAttribute('data-i18n', 'kyc.s1.name.natural');
+                if (labelDoc) labelDoc.setAttribute('data-i18n', 'kyc.s1.id.natural');
+            }
+            if (typeof setLanguage === 'function') {
+                setLanguage(localStorage.getItem('lang') || 'es');
             }
 
             if (boxCamara && docCamaraInput) {
