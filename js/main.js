@@ -197,6 +197,18 @@ const translations = {
         "form.opt.other": "Other",
         "form.opt.buy": "Buy stablecoins",
         "form.opt.sell": "Sell stablecoins",
+        "form.select.default": "Select",
+        "form.label.currencyFrom": "Source Currency *",
+        "form.label.currencyTo": "Destination Currency *",
+        "form.label.jurisdiction": "Settlement Jurisdiction *",
+        "form.label.volume": "Estimated Monthly Volume *",
+        "form.placeholder.name": "e.g. John Doe",
+        "form.placeholder.email": "example@company.com",
+        "form.placeholder.message": "Tell us more about your operation or requirement...",
+        "form.opt.vol1": "< 50,000 USD",
+        "form.opt.vol2": "50,000 - 250,000 USD",
+        "form.opt.vol3": "250,000 - 1,000,000 USD",
+        "form.opt.vol4": "> 1,000,000 USD",
 
         "success.title": "Request Sent Successfully",
         "success.desc": "One of our executives will contact you shortly via email or WhatsApp.",
@@ -677,6 +689,13 @@ function setLanguage(lang) {
         const key = el.getAttribute("data-i18n");
         if (translations[lang] && translations[lang][key]) {
             el.innerHTML = translations[lang][key];
+        }
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (translations[lang] && translations[lang][key]) {
+            el.placeholder = translations[lang][key];
         }
     });
 
